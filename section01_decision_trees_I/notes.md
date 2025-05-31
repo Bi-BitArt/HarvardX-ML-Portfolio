@@ -27,6 +27,10 @@
 
   In other words, **linearly separable** in the feature space. That is, a straight line (or hyperplane) can separate the categories effectively.
 
+- What is **Classification Boundaries or Decision Boundaries?
+
+  They are defined where the probabilities of being in class 1 and class 0 are equal, i.e. P(Y=1)=P(Y=0)=1 - P(Y=1), that means P(Y=1)=0.5
+
 ## Key Concepts
 
 
