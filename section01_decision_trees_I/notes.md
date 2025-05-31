@@ -3,7 +3,7 @@
 ## Preface
 - **Exponential notation**: For instance, the number 8,000,000 (eight million) can be expressed as `8e6` or `8 * 10^6` or `8 × 10^6`.
 
-## Topics Covered
+# Concept Breakdown
 
 - What is a decision tree?
 
@@ -14,13 +14,18 @@
   - Each branch represents a decision.
   - Each leaf node represents the outcome or prediction.
 
-- What is a classification?
+- What is classification?
 
-  For example, the simplest and most straightforward classification model we know is **logistic regression**.
+  Classification is the task of predicting a categorical label (class) based on input features.  
+  A typical example is predicting whether an email is *spam* or *not spam*.
 
-- When **logistic regression** works best?
+  One of the most basic classification models is **logistic regression**, which calculates the probability of belonging to a particular class.
 
-  Under the condition that the classes are well separated in the feature space.
+- When does logistic regression work best?
+
+  Logistic regression works best when the classes are **linearly separable** in the feature space.  
+  That is, a straight line (or hyperplane) can separate the categories effectively.
+
 
 ## Key Concepts
 
