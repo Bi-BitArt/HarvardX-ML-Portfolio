@@ -16,7 +16,7 @@
 
 - What is a classification?
 
-  - Motivation
+  For example, the simplest and most straightforward classification model we know is ***logistic regression***.
 
 ## Key Concepts
 
