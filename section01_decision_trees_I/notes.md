@@ -16,7 +16,11 @@
 
 - What is a classification?
 
-  For example, the simplest and most straightforward classification model we know is ***logistic regression***.
+  For example, the simplest and most straightforward classification model we know is **logistic regression**.
+
+- When **logistic regression** works best?
+
+  Under the condition that the classes are well separated in the feature space.
 
 ## Key Concepts
 
