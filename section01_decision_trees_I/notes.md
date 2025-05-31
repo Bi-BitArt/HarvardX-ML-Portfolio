@@ -17,15 +17,13 @@
 - What is classification?
 
   Classification is the task of predicting a categorical label (class) based on input features.  
-  A typical example is predicting whether an email is *spam* or *not spam*.
 
   One of the most basic classification models is **logistic regression**, which calculates the probability of belonging to a particular class.
 
 - When does logistic regression work best?
 
-  Logistic regression works best when the classes are **linearly separable** in the feature space.  
-  That is, a straight line (or hyperplane) can separate the categories effectively.
-
+  - The classes are well-separated in the feature space
+  - The classification boundary has a nice geometry; in other words, **linearly separable** in the feature space.　That is, a straight line (or hyperplane) can separate the categories effectively.
 
 ## Key Concepts
 
