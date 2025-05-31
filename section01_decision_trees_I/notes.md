@@ -5,7 +5,10 @@
 
 ## Topics Covered
 - What is a decision tree?
-- 
+A decision tree is a ML algorithm, that can be used for both classification and regression. It's one of supervised algorithms, characterized by a treelike structure, where internal node represents a feature or attribute, each branch represents a decision, and each leaf node represents the outcome or prediction.
+- What is a classification?
+  -motivation
+
 
 ## Key Concepts
 
