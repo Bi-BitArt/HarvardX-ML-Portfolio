@@ -23,7 +23,8 @@
 - When does logistic regression work best?
 
   - The classes are well-separated in the feature space
-  - The classification boundary has a nice geometry; in other words, **linearly separable** in the feature space.　That is, a straight line (or hyperplane) can separate the categories effectively.
+  - The classification boundary has a nice geometry
+in other words, **linearly separable** in the feature space.That is, a straight line (or hyperplane) can separate the categories effectively.
 
 ## Key Concepts
 
