@@ -39,6 +39,7 @@
   Also can be expressed as:
 
   - Xβ = 0 (x are the values of the features; longitude and latitude, β is a vector of the parameters or the coefficients of the logistic model)
+   - This equation can define the decision boundary, like Latitude(Y)=0.8Longitude(X) + 0.1
 
 ## Key Concepts
 
