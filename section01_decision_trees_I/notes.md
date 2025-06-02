@@ -44,7 +44,10 @@
 
  - What is a motivation for employing Decision Trees?
 
-  If the decision boundaries cannot easily be described by a single equation
+   The decision boundaries sometimes cannot easily be described by a single equation. So we wish a model, that 
+
+  - Allows for complex decision boundaries
+  - Is also easy to interpret
 
 ## Key Concepts
 
