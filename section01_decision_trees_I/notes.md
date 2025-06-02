@@ -67,8 +67,7 @@ This is why decision trees are useful. They can create models that:
 - Can deal with complex data by dividing the space into smaller parts  
 - Use simple rules like `X > threshold`, which can be written as short mathematical expressions
 
-For example, a question like **height > 6.5?** in a fruit example is similar to **longitude > 6.5?** in a map.  
-This shows that decision trees can split data using simple conditions based on features.
+For example, a question like **height > 6.5?** in a fruit example is similar to **longitude > 6.5?** in a map. This shows that decision trees can split data using simple conditions based on features.
 
  By repeating this procedure, we can make even more complex decision boundaries.
 
