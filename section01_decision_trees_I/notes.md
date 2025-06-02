@@ -70,6 +70,8 @@ This is why decision trees are appealing — they can create models that:
  For example, a flowchart condition like **height > 6.5?** when classifying fruit is analogous to **longitude > 6.5?** in a spatial dataset.
 This illustrates how decision trees split data using feature-based thresholds, such as coordinates.
 
+ By repeating this procedure, we can make even more complex decision boundaries.
+
 ## Key Concepts
 
 
