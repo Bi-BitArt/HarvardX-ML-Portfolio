@@ -42,6 +42,10 @@
   
   This equation can define the decision boundary, like Latitude(Y)=0.8Longitude(X) + 0.1
 
+ - What is a motivation for employing Decision Trees?
+
+  If the decision boundaries cannot easily be described by a single equation
+
 ## Key Concepts
 
 
