@@ -67,7 +67,7 @@ This is why decision trees are appealing — they can create models that:
 - Can capture sufficient complexity by dividing the space into smaller, simpler parts  
 - Have **locally linear** decision boundaries, meaning each split is based on a simple rule (e.g., `X > threshold`), which can be mathematically described
 
- For example, a flowchart condition like height > 6.5? when classifying fruit is analogous to longitude > 6.5? in a spatial dataset.
+ For example, a flowchart condition like **height > 6.5?** when classifying fruit is analogous to **longitude > 6.5?** in a spatial dataset.
 This illustrates how decision trees split data using feature-based thresholds, such as coordinates.
 
 ## Key Concepts
