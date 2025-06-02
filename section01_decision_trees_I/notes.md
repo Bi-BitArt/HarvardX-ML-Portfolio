@@ -61,14 +61,14 @@ So we wish for a model that:
 - Allows for complex decision boundaries  
 - Is also easy to interpret
 
-This is why decision trees are appealing — they can create models that:
+This is why decision trees are useful. They can create models that:
 
-- Are interpretable by humans, since the flow of decisions is visual and logical  
-- Can capture sufficient complexity by dividing the space into smaller, simpler parts  
-- Have **locally linear** decision boundaries, meaning each split is based on a simple rule (e.g., `X > threshold`), which can be mathematically described
+- Are easy for people to understand, because the process looks like a flowchart  
+- Can deal with complex data by dividing the space into smaller parts  
+- Use simple rules like `X > threshold`, which can be written as short mathematical expressions
 
- For example, a flowchart condition like **height > 6.5?** when classifying fruit is analogous to **longitude > 6.5?** in a spatial dataset.
-This illustrates how decision trees split data using feature-based thresholds, such as coordinates.
+For example, a question like **height > 6.5?** in a fruit example is similar to **longitude > 6.5?** in a map.  
+This shows that decision trees can split data using simple conditions based on features.
 
  By repeating this procedure, we can make even more complex decision boundaries.
 
