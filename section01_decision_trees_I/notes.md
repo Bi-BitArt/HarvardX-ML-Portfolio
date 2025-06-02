@@ -20,10 +20,10 @@ One of the most basic classification models is **logistic regression**, which ca
 - The classification boundary has a nice geometry
 
 In other words, **linearly separable** in the feature space.  
-That is, a straight line (or hyperplane) can separate the categories effectively.
+That is a straight line (or hyperplane) can separate the categories effectively.
 
 
-### What are **classification boundaries** (also known as **decision boundaries**)?
+### What are **classification boundaries** ot **decision boundaries**?
 
 Classification boundaries are the points or regions in the feature space  
 where the model is equally uncertain between two classes.
