@@ -36,6 +36,9 @@
   - P(Y = 1) = P(Y = 0)
   - Since P(Y = 0) = 1 - P(Y = 1), this means P(Y = 1) = 0.5
 
+ Also can be expressed as:
+
+  - Xβ = 0 (x are the values of the features; longitude and latitude, β is a vector of the parameters or the coefficients of the logistic model)
 
 ## Key Concepts
 
