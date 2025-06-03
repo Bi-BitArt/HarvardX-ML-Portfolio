@@ -74,6 +74,8 @@ For example, a question like **height > 6.5?** in a fruit example is similar to 
 
  By repeating this procedure, we can make even more complex decision boundaries.
 
+(I thought decision trees are really handy because it can even define when each splitting should be done.)
+
 
 ### Classification Error
 
