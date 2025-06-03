@@ -24,7 +24,7 @@ In other words, **linearly separable** in the feature space.
 That is a straight line (or hyperplane) can separate the categories effectively.
 
 
-### What are **classification boundaries** ot **decision boundaries**?
+### What are **classification boundaries** or **decision boundaries**?
 
 Classification boundaries are the points or regions in the feature space  
 where the model is equally uncertain between two classes.
@@ -43,7 +43,7 @@ Also can be expressed as:
 This equation can define the decision boundary, like:  
 `Latitude (Y) = 0.8 * Longitude (X) + 0.1`
 
-(I felt it's really similar to ordinal equations like: `y = 3x + 2`.)
+(I felt it's really similar to ordinary equations like: `y = 3x + 2`.)
 
 
 ### What is a decision tree?
@@ -98,13 +98,13 @@ We define the misclassification error for region R_r, split using predictor **p*
 
 ### Meaning of each symbols:
 
-- **R_r**: A region in feature space devided by a decision tree split  
+- **R_r**: A region in feature space divided by a decision tree split  
 - **p**: The predictor (feature) used for splitting  
 - **t_p**: The threshold value used for that predictor  
 - **Ψ(k | R_r)**: Proportion of data points in **R_r** that are labeled with class **k**  
 - **max_k Ψ(k | R_r)**: Proportion of the majority class in **R_r**
 
-(Remember to back here when I get lost in terms of meaning of each symbols.)
+(Come back here when I get lost in terms of meaning of each symbol.)
 
 
 ## Insight
