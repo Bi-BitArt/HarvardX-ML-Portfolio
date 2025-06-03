@@ -74,7 +74,7 @@ For example, a question like **height > 6.5?** in a fruit example is similar to 
 
 ### Splitting cliteria
 
-Though there is no **correct** way to define an optimal spoit, there are some **common** sense guidelines for splitting criterion.
+Though there is no **"correct"** way to define an optimal spoit, there are some **"common"** sense guidelines for splitting criterion.
 
 ## Pseudocode Insight
 
