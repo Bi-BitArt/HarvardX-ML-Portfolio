@@ -90,6 +90,7 @@ We define the misclassification error for region R_r, split using predictor **p*
 
 `Error(R_r | p, t_p) = 1 - max_k Ψ(k | R_r)`
 
+
 ### Explanation:
 
 - **R_r**: A region in feature space created by a decision tree split  
@@ -97,10 +98,6 @@ We define the misclassification error for region R_r, split using predictor **p*
 - **t_p**: The threshold value used for that predictor  
 - **Ψ(k | R_r)**: Proportion of data points in **R_r** that are labeled with class **k**  
 - **max_k Ψ(k | R_r)**: Proportion of the majority class in **R_r**
-
-Thus, the error is calculated as:
-
-> **1 minus the fraction of the majority class in region R_r.**
 
 
 ## Insight
