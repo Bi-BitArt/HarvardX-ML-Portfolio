@@ -1,6 +1,7 @@
 # Section 1: Decision Trees I
 
-## Preface
+
+## Preparation knowledge
 
 - **Exponential notation**:  
   For instance, the number 8,000,000 (eight million) can be expressed as `8e6`, `8 * 10^6`, or `8 × 10^6`.
@@ -41,6 +42,8 @@ Also can be expressed as:
 
 This equation can define the decision boundary, like:  
 `Latitude (Y) = 0.8 * Longitude (X) + 0.1`
+
+(I felt it's really similar to ordinal equations like: `y = 3x + 2`.)
 
 
 ### What is a decision tree?
