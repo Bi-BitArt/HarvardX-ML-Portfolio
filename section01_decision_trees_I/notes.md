@@ -84,7 +84,7 @@ Also can be expressed as:
 - `1 - Number of majority data points / Total number of data points`.
 
 
-## Misclassification Error Definition
+## In Symbolic Definition
 
 We define the misclassification error for region R_r, split using predictor **p** and threshold **t_p**, as:
 
