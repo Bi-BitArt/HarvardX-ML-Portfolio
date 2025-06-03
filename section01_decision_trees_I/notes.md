@@ -115,7 +115,9 @@ If we treat both regions equally, **a region with only a few points could influe
 We use a weighted average of the classification error in both regions, so that:  
  - Larger regions (with more points) have more impact.
  - Smaller regions (with fewer points) have less impact. 
-## Insight
+
+
+## Insights
 
 
 ## Reflections
