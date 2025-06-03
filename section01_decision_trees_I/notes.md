@@ -104,6 +104,8 @@ We define the misclassification error for region R_r, split using predictor **p*
 - **Ψ(k | R_r)**: Proportion of data points in **R_r** that are labeled with class **k**  
 - **max_k Ψ(k | R_r)**: Proportion of the majority class in **R_r**
 
+(Remember to back here if I get lost in terms of meaning of each symbols.)
+
 
 ## Insight
 
