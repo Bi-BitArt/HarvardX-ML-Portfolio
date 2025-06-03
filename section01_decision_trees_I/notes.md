@@ -113,8 +113,8 @@ Sometimes one region has more data points than the other.
 If we treat both regions equally, a region with only a few points could influence the decision too much, which is misleading.
 
 We use a weighted average of the classification error in both regions, so that:  
-Larger regions (with more points) have more impact, while Smaller regions (with fewer points) have less impact.
-
+ - Larger regions (with more points) have more impact.
+ - Smaller regions (with fewer points) have less impact. 
 ## Insight
 
 
