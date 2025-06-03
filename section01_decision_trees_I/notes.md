@@ -75,10 +75,14 @@ For example, a question like **height > 6.5?** in a fruit example is similar to 
 ### Classification Error
 
 Can be defined as 
+
 - `errors / total`.  
 - `Number of minority class data points / Total number of data points`.
 
 Also can be expressed as:
+
+- `1 - Number of majority data points / Total number of data points`.
+- `\[\text{Error}(R_r \mid p, t_p) = 1 - \max_k \Psi(k \mid R_r)\]`.
 
 
 
