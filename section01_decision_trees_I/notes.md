@@ -98,13 +98,13 @@ We define the misclassification error for region R_r, split using predictor **p*
 
 ### Meaning of each symbols:
 
-- **R_r**: A region in feature space created by a decision tree split  
-- **p**: The predictor (feature) used for the split  
+- **R_r**: A region in feature space devided by a decision tree split  
+- **p**: The predictor (feature) used for splitting  
 - **t_p**: The threshold value used for that predictor  
 - **Ψ(k | R_r)**: Proportion of data points in **R_r** that are labeled with class **k**  
 - **max_k Ψ(k | R_r)**: Proportion of the majority class in **R_r**
 
-(Remember to back here if I get lost in terms of meaning of each symbols.)
+(Remember to back here when I get lost in terms of meaning of each symbols.)
 
 
 ## Insight
