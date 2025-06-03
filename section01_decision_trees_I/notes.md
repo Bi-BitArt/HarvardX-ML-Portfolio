@@ -72,11 +72,11 @@ For example, a question like **height > 6.5?** in a fruit example is similar to 
  By repeating this procedure, we can make even more complex decision boundaries.
 
 
-### Splitting cliteria
+### Classification Error
 
-Though there is no **"correct"** way to define an optimal spoit, there are some **"common"** sense guidelines for splitting criterion.
+Can be defined as `errors/total`
 
-## Pseudocode Insight
+## Insight
 
 
 ## Reflections
