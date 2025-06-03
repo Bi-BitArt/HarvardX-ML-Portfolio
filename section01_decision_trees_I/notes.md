@@ -94,7 +94,7 @@ We define the misclassification error for region R_r, split using predictor **p*
 `Error(R_r | p, t_p) = 1 - max_k Ψ(k | R_r)`
 
 
-### Explanation:
+### Meaning of each symbols:
 
 - **R_r**: A region in feature space created by a decision tree split  
 - **p**: The predictor (feature) used for the split  
