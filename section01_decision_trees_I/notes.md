@@ -75,6 +75,7 @@ For example, a question like **height > 6.5?** in a fruit example is similar to 
 ### Classification Error
 
 Can be defined as `errors / total`
+
 also as `Number of minority class data points / Total number of data points`
 
 ## Insight
