@@ -142,9 +142,19 @@ Finally, subtract that sum from 1, the Gini Index is calculated.)
 
 - **Entropy**
 
-The entropy is computed by:
+There are two related forms of entropy:
+
+#### 1. General Entropy (from Information Theory)
+
+This is the basic definition of entropy for any random variable:
 
 `H(x) = - Σ Ψ(x) * log₂ Ψ(x)`
+
+#### 2. Entropy in Decision Trees
+
+This is used to measure how pure/mixed the class distribution is **within a region `R_r`** after splitting:
+
+`Entropy(R_r | p, t_p) = - Σ Ψ(k | R_r) * log₂ Ψ(k | R_r)`
 
 
 
