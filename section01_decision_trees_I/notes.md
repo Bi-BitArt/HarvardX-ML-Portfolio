@@ -135,13 +135,26 @@ Then, square those proportions and add them up.
 Finally, subtract that sum from 1, the Gini Index is calculated.)
 
 
+### Information Theory
+
+(Overall, there are three metrics for evaluating the quality of a split; classification error, Gini index, information theory.)
 
 
----
+- **Entropy**
+
+The entropy is computed by:
+
+`H(x) = - Σ Ψ(x) * log₂ Ψ(x)`
 
 
 
-(The given question here is, what is the effect of squaring the proportion of each classes, why don't we take the maximum?)
+
+
+
+
+
+
+
 
 
 ## Insights
