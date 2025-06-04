@@ -169,7 +169,7 @@ For example, assuming there are eight triangles and five circles in the region, 
 
 ### Greedy Algorithm
 
-We use a **greedy algorithm** to build the decision tree.
+We use a **greedy algorithm** to build the 'optimal' decision tree.
 
 1. Start with an empty decision tree (undivided feature space).
 
