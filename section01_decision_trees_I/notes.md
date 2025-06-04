@@ -163,7 +163,7 @@ For example, assuming there are eight triangles and five circles in the region, 
 `Entropy = - [ (8/13) * log₂(8/13) + (5/13) * log₂(5/13) ]`
 
 
-(Overall, there are three metrics for evaluating the quality of a split; Classification Error, Gini Index, Information theory and the entropy.)
+(Overall, there are three metrics for evaluating the quality of a split; **Classification Error**, **Gini Index**, **Information theory and the entropy**.)
 
 
 
