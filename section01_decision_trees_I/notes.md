@@ -186,6 +186,8 @@ We use a **greedy algorithm** to build the 'optimal' decision tree.
 ## Key Concepts from Video 3
 
 
+### What is...
+
 
 
 
