@@ -91,7 +91,7 @@ Also can be expressed as:
 
 ### In Symbolic Definition
 
-We define the misclassification error for region R_r, split using predictor **p** and threshold **t_p**, as:
+We define the classification error for region R_r, split using predictor **p** and threshold **t_p**, as:
 
 `Error(R_r | p, t_p) = 1 - max_k Ψ(k | R_r)`
 
@@ -137,8 +137,6 @@ Finally, subtract that sum from 1, the Gini Index is calculated.)
 
 ### Information Theory
 
-(Overall, there are three metrics for evaluating the quality of a split; classification error, Gini index, information theory.)
-
 
 - **Entropy**
 
@@ -163,6 +161,9 @@ For example, assuming there are eight triangles and five circles in the region, 
 - Proportion of circles = 5/13
 
 `Entropy = - [ (8/13) * log₂(8/13) + (5/13) * log₂(5/13) ]`
+
+
+(Overall, there are three metrics for evaluating the quality of a split; Classification Error, Gini Index, Information theory and the entropy.)
 
 
 
