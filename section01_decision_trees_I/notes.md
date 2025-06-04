@@ -142,7 +142,7 @@ Finally, subtract that sum from 1, the Gini Index is calculated.)
 
 - **Entropy**
 
-There are two related forms of entropy:
+There are two forms of entropy:
 
 #### 1. General Entropy (from Information Theory)
 
@@ -155,6 +155,15 @@ This is the basic definition of entropy for any random variable:
 This is used to measure how pure/mixed the class distribution is **within a region `R_r`** after splitting:
 
 `Entropy(R_r | p, t_p) = - Σ Ψ(k | R_r) * log₂ Ψ(k | R_r)`
+
+For example, assuming there are eight triangles and five circles in the region, the entropy is calculated like:
+
+- Total points = 13  
+- Proportion of triangles = 8/13  
+- Proportion of circles = 5/13
+
+`Entropy = - [ (8/13) * log₂(8/13) + (5/13) * log₂(5/13) ]`
+
 
 
 
