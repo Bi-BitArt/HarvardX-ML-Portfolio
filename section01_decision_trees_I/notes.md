@@ -129,6 +129,21 @@ Where:
 - `Ψ(k | R_r)` is the proportion of points in region `R_r` that are labeled with class `k`
 - The sum `Σ` is taken over all possible classes
 
+(In short, the equation means:
+First, calculate the proportion of items that belong to each class in the region.
+Then, square those proportions and add them up.
+Finally, subtract that sum from 1, the Gini Index is calculated.)
+
+
+
+
+---
+
+
+
+(The given question here is, what is the effect of squaring the proportion of each classes, why don't we take the maximum?)
+
+
 ## Insights
 
 
