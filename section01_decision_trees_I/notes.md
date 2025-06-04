@@ -167,6 +167,22 @@ For example, assuming there are eight triangles and five circles in the region, 
 
 (I wondered why we try to minimize the weighted average of the Gini Index or entropy. If the groups after the split are very mixed, it’s harder to classify them. So we want to choose the feature and cut that give us the lowest Gini index or entropy, like making each group mostly contain one type, so that prediction becomes easier.)
 
+### Greedy Algorithm
+
+
+We use a **greedy algorithm** to build the decision tree. The steps are:
+
+1. Start with an empty decision tree (undivided feature space).
+
+2. Choose the *‘optimal’* predictor on which to split and choose the *‘optimal’* threshold value for splitting.
+
+3. Recurse on each new node until the **stopping condition** is met.
+
+4. For the case of classification, predict each region to have a class label  
+   based on the largest class of the training points in that region (**majority class**).
+
+
+
 
 
 
