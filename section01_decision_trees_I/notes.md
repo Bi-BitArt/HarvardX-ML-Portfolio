@@ -183,7 +183,7 @@ We use a **greedy algorithm** to build the 'optimal' decision tree.
 (Basically, we use the Gini Index and the entropy because the Classification Error is too simple to use.)
 
 
-
+## Key Concepts from Video 3
 
 
 
