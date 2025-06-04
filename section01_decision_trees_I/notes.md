@@ -180,7 +180,7 @@ We use a **greedy algorithm** to build the 'optimal' decision tree.
 4. For the case of classification, predict each region to have a class label  
    based on the largest class of the training points in that region (majority class).
 
-
+(Basically, we use the Gini Index and the entropy because the Classification Error is too simple to use.)
 
 
 
