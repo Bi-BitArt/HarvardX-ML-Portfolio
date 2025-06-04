@@ -127,7 +127,7 @@ Gini Index is calculated for each region as:
 Where:
 
 - `Ψ(k | R_r)` is the proportion of points in region `R_r` that are labeled with class `k`
-- The sum `Σ` is taken over all possible classes
+- The sum `Σ` for all possible classes
 
 (In short, the equation means:
 First, calculate the proportion of items that belong to each class in the region.
