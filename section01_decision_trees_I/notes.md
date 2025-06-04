@@ -117,6 +117,18 @@ We use a weighted average of the classification error in both regions, so that:
  - Smaller regions (with fewer points) have less impact. 
 
 
+### Gini Index
+
+We measure Gini Index to assess the quality of the split. 
+Gini Index is calculated for each region as:
+
+`Gini(R_r | p, t_p) = 1 - Σ Ψ(k | R_r)^2`
+
+Where:
+
+- `Ψ(k | R_r)` is the proportion of points in region `R_r` that are labeled with class `k`
+- The sum `Σ` is taken over all possible classes
+
 ## Insights
 
 
