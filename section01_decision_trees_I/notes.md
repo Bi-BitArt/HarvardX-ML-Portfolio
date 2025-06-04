@@ -169,8 +169,7 @@ For example, assuming there are eight triangles and five circles in the region, 
 
 ### Greedy Algorithm
 
-
-We use a **greedy algorithm** to build the decision tree. The steps are:
+We use a **greedy algorithm** to build the decision tree.
 
 1. Start with an empty decision tree (undivided feature space).
 
@@ -179,7 +178,7 @@ We use a **greedy algorithm** to build the decision tree. The steps are:
 3. Recurse on each new node until the **stopping condition** is met.
 
 4. For the case of classification, predict each region to have a class label  
-   based on the largest class of the training points in that region (**majority class**).
+   based on the largest class of the training points in that region (majority class).
 
 
 
