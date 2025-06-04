@@ -77,7 +77,7 @@ For example, a question like **height > 6.5?** in a fruit example is similar to 
 (I thought decision trees are really handy because it can even define when each splitting should be done.)
 
 
-### Classification Error
+### 1. Classification Error
 
 Can be defined as 
 
@@ -117,7 +117,7 @@ We use a weighted average of the classification error in both regions, so that:
  - Smaller regions (with fewer points) have less impact. 
 
 
-### Gini Index
+### 2. Gini Index
 
 We measure Gini Index to assess the quality of the split.  
 Gini Index is calculated for each region as:
@@ -135,7 +135,7 @@ Then, square those proportions and add them up.
 Finally, subtract that sum from 1, the Gini Index is calculated.)
 
 
-### Information Theory
+### 3. Information Theory
 
 
 - **Entropy**
