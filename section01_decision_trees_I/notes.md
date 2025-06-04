@@ -165,6 +165,12 @@ For example, assuming there are eight triangles and five circles in the region, 
 
 (Overall, there are three metrics for evaluating the quality of a split; **Classification Error**, **Gini Index**, **Information theory and the entropy**.)
 
+(I wondered the reason why we try to minimize the weighted average of Gini Index or entropy.
+If the groups after the split are very mixed, it’s harder to classify.  
+So we want to choose the feature and cut that gives us the lowest Gini index or entropy —  
+that means the split made the groups as pure as possible.
+It’s kinda things so that each group mostly has one type to make the prediction easy.)
+
 
 
 
