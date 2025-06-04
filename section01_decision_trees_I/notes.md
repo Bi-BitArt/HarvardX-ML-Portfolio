@@ -119,7 +119,7 @@ We use a weighted average of the classification error in both regions, so that:
 
 ### Gini Index
 
-We measure Gini Index to assess the quality of the split. 
+We measure Gini Index to assess the quality of the split.  
 Gini Index is calculated for each region as:
 
 `Gini(R_r | p, t_p) = 1 - Σ Ψ(k | R_r)^2`
