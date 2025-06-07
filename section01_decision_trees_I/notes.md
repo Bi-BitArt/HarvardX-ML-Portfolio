@@ -182,14 +182,20 @@ We use a **greedy algorithm** to build the 'optimal' decision tree.
 
 (Basically, we use the Gini Index and the entropy because the Classification Error is too simple to use.)
 
+(I read that greedy mechanism means "always picking the best-looking option at each step".  
+Honestly, I don’t fully get what that means clearly.  
+But I guess we don’t try to plan everything ahead; we just split where it looks best now.  
+Maybe I’ll understand it better once I try to build a tree myself.)
 
 ## Key Concepts from Video 3
 
 
-### What is...
+### What are Stopping Conditions?
 
+In order to prevent *overfiting* (this leads to jeopardize the versatility of the model), we use Stopping Conditions.
 
-
+The most common one is to limit the *maximum depth* (max_depth) of the tree.
+If max_depth = 1 , it allows for only one split.
 
 
 
