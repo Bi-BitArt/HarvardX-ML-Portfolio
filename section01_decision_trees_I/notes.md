@@ -173,7 +173,7 @@ We use a **greedy algorithm** to build the 'optimal' decision tree.
 
 1. Start with an empty decision tree (undivided feature space).
 
-2. Choose the 'optimal' predictor on which to split and choose the *‘optimal’* threshold value for splitting.
+2. Choose the 'optimal' predictor on which to split and choose the 'optimal' threshold value for splitting.
 
 3. Recurse on each new node until the **stopping condition** is met.
 
