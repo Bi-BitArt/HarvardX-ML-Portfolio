@@ -230,7 +230,8 @@ To put it simply, we prioritize a split by which we can have **purer** leaf node
 
 (I understand that again, this process will continue until the stopping condition is satisfied.)
 
-(Also, there is a more restrictive stopping condition; Don't split further if the gain in purity (decrease in impurity) is less than pre-defined threshold. a.k.a. min_impurity_decrease)
+(Also, there is a more restrictive stopping condition; Don't split further if the gain in purity (decrease in impurity) is less than pre-defined threshold.  
+a.k.a. min_impurity_decrease)
 
 
 
