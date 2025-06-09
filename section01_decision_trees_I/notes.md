@@ -194,7 +194,7 @@ Maybe I’ll understand it better once I try to build a tree myself.)
 
 In order to prevent **overfiting** (this leads to jeopardize the versatility of the model), we use Stopping Conditions.
 
- - *maximum depth* (max_depth)  
+ - **maximum depth** (max_depth)  
 If max_depth = 1 , it allows for only one split.
 
 
