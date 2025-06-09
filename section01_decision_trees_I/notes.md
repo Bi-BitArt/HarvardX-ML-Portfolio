@@ -192,9 +192,9 @@ Maybe I’ll understand it better once I try to build a tree myself.)
 
 ### What are Stopping Conditions?
 
-In order to prevent *overfiting* (this leads to jeopardize the versatility of the model), we use Stopping Conditions.
+In order to prevent **overfiting** (this leads to jeopardize the versatility of the model), we use Stopping Conditions.
 
-The most common one is to limit the *maximum depth* (max_depth) of the tree.
+ - *maximum depth* (max_depth)  
 If max_depth = 1 , it allows for only one split.
 
 
