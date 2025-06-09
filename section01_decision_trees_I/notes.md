@@ -216,13 +216,13 @@ Normally, **Sklearn** (a.k.a scikikt-learn, a popular machine learning library f
 According to this rule, all the leaf nodes will grow simlutaneously; in other words, the tree expands one level at a time.
 It helps to make a well-balanced, easy-to-understand tree.
 
-- What is **Best-first**
+- What is **Best-first**  
 Sklearn determines the best split based on **impurity decrease**. The resulting tree will be the same when fully grown, though there will be a difference of the order in which the tree is built.
 
 For example, suppose there are two regions; 
 the one on the right has a higher *impurity decrease*, and the one on the left has a lower *impurity decrease*.  
 In **level-order**, both might be split at the same time.  
-But in **best-first**, the left one (with higher gain) will be split first.
+But in **best-first**, the left one (with higher gain) will be split first due to its higher *impurity decrease*.
 
 To put it simply, we prioritize a split by which we can have **purer** leaf nodes.
 
