@@ -192,10 +192,12 @@ Maybe I’ll understand it better once I try to build a tree myself.)
 
 ### What are Stopping Conditions?
 
-In order to prevent **overfiting** (this leads to jeopardize the versatility of the model), we use Stopping Conditions.
+In order to prevent **overfiting** (this leads to jeopardize the versatility of the model), we use Stopping Conditions. Common examples of stopping conditions below; 
 
  - **maximum depth** (max_depth)  
 If max_depth = 1 , it allows for only one split.
+
+ - Don't sprit a regin if all instances in the region **belong to the same class**.
 
 
 
