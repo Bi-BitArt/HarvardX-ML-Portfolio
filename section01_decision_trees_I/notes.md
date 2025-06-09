@@ -212,6 +212,8 @@ In other words, we do not split that will exceed the maximum leaf node.
 
 Normally, **Sklearn** (a.k.a scikikt-learn, a popular machine learning library for python) grows trees in what is called **'level-order'** fashion until a stopping condition is met (satisfied). 
 
+(I thought this is how to define a order for splitting, rather than the stopping  condition.)
+
 - What is **level-order**  
 According to this rule, all the leaf nodes will grow simlutaneously; in other words, the tree expands one level at a time.
 It helps to make a well-balanced, easy-to-understand tree.
@@ -225,6 +227,8 @@ In **level-order**, both might be split at the same time.
 But in **best-first**, the left one (with higher gain) will be split first due to its higher *impurity decrease*.
 
 To put it simply, we prioritize a split by which we can have **purer** leaf nodes.
+
+(I understand that again, this process will continue until the stopping condition is satisfied.)
 
 
 
