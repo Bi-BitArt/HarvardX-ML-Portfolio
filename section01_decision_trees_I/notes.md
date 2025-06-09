@@ -220,8 +220,7 @@ It helps to make a well-balanced, easy-to-understand tree.
 Sklearn determines the best split based on **impurity decrease**. The resulting tree will be the same when fully grown, though there will be a difference of the order in which the tree is built.
 
 For example, suppose there are two regions; 
-the one on the right has a higher *impurity decrease*,  
-and the one on the left has a lower *impurity decrease*.  
+the one on the right has a higher *impurity decrease*, and the one on the left has a lower *impurity decrease*.  
 In **level-order**, both might be split at the same time.  
 But in **best-first**, the left one (with higher gain) will be split first.
 
