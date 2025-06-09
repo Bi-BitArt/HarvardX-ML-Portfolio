@@ -197,12 +197,15 @@ In order to prevent **overfiting** (this leads to jeopardize the versatility of 
 Common examples of stopping conditions below; 
 
  - **maximum depth** (max_depth)  
+
 If `max_depth = 1` , it allows for only one split.
 
  - Don't sprit a regin if all instances in the region **belong to the same class**.  
+
 In other words, there is no gain to split pure leaf nodes.
 
  - Don't sprit a region if the **number of instances in any of the sub-regions will fall below pre-defined threshold** (min_samples_leaf).  
+
 If `min_samples_leaf = 4` , it doesn't allow split which will result in regions with less than four instances.
 
 
