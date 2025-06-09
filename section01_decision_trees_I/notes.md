@@ -214,11 +214,11 @@ Normally, **Sklearn** (a.k.a scikikt-learn, a popular machine learning library f
 
 (I thought this is how to define a order for splitting, rather than the stopping  condition.)
 
-- What is **level-order**  
+- **What is level-order**  
 According to this rule, all the leaf nodes will grow simlutaneously; in other words, the tree expands one level at a time.
 It helps to make a well-balanced, easy-to-understand tree.
 
-- What is **Best-first**  
+- **What is Best-first**  
 Sklearn determines the best split based on **impurity decrease**. The resulting tree will be the same when fully grown, though there will be a difference of the order in which the tree is built.
 
 For example, suppose there are two regions; 
