@@ -192,21 +192,41 @@ Maybe I’ll understand it better once I try to build a tree myself.)
 
 ### What are Stopping Conditions?
 
-In order to prevent **overfiting** (this leads to jeopardize the versatility of the model), we use Stopping Conditions.  
+In order to prevent **overfitting** (this leads to jeopardize the versatility of the model), we use Stopping Conditions.  
 
 Common examples of stopping conditions below; 
 
  - **maximum depth** (max_depth)  
-
 If `max_depth = 1` , it allows for only one split.
 
- - Don't sprit a regin if all instances in the region **belong to the same class**.  
-
+ - Don't sprit a region if all instances in the region **belong to the same class**.  
 In other words, there is no gain to split pure leaf nodes.
 
  - Don't sprit a region if the **number of instances in any of the sub-regions will fall below pre-defined threshold** (min_samples_leaf).  
+If `min_samples_leaf = 4` , it doesn't allow a split which will result in regions with less than four instances.
 
-If `min_samples_leaf = 4` , it doesn't allow split which will result in regions with less than four instances.
+ - Don't split a region if the total **number of laves** in the tree will exceed a pre-defined threshold (max_leaf_nodes).  
+In other words, we do not split that will exceed the maximum leaf node.
+
+### **Level-order** and **Best-first**
+
+Normally, **Sklearn** (a.k.a scikikt-learn, a popular machine learning library for python) grows trees in what is called **'level-order'** fashion until a stopping condition is met (satisfied). 
+
+- What is **level-order**  
+According to this rule, all the leaf nodes will grow simlutaneously; in other words, the tree expands one level at a time.
+It helps to make a well-balanced, easy-to-understand tree.
+
+- What is **Best-first**
+Sklearn determines the best split based on **impurity decrease**. The resulting tree will be the same when fully grown, though there will be a difference of the order in which the tree is built.
+
+For example, suppose there are two regions; 
+the one on the right has a higher *impurity decrease*,  
+and the one on the left has a lower *impurity decrease*.  
+In **level-order**, both might be split at the same time.  
+But in **best-first**, the left one (with higher gain) will be split first.
+
+To put it simply, we prioritize a split by which we can have **purer** leaf nodes.
+
 
 
 
