@@ -208,6 +208,7 @@ If `min_samples_leaf = 4` , it doesn't allow a split which will result in region
  - Don't split a region if the total **number of laves** in the tree will exceed a pre-defined threshold (max_leaf_nodes).  
 In other words, we do not split that will exceed the maximum leaf node.
 
+
 ### **Level-order** and **Best-first**
 
 Normally, **Sklearn** (a.k.a scikikt-learn, a popular machine learning library for python) grows trees in what is called **'level-order'** fashion until a stopping condition is met (satisfied). 
@@ -233,6 +234,31 @@ To put it simply, we prioritize a split by which we can have **purer** leaf node
 (Also, there is a more restrictive stopping condition; Don't split further if the gain in purity (decrease in impurity) is less than pre-defined threshold.  
 a.k.a. min_impurity_decrease)
 
+
+### Variance and Bias
+
+- **What do Variance and Bias mean in this context?
+
+When we build a decision tree, we want it to make good predictions.  
+But if it's too simple or too complex, it can make mistakes in different ways.
+
+---
+
+#### Bias
+
+- Bias means the model is **too simple**.
+- It can’t learn the real patterns in the data.
+- Example: a shallow tree that doesn’t split much.
+- This leads to **underfitting**.
+
+---
+
+#### Variance
+
+- Variance means the model is **too complex**.
+- It learns the training data too well, even the noise.
+- Example: a deep tree with too many branches.
+- This leads to **overfitting**.
 
 
 
