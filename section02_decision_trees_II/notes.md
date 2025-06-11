@@ -16,8 +16,9 @@ the tree uses those parameters to split the input space and reach a numerical ou
 ## Key Concepts from Video 1
 
 
-### What is classification?
+### Example of regression
 
-Classification is the task of predicting a categorical label (class) based on input features.  
-One of the most basic classification models is **logistic regression**, which calculates the probability of belonging to a particular class.
 
+Suppose there are many features, in Euclid space/
+If one of these features has a x value > 6.5, it is anticipated to have y value 0.697, since this y value is the average of...
+If x is less than 6.5, 
