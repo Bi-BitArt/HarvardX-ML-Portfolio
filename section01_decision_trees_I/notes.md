@@ -199,10 +199,10 @@ Common examples of stopping conditions below;
  - **maximum depth** (max_depth)  
 If `max_depth = 1` , it allows for only one split.
 
- - Don't sprit a region if all instances in the region **belong to the same class**.  
+ - Don't split a region if all instances in the region **belong to the same class**.  
 In other words, there is no gain to split pure leaf nodes.
 
- - Don't sprit a region if the **number of instances in any of the sub-regions will fall below pre-defined threshold** (min_samples_leaf).  
+ - Don't split a region if the **number of instances in any of the sub-regions will fall below pre-defined threshold** (min_samples_leaf).  
 If `min_samples_leaf = 4` , it doesn't allow a split which will result in regions with less than four instances.
 
  - Don't split a region if the total **number of laves** in the tree will exceed a pre-defined threshold (max_leaf_nodes).  
@@ -211,12 +211,12 @@ In other words, we do not split that will exceed the maximum leaf node.
 
 ### **Level-order** and **Best-first**
 
-Normally, **Sklearn** (a.k.a scikikt-learn, a popular machine learning library for python) grows trees in what is called **'level-order'** fashion until a stopping condition is met (satisfied). 
+Normally, **Sklearn** (a.k.a scikit-learn, a popular machine learning library for python) grows trees in what is called **'level-order'** fashion until a stopping condition is met (satisfied). 
 
 (I thought this is how to define a order for splitting, rather than the stopping  condition.)
 
 - **What is level-order**  
-According to this rule, all the leaf nodes will grow simlutaneously; in other words, the tree expands one level at a time.
+According to this rule, all the leaf nodes will grow simultaneously; in other words, the tree expands one level at a time.
 It helps to make a well-balanced, easy-to-understand tree.
 
 - **What is Best-first**  
@@ -262,7 +262,7 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 
 (I learned that variance decrease means bias increase, vice versa.)
 
-(And in the very end of this video, the recturer said we use cross-validation to choose stopping conditions.)
+(And in the very end of this video, the lecturer said we use cross-validation to choose stopping conditions.)
 
 
 
