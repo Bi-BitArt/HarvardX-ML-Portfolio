@@ -262,6 +262,8 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 
 (I learned that variance decrease means bias increase, vice versa.)
 
+(And in the very end of this video, the recturer said we use cross-validation to choose stopping conditions.)
+
 
 
 
