@@ -237,7 +237,7 @@ a.k.a. min_impurity_decrease)
 
 ### Variance and Bias
 
-- What do Variance and Bias mean in this context?
+- What do **variance** and **bias** mean in this context?
 
 When we build a decision tree, we want it to make good predictions.  
 But if it's too simple or too complex, it can make mistakes in different ways.
@@ -259,6 +259,8 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 - It learns the training data too well, even the noise.
 - Example: a deep tree with too many branches.
 - This leads to **overfitting**.
+
+(I learned that variance decrease means bias increase, vice versa.)
 
 
 
