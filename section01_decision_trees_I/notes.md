@@ -237,7 +237,7 @@ a.k.a. min_impurity_decrease)
 
 ### Variance and Bias
 
-- **What do Variance and Bias mean in this context?
+- What do Variance and Bias mean in this context?
 
 When we build a decision tree, we want it to make good predictions.  
 But if it's too simple or too complex, it can make mistakes in different ways.
