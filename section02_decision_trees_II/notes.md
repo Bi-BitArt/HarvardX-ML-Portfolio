@@ -27,3 +27,16 @@ because this is the average of the target values in that region.
 
 In short, regression trees split the input space using feature values,  
 and **predict the average target value** in each resulting region.
+
+
+### MSE, Mean Squared Error
+
+**MSE = average of (prediction − actual value)²**
+
+- It measures how far the predicted values are from the actual values.
+- The differences are squared, so **larger errors are penalized more**.
+
+
+- When calculating the MSE, we need to consider the number of points in each region. We take the weighted average over both regions so that we won't estimate few outliers too much. 　
+
+
