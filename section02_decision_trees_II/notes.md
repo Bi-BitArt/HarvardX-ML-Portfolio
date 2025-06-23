@@ -19,6 +19,11 @@ the tree uses those parameters to split the input space and reach a numerical ou
 ### Example of regression
 
 
-Suppose there are many features, in Euclid space/
-If one of these features has a x value > 6.5, it is anticipated to have y value 0.697, since this y value is the average of...
-If x is less than 6.5, 
+Suppose there are many features, in Euclidean space.  
+If one of these features has an `x` value > 6.5, it is anticipated to have a `y` value of 0.697,  
+since this `y` value is the **average** of all training points in that region.  
+If `x` is less than 6.5, it is anticipated to have a `y` value of -0.008,  
+because this is the average of the target values in that left-side region.
+
+In short, regression trees split the input space using feature values,  
+and **predict the average target value** in each resulting region.
