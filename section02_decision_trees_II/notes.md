@@ -59,5 +59,8 @@ So at each leaf node, the model just outputs the **mean y** of its region
 ### Stopping Conditions for Regression
 
 
-Just like as we did in the section of classification trees, we use **stopping conditions** to prevent overfitting. Generally, we use **accuracy gain**.
+classification trees, we use **stopping conditions** to prevent overfitting.  
+In general, we look for **accuracy gain** to decide whether a split is worth it.
 
+This **accuracy gain** is essentially the same as what we previously called **impurity decrease**  (like Gini index reduction or entropy decrease).  
+So when we talk about “gaining accuracy,” we’re really talking about **making the leaf nodes purer** -- that is, reducing the uncertainty or mixing in the resulting regions.
