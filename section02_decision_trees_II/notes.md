@@ -16,7 +16,7 @@ the tree uses those parameters to split the input space and reach a numerical ou
 ## Key Concepts from Video 1
 
 
-### Example of regression
+### Example of regression1
 
 
 Suppose there are many features, in Euclidean space.  
@@ -44,7 +44,7 @@ We calculate the **weighted MSE** like this:
 - When calculating the MSE, we need to consider the number of points in each region. We take the weighted average over both regions so that a few outliers don’t have too much influence on the result.
 
 
-### Example of regression #2
+### Example of regression2
 
 How regression trees work:
 
@@ -55,4 +55,9 @@ How regression trees work:
 
 So at each leaf node, the model just outputs the **mean y** of its region
 
+
+### Stopping Conditions for Regression
+
+
+Just like as we did in the section of classification trees, we use **stopping conditions** to prevent overfitting. Generally, we use **accuracy gain**.
 
