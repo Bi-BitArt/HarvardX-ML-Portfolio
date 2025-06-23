@@ -68,5 +68,5 @@ So when we talk about “gaining accuracy,” we’re really talking about **mak
 
 ### Regression Trees Prediction
 
-1. Traverse the tree** by following the split rules, until we reach a leaf node**
-2. Predict `ŷ` by calculating the average y-value** of the training points in that leaf
+1. Traverse the tree by following the split rules, until we reach a leaf node
+2. Predict `ŷ` by calculating the average y-value of the training points in that leaf
