@@ -37,6 +37,6 @@ and **predict the average target value** in each resulting region.
 - The differences are squared, so **larger errors are penalized more**.
 
 
-- When calculating the MSE, we need to consider the number of points in each region. We take the weighted average over both regions so that we won't estimate few outliers too much. 　
+- When calculating the MSE, we need to consider the number of points in each region. We take the weighted average over both regions so that a few outliers don’t have too much influence on the result.
 
 
