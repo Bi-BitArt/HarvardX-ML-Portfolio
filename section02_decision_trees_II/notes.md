@@ -33,9 +33,18 @@ and **predict the average target value** in each resulting region.
 
 **MSE = average of (prediction − actual value)²**
 
+We calculate the **weighted MSE** like this:
+
+(minimize over p and tₚ)
+→ [ (N₁ / N) × MSE(R₁) ] + [ (N₂ / N) × MSE(R₂) ]
+
+where:
+- N₁ and N₂ are the number of data points in Region 1 and Region 2
+- N is the total number of data points
+- MSE(R₁) and MSE(R₂) are the mean squared errors in each region
+
 - It measures how far the predicted values are from the actual values.
 - The differences are squared, so **larger errors are penalized more**.
-
 
 - When calculating the MSE, we need to consider the number of points in each region. We take the weighted average over both regions so that a few outliers don’t have too much influence on the result.
 
