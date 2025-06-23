@@ -63,4 +63,4 @@ classification trees, we use **stopping conditions** to prevent overfitting.
 In general, we look for **accuracy gain** to decide whether a split is worth it.
 
 This **accuracy gain** is essentially the same as what we previously called **impurity decrease**  (like Gini index reduction or entropy decrease).  
-So when we talk about “gaining accuracy,” we’re really talking about **making the leaf nodes purer** -- that is, reducing the uncertainty or mixing in the resulting regions.
+So when we talk about “gaining accuracy,” we’re really talking about **making the leaf nodes purer**, that is, reducing the uncertainty or mixing in the resulting regions.
