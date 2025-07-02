@@ -74,3 +74,8 @@ So when we talk about “gaining accuracy,” we’re really talking about **mak
 (I realized that what we’re doing here is pretty simple:  
 We just split the input space based on x-values, and then for each region, we calculate the average y-value. That average becomes our prediction.  
 So basically, we’re just grouping similar x’s together and predicting y by the average from the training data in that group.)
+
+
+### Numerical attributes
+
+**Encoding** the values of the categorical features using numbers makes it possible to treat **categories** in the **decision tree** .
