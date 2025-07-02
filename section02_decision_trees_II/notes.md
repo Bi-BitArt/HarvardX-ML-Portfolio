@@ -79,3 +79,10 @@ So basically, we’re just grouping similar x’s together and predicting y by t
 ### Numerical attributes
 
 **Encoding** the values of the categorical features using numbers makes it possible to treat **categories** in the **decision tree** .
+
+(They insisted that we can arrange the split by labeling differently.  
+At first I wondered if I was missing something important here,  
+but I think the message is pretty straightforward:  
+if you encode categories with different numbers, the tree will split them differently.  
+It makes sense mechanically, but I don’t think it’s deep or surprising.  
+Maybe it’s just a reminder that label encoding isn’t neutral: it can introduce some bias.)
