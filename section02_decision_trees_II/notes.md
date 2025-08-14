@@ -100,18 +100,18 @@ Dummy Encoding is often regarded as a superior method in that it avoids multicol
 ## Key Concepts from Video 2
 
 
-###Issue with Using Stopping Conditions
+### Issue with Using Stopping Conditions
 
 The major issue with pre-specifying a stopping condition is that we may stop too early or stop too late. However, lecturer also mentioned that we can fix this issue by choosing several stopping criteria.
 
 
-###Alternatives to Using Stopping Conditions
+### Alternatives to Using Stopping Conditions
 
 Do not stop. Instead, **Prune** the tree. One example is that if there is a negligible criterion in a certain situation, we completely ignore it.
 
 Pruning a complex tree and obtaining a simpler one helps us reduce model complexity while keeping prediction error low, rather than preventing a complex tree from growing.
 
 
-###Cost Complexity Pruning 
+### Cost Complexity Pruning 
 
 In this method, we aim to reduce the number of leafs.
