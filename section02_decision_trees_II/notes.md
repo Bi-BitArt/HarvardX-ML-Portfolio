@@ -95,3 +95,23 @@ Maybe it’s just a reminder that label encoding isn’t neutral: it can introdu
 2. **Dummy Encoding**: A method where one category is dropped, where the remaining columns represent comparisons to the reference.
 
 Dummy Encoding is often regarded as a superior method in that it avoids multicollinearity (feature redundancy, making model confusing) in linear models and prevents from being redundant. 
+
+
+## Key Concepts from Video 2
+
+
+###Issue with Using Stopping Conditions
+
+The major issue with pre-specifying a stopping condition is that we may stop too early or stop too late. However, lecturer also mentioned that we can fix this issue by choosing several stopping criteria.
+
+
+###Alternatives to Using Stopping Conditions
+
+Do not stop. Instead, **Prune** the tree. One example is that if there is a negligible criterion in a certain situation, we completely ignore it.
+
+Pruning a complex tree and obtaining a simpler one helps us reduce model complexity while keeping prediction error low, rather than preventing a complex tree from growing.
+
+
+###Cost Complexity Pruning 
+
+In this method, we aim to reduce the number of leafs.
