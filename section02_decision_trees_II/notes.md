@@ -86,3 +86,12 @@ but I think the message is pretty straightforward:
 if you encode categories with different numbers, the tree will split them differently.  
 It makes sense mechanically, but I don’t think it’s deep or surprising.  
 Maybe it’s just a reminder that label encoding isn’t neutral: it can introduce some bias.)
+
+
+### One-Hot Encoding vs Dummy Encoding
+
+1. **One-Hot Encoding**: A method where each category becomes a separate column, where values are 0 or 1. Often redundant in linear models.
+
+2. **Dummy Encoding**: A method where one category is dropped, where the remaining columns represent comparisons to the reference.
+
+Dummy Encoding is often regarded as a superior method in that it avoids multicollinearity (feature redundancy, making model confusing) in linear models and prevents from being redundant. 
