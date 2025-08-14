@@ -3,7 +3,7 @@
 
 ## Preparation knowledge
 
-- **Regression**
+**Regression**
 
 Decision trees are often utilized for classification tasks. However, they can also serve as a tool for regression - that is, **predicting** a quantitative outcome.
 
