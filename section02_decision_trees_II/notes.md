@@ -116,8 +116,7 @@ The major issue with pre-specifying a stopping condition is that we may stop too
 
 One common example of pruning.
 
-Can be expressed as: `C(T) = Error(T) + α |T|` 
- (Also known as cost complexity score)
+Can be expressed as: `C(T) = Error(T) + α |T|` (Also known as cost complexity score)
 
 - **C(T)**: Cost of the tree `T`
 - **Error(T)**: Training error (classification or regression error) of the tree `T`
@@ -135,7 +134,7 @@ By using cross-validation, we can find the best value of alpha.  But the selecti
 
 ### How do we actually choose which leaves to prune and set alpha?
 
-Suppose we have **a full tree `T0`.** Plus, we call pruned TO tree as `T1`. In order to choose the best leave to prune, we will choose the one that maximizes the difference of **cost complexity score
+Suppose we have **a full tree `T0`.** Plus, we call pruned TO tree as `T1`. In order to choose the best leave to prune, we will choose the one that maximizes the difference of **cost complexity score** (`C(T) = Error(T) + α |T|`). 
 
 
 
