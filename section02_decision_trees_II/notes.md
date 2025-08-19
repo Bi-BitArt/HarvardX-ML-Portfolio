@@ -112,11 +112,11 @@ The major issue with pre-specifying a stopping condition is that we may stop too
  - Motivation for Prunning: as we make our tree deeper, model complexity increases, lowering bias and increasing variance. Pruning helps us reduce model complexity whereas keeping prediction error low, rather than preventing a complex tree from growing.
 
 
-### Cost Complexity Pruning 
+### Cost Complexity Pruning
 
 One common example of pruning.
 
-Can be expressed as: `C(T) = Error(T) + α |T|`
+Can be expressed as: `C(T) = Error(T) + α |T|` (Also known as cost complexity score)
 - **C(T)**: Cost of the tree `T`
 - **Error(T)**: Training error (classification or regression error) of the tree `T`
 - **|T|**: The number of terminal nodes (leaf nodes) in the tree
@@ -131,9 +131,9 @@ Overall, we try to adjust these parameters in order to minimize `C(T)`.
 By using cross-validation, we can find the best value of alpha.  But the selection should be based on the error on the validation set: not on the Cost Complexity Value (C(T)), because C(T) includes a penalty term that is only useful for pruning, which is irrelevant to judging actual performance.
 
 
-###How do we actually choose which leaves to prune and set alpha?
+### How do we actually choose which leaves to prune and set alpha?
 
-Suppose we have **a full tree `T0`.** Plus, we call the pruned TO tree as `T1`. 
+Suppose we have **a full tree `T0`.** Plus, we call pruned TO tree as `T1`. In order to choose the best leave to prune, we will choose the one that maximizes the difference of **cost complexity score
 
 
 
