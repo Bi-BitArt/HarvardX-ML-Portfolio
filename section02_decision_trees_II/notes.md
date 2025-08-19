@@ -128,7 +128,7 @@ But it can overfit: perform poorly on new data.
 So we add a penalty for being too complex: Penalty term
 
 Overall, we try to adjust these parameters in order to minimize `C(T)`.
-By using cross-validation, we can find the best value of alpha.  But the selection should be based on the error on the validation set: not on the Cost Complexity Value (C(T)), because C(T) includes a penalty term that is only useful for pruning, not for judging actual performance.
+By using cross-validation, we can find the best value of alpha.  But the selection should be based on the error on the validation set: not on the Cost Complexity Value (C(T)), because C(T) includes a penalty term that is only useful for pruning, which is irrelevant to judging actual performance.
 
 
 
