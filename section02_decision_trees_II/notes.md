@@ -59,7 +59,7 @@ So at each leaf node, the model just outputs the **mean y** of its region
 ### Stopping Conditions for Regression
 
 
-classification trees, we use **stopping conditions** to prevent overfitting.  
+In classification trees, we use **stopping conditions** to prevent overfitting.  
 In general, we look for **accuracy gain** to decide whether a split is worth it.
 
 This **accuracy gain** is essentially the same as what we previously called **impurity decrease**  (like Gini index reduction or entropy decrease).  
@@ -90,11 +90,11 @@ Maybe it’s just a reminder that label encoding isn’t neutral: it can introdu
 
 ### One-Hot Encoding vs Dummy Encoding
 
-1. **One-Hot Encoding**: A method where each category becomes a separate column, where values are 0 or 1. Often redundant in linear models.
+1. **One-Hot Encoding**: A method where each category becomes a separate column, where values are either 0 or 1. This approach is often considered redundant in linear models.
 
 2. **Dummy Encoding**: A method where one category is dropped, where the remaining columns represent comparisons to the reference.
 
-Dummy Encoding is often regarded as a superior method in that it avoids multicollinearity (feature redundancy, making model confusing) in linear models and prevents from being redundant. 
+Dummy Encoding is often regarded as a superior method in that it avoids multicollinearity (feature redundancy that can confuse the model) in linear models and eliminates unnecessary columns.
 
 
 ## Key Concepts from Video 2
@@ -114,4 +114,4 @@ Pruning a complex tree and obtaining a simpler one helps us reduce model complex
 
 ### Cost Complexity Pruning 
 
-In this method, we aim to reduce the number of leafs. For example, we can ignore or prune a leaf[=condition] which we don't think is indicative of a successful applicant.
+In this method, we aim to reduce the number of leaves. For example, we can ignore or prune a condition (represented as a leaf) which we don't think is indicative of a successful applicant.
