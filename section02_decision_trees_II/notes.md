@@ -150,7 +150,9 @@ To decide which branches to prune, we use the following ratio:
 - **Denominator**: Decrease in tree complexity (number of leaves removed)  
 
 By **minimizing this ratio**, we aim to reduce model complexity efficiently with minimal loss in accuracy.  
-This method allows us to prune leaves that give the **most "simplicity gain" per unit error increase**, leading to a more generalizable tree.
+This method allows us to prune leaves that give the **most "simplicity gain" per unit error increase**, leading to the higher adaptability.
+
+We continue this process until we obtain the tree just containing the root of T0. By cross-validation, we can find **the optimal tree T* ** and  
 
 
 
