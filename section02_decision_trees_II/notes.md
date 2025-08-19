@@ -122,6 +122,6 @@ Can be expressed as: `C(T) = Error(T) + α |T|`
 - **|T|**: The number of terminal nodes (leaf nodes) in the tree
 - **α (alpha)**: Regularization parameter that controls the trade-off between tree complexity and training error
 
-We try to adjust each parameters to minimize `C(T)`.
+We try to adjust these parameters in order to minimize `C(T)`.
 
 
