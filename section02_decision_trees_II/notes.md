@@ -114,4 +114,4 @@ Pruning a complex tree and obtaining a simpler one helps us reduce model complex
 
 ### Cost Complexity Pruning 
 
-In this method, we aim to reduce the number of leafs.
+In this method, we aim to reduce the number of leafs. For example, we can ignore or prune a leaf[=condition] which we don't think is indicative of a successful applicant.
