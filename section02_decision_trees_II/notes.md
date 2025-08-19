@@ -117,6 +117,10 @@ The major issue with pre-specifying a stopping condition is that we may stop too
 One common example of pruning. 
 
 Can be expressed as: `C(T) = Error(T) + α |T|`
+- **C(T)**: Cost of the tree `T`
+- **Error(T)**: Training error (classification or regression error) of the tree `T`
+- **|T|**: The number of terminal nodes (leaf nodes) in the tree
+- **α (alpha)**: Regularization parameter that controls the trade-off between tree complexity and training error
 
 
 
