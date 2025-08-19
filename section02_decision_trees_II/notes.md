@@ -134,7 +134,23 @@ By using cross-validation, we can find the best value of alpha.  But the selecti
 
 ### How do we actually choose which leaves to prune and set alpha?
 
-Suppose we have **a full tree `T0`.** Plus, we call pruned TO tree as `T1`. In order to choose the best leave to prune, we will choose the one that maximizes the difference of **cost complexity score** (`C(T) = Error(T) + α |T|`). 
+Suppose we have **a full tree `T0`.** Plus, we call pruned TO tree as `T1`. 
+
+In order to choose the best leave to prune, we will choose the one that maximizes the difference of **cost complexity score** (`C(T) = Error(T) + α |T|`). 
+
+In other words, our goal is to maximize C(T0)-C(T1) by minimizing the ratio of the difference of the errors **over the differences in complexity.** Explained below: 
+
+### Efficient Pruning Using Error-Complexity Ratio
+
+To decide which branches to prune, we use the following ratio:
+
+[E(T₀) - E(T₁)] / [α|T₀| - α|T₁|]
+
+- **Numerator**: Increase in error caused by pruning  
+- **Denominator**: Decrease in tree complexity (number of leaves removed)  
+
+By **minimizing this ratio**, we aim to reduce model complexity efficiently with minimal loss in accuracy.  
+This method allows us to prune leaves that give the **most "simplicity gain" per unit error increase**, leading to a more generalizable tree.
 
 
 
