@@ -125,8 +125,8 @@ Can be expressed as: `C(T) = Error(T) + α |T|`
 
 - Penalty term: `α × |T|`
 
-A big tree (with many leaves) usually fits training data very well=low error
-But it can overfit: perform poorly on new data
+A big tree (with many leaves) usually fits training data very well=low error. 
+But it can overfit: perform poorly on new data. 
 So we add a penalty for being too complex: Cost = Error + α × Complexity
 
 Overall, we try to adjust these parameters in order to minimize `C(T)`.
