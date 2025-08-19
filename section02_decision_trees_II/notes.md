@@ -121,8 +121,7 @@ Can be expressed as: `C(T) = Error(T) + α |T|`
 - **Error(T)**: Training error (classification or regression error) of the tree `T`
 - **|T|**: The number of terminal nodes (leaf nodes) in the tree
 - **α (alpha)**: Regularization parameter that controls the trade-off between tree complexity and training error
-
- - Penalty term: `α × |T|`
+- Penalty term: `α × |T|`
 A big tree (with many leaves) usually fits training data very well=low error
 
 But it can overfit: perform poorly on new data
