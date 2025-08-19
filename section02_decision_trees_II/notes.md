@@ -152,7 +152,16 @@ To decide which branches to prune, we use the following ratio:
 By **minimizing this ratio**, we aim to reduce model complexity efficiently with minimal loss in accuracy.  
 This method allows us to prune leaves that give the **most "simplicity gain" per unit error increase**, leading to the higher adaptability.
 
-We continue this process until we obtain the tree just containing the root of T0. By cross-validation, we can find the optimal tree T* and  
+We continue this pruning process to gain a sequencing pruned trees:  
+**T2, T3, ..., TL**, TL is containing only the root of `T0`.
+
+For each value of **α**, we select the best tree `T*` (among the sequence) using **cross-validation**.  
+This is the best pruned tree *given α*.  
+
+Finally, we also use **cross-validation to choose the optimal α**, based on validation performance.  
+So, the final output is the tree `T*` that achieves the best performance under the best α.
+
+(In short, we choose T*, which is the best one given α by cross-validation. And then, we choose the best alpha by again using cross-validation.)
 
 
 
