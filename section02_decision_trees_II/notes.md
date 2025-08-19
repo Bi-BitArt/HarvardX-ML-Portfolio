@@ -121,14 +121,17 @@ Can be expressed as: `C(T) = Error(T) + α |T|`
 - **Error(T)**: Training error (classification or regression error) of the tree `T`
 - **|T|**: The number of terminal nodes (leaf nodes) in the tree
 - **α (alpha)**: Regularization parameter that controls the trade-off between tree complexity and training error
+
+
 - Penalty term: `α × |T|`
+
 A big tree (with many leaves) usually fits training data very well=low error
 
 But it can overfit: perform poorly on new data
 
 So we add a penalty for being too complex: Cost = Error + α × Complexity
 
-We try to adjust these parameters in order to minimize `C(T)`.
+- We try to adjust these parameters in order to minimize `C(T)`.
 By using cross-validation, we can find the best value of alpha.  But the selection should be based on the error on the validation set: not on the Cost Complexity Value (C(T)), because C(T) includes a penalty term that is only useful for pruning, not for judging actual performance.
 
 
