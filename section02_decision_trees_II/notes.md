@@ -115,6 +115,7 @@ The major issue with pre-specifying a stopping condition is that we may stop too
 ### Cost Complexity Pruning 
 
  - One common example of pruning. 
+Can be expressed as: "C(T) = Error(T) + α |T|"
 
 
 
