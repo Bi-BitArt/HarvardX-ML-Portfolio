@@ -263,7 +263,7 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 (And in the very end of this video, the lecturer said we use cross-validation to choose stopping conditions.)
 
 
-# From Exercisse #1
+# Exercisse #1
 
 This exercise focuses on training and evaluating **Decision Tree classifiers** using the election dataset.  
 
@@ -290,12 +290,5 @@ Sheet6: Train decision trees with multiple predictors (depth = 2, 10, 15)
 Sheet7: Compute train and test accuracy (evaluating models)
 
 Sheet8: Display results as table (comparing accuracy scores)
-
-### Sheet1
-
-In this sheet, we start by importing the most essential Python libraries for data analysis and machine learning.
-
-#### import numpy as np
-By using this code, we import a libraly and label it as **np**
 
 
