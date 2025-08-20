@@ -1,12 +1,11 @@
 ### The First Step for Programming
 
-This document summarizes the first step in Python programming: importing essential libraries.
-By giving each library a short label (like np or pd), we can call them easily when writing code.
-
+This document is not just a summary of the first steps in programming with Python, but also a **reminder note**.
+Whenever I get stuck during exercises, I may come back here and quickly review the essential imports and their roles.
 
 ---
 
-Importing Libraries
+### Sheet1 Importing Libraries
 
-import numpy as np
+- import numpy as np
 NumPy is imported as np. It is the standard library for working with arrays, vectors, and fast numerical calculations.
