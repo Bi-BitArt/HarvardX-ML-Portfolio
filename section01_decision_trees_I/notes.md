@@ -264,4 +264,20 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 
 (And in the very end of this video, the lecturer said we use cross-validation to choose stopping conditions.)
 
+# From Exercisse #1
 
+Sheet1: Load election train dataset (loading data)
+
+Sheet2: Split train and test datasets (train–test split)
+
+Sheet3: Split predictors and response variables (specifying features X and target Y)
+
+Sheet4: Initialize and fit decision trees (depth = 2, 10)
+
+Sheet5: Plot decision boundaries of classifiers (visualizing model boundaries)
+
+Sheet6: Train decision trees with multiple predictors (depth = 2, 10, 15)
+
+Sheet7: Compute train and test accuracy (evaluating models)
+
+Sheet8: Display results as table (comparing accuracy scores)
