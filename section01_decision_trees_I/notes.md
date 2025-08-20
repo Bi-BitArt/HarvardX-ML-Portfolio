@@ -295,19 +295,7 @@ Sheet8: Display results as table (comparing accuracy scores)
 
 In this sheet, we start by importing the most essential Python libraries for data analysis and machine learning.
 
-import numpy as np
-NumPy is used for numerical computation. It provides fast operations on arrays, matrices, and supports linear algebra and random number generation.
-We will mainly use it to handle numerical data behind the models.
+#### import numpy as np
+By using this code, we import a libraly and label it as **np**
 
-import pandas as pd
-Pandas is used for data manipulation and analysis. It allows us to load and manage tabular datasets (DataFrame).
-Essential for reading the training dataset and working with features/labels.
-
-import sklearn as sk
-Scikit-learn is the core machine learning library. Importing it as sk gives access to a wide range of models and tools.
-In practice, we usually import specific modules (like DecisionTreeClassifier), but here the whole package is also imported.
-
-import seaborn as sns
-Seaborn is a visualization library built on top of Matplotlib. It provides an easy way to create informative statistical graphics.
-It may not be heavily used in this exercise, but it is useful for exploratory data analysis.
 
