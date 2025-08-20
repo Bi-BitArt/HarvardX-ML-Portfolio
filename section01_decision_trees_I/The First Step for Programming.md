@@ -3,9 +3,18 @@
 This document is not just a summary of the first steps in programming with Python, but also a **reminder note**.
 Whenever I get stuck during exercises, I may come back here and quickly review the essential imports and their roles.
 
----
 
 ### Sheet1: Load election train dataset (loading data)
+
+- import () as []
+import numpy as np
+import pandas as pd
+import sklearn as sk
+import seaborn as sns
+
+These codes works to import libraries and label them.
+
+- 
 ---
 ### Sheet2: Split train and test datasets (train–test split)
 ---
