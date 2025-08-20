@@ -265,6 +265,16 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 
 # From Exercisse #1
 
+This exercise focuses on training and evaluating **Decision Tree classifiers** using the election dataset.  
+
+The main objectives are:  
+- To understand how to split data into train and test sets.  
+- To practice separating predictors (X) and target (Y).  
+- To initialize and fit decision trees with different depths.  
+- To visualize the decision boundaries of classifiers.  
+- To evaluate model performance by computing accuracies.  
+- To summarize the results in a comparison table.
+  
 Sheet1: Load election train dataset (loading data)
 
 Sheet2: Split train and test datasets (train–test split)
