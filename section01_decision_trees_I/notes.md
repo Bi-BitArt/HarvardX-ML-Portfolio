@@ -242,7 +242,6 @@ a.k.a. min_impurity_decrease)
 When we build a decision tree, we want it to make good predictions.  
 But if it's too simple or too complex, it can make mistakes in different ways.
 
----
 
 #### Bias
 
@@ -251,7 +250,6 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 - Example: a shallow tree that doesn’t split much.
 - This leads to **underfitting**.
 
----
 
 #### Variance
 
@@ -263,6 +261,7 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 (I learned that variance decrease means bias increase, vice versa.)
 
 (And in the very end of this video, the lecturer said we use cross-validation to choose stopping conditions.)
+
 
 # From Exercisse #1
 
