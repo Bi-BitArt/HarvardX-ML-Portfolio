@@ -60,7 +60,7 @@ y_train / y_test: use won as the target label
 - single bracket vs double brackets: while single bracket returns just one column (**Series(1D)**) as a vector, double brackts returns **DataFrame(2D)**.
 
 ---
-### Sheet4: Initialize and fit decision trees (depth = 2, 10)
+### Sheet4: Initialize and fit decision trees (2 cols) (depth = 2, 10)
 
 `dt1 = DecisionTreeClassifier(max_depth=2, random_state=0)`
 
@@ -68,18 +68,38 @@ y_train / y_test: use won as the target label
 
 DecisionTreeClassifier(max_depth=...): sets how deep the tree can grow (controls complexity).
 
-random_state=0: ensures reproducibility of results.
+random_state=0: removing randomness and ensuring reproductivity.
 
-.fit(X_train, y_train): trains the model on the training dataset.
+.fit(X_train, y_train): let the model train using the training dataset.
 
 dt1: simple model (depth = 2).
 
 dt2:  more complex model (depth = 10).
 
 ---
-### Sheet5: Plot decision boundaries of classifiers (visualizing model boundaries)
+### Sheet5: Visualizing decision boundaries
+
+`plot_boundary(elect_train, dt1, dt2)`
+
+Note: Decision boundaries are drawn on the training data, because they are based on how the model was fit. Test data should only be used for evaluation, not for constructing boundaries.
+
 ---
-### Sheet6: Train decision trees with multiple predictors (depth = 2, 10, 15)
+### Sheet6: Train decision trees with multiple predictors (8 cols) (depth = 2, 10, 15)
+
+In this sheet, we define a list of feature names and use it to extract multiple columns from the dataset at once.
+
+`pred_cols = ['minority','density','hispanic','obesity',
+             'female','income','bachelor','inactivity']`
+
+`X_train = elect_train[pred_cols]`
+`X_test  = elect_test[pred_cols]`
+
+pred_cols: defined to include 8 predictor cols
+
+elect_train[pred_cols]: selects all columns listed in pred_cols from the training dataset, returning a DataFrame with 8 columns.
+
+In short, This approach avoids repetetition: just a shorcut.
+
 ---
 ### Sheet7: Compute train and test accuracy (evaluating models)
 ---
