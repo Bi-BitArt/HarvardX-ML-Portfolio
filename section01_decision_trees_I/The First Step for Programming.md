@@ -61,6 +61,21 @@ y_train / y_test: use won as the target label
 
 ---
 ### Sheet4: Initialize and fit decision trees (depth = 2, 10)
+
+`dt1 = DecisionTreeClassifier(max_depth=2, random_state=0)`
+
+`dt1.fit(X_train, y_train)`
+
+DecisionTreeClassifier(max_depth=...): sets how deep the tree can grow (controls complexity).
+
+random_state=0: ensures reproducibility of results.
+
+.fit(X_train, y_train): trains the model on the training dataset.
+
+dt1: simple model (depth = 2).
+
+dt2:  more complex model (depth = 10).
+
 ---
 ### Sheet5: Plot decision boundaries of classifiers (visualizing model boundaries)
 ---
