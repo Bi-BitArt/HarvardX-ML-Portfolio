@@ -1,14 +1,14 @@
-### The First Step for Programming
+# The First Step for Programming
 
 This document is not just a summary of the first steps in programming with Python, but also a **reminder note**.
 Whenever I get stuck during exercises, I may come back here and quickly review the essential imports and their roles.
 
 ---
-### Sheet1: Load election train dataset (loading data)
+### Sheet1: Import libraries
 
 In this sheet, we import the most essential Python libraries for data analysis and machine learning.
 
-Numpy (calculates with arrays and matrices)
+`import numpy as np`
 
 Pandas (handles tabular data)
 
@@ -18,38 +18,29 @@ Seaborn (visualizes statistical data)
 
 Matplotlib (plots and customizes graphs)
 
-Helper functions (plot_boundary, PrettyTable) for visualization and summarizing results
+Utilities: plot_boundary (decision boundaries), PrettyTable (summary tables)
 
+Configs: pd.set_option(...), plt.rcParams[...] for display/plot settings
 
-These imports prepare the environment so that the rest of the exercise can run smoothly.
+These imports prepare the environment so that the exercise can run smoothly.
 
 ---
-### Sheet2: Split train and test datasets (train–test split)
+### Sheet2: Read Data
 
-In this sheet, we separate the input features (X) and the target (y) for both training and testing datasets.
+In this sheet, load the training and testing datasets from CSV files into Pandas DataFrames and do a quick check.
 
-X_train = elect_train[["minority", "bachelor"]]
+`elect_train = pd.read_csv("election_train.csv")`
 
-X_test  = elect_test[["minority", "bachelor"]]
+`elect_test  = pd.read_csv("election_test.csv")`
 
-y_train = elect_train["won"]
+elect_train.head(): quick look at the training data
 
-y_test  = elect_test["won"]
+elect_train: training dataset
 
+elect_test: testing dataset
 
-This step ensures that:
+.head(): verify columns and structure
 
-1. The model has the correct predictors (minority, bachelor) as input.
-
-
-2. The response (won) is set as the variable to predict.
-
-
-3. Both training and testing data are structured consistently.
-
-
-
-This preparation is necessary so the Decision Tree can be trained on the input features and evaluated on unseen test data.
 
 ---
 ### Sheet3: Split predictors and response variables (specifying features X and target Y)
