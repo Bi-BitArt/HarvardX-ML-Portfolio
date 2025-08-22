@@ -103,4 +103,32 @@ In short, This approach avoids repetetition: just a shorcut.
 ---
 ### Sheet7: Compute train and test accuracy (evaluating models)
 ---
+
+Accuracy test for training data:
+
+- Can be < 100%
+
+Shallow tree (too simple): can’t separate all training data → underfitting.
+
+Data overlap/noise:some points always wrong.
+
+
+- Can be = 100%
+
+Deep tree (no limits): memorizes training data.
+
+But this usually means overfitting.
+
+`dt3_train_acc = dt3.score(X_train, y_train)`
+`dt3_test_acc  = dt3.score(X_test, y_test)`
+
+.score(X, y): scikit-learn method that returns the accuracy of the model.
+
+Train accuracy: shows how well the model fits the training data.
+
+Test accuracy: shows how well the model generalizes to unseen data.
+
+Good fit:  both accuracies are high and close to each other.
+
+
 ### Sheet8: Display results as table (comparing accuracy scores)
