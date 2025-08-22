@@ -1,6 +1,6 @@
 # The First Step for Programming
 
-This document is not just a summary of the first steps in programming with Python, but also a **reminder note**.
+This document is not just a summary of the first steps in programming with Python (focusing on exercise #1), but also a **reminder note**.
 Whenever I get stuck during exercises, I may come back here and quickly review the essential imports and their roles.
 
 ---
@@ -9,6 +9,8 @@ Whenever I get stuck during exercises, I may come back here and quickly review t
 In this sheet, we import the most essential Python libraries for data analysis and machine learning.
 
 `import numpy as np`
+
+`from sklearn.tree import DecisionTreeClassifier`
 
 Pandas (handles tabular data)
 
@@ -25,7 +27,7 @@ Configs: pd.set_option(...), plt.rcParams[...] for display/plot settings
 These imports prepare the environment so that the exercise can run smoothly.
 
 ---
-### Sheet2: Read Data
+### Sheet2: Load Data
 
 In this sheet, load the training and testing datasets from CSV files into Pandas DataFrames and do a quick check.
 
@@ -33,17 +35,30 @@ In this sheet, load the training and testing datasets from CSV files into Pandas
 
 `elect_test  = pd.read_csv("election_test.csv")`
 
-elect_train.head(): quick look at the training data
+elect_train.head(): quick look at the data
 
-elect_train: training dataset
+elect_train: defining training dataset
 
-elect_test: testing dataset
+elect_test: defining testing dataset
 
-.head(): verify columns and structure
+.head(): checking columns and structure
 
 
 ---
 ### Sheet3: Split predictors and response variables (specifying features X and target Y)
+
+We separate input features (X) and the target (y) for both training and testing.
+
+`X_train = elect_train[["minority", "bachelor"]]`
+
+`X_test = elect_test[["minority", "bachelor"]]`
+
+X_train / X_test: use minority, bachelor as predictors
+
+y_train / y_test: use won as the target label
+
+- single bracket vs double brackets: while single bracket returns just one column (**Series(1D)**) as a vector, double brackts returns **DataFrame(2D)**.
+
 ---
 ### Sheet4: Initialize and fit decision trees (depth = 2, 10)
 ---
