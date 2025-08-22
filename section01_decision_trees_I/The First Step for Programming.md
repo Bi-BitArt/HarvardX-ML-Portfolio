@@ -149,12 +149,15 @@ Printing the table in an organised form to make it easy to compare.
 ---
 ### Result & Insights
 
----------------------------------------------------------
+
 | Max Depth | Number of Features | Train Acc | Test Acc |
+
 |     2     |          8         |  0.8924   | 0.8862   | 
+
 |     10    |          8         |  0.9866   | 0.9126   | 
+
 |     15    |          8         |  0.9996   | 0.9085   | 
----------------------------------------------------------
+
 
 ### Key Points
 - **Depth 2**: Underfitting: too simple, both train/test accuracy are low.  
