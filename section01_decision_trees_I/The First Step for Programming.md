@@ -102,7 +102,6 @@ In short, This approach avoids repetetition: just a shorcut.
 
 ---
 ### Sheet7: Compute train and test accuracy (evaluating models)
----
 
 Accuracy test for training data:
 
@@ -130,7 +129,7 @@ Test accuracy: shows how well the model generalizes to unseen data.
 
 Good fit:  both accuracies are high and close to each other.
 
-
+---
 ### Sheet8: Display results as table (comparing accuracy scores)
 
 `pt = PrettyTable()`
@@ -146,17 +145,14 @@ Arranging them into a table with labels: Max Depth, Number of Features, Train Ac
 
 Printing the table in an organised form to make it easy to compare.
 
----
-### Result & Insights
 
+## Result & Insights
 
-| Max Depth | Number of Features | Train Acc | Test Acc |
-
-|     2     |          8         |  0.8924   | 0.8862   | 
-
-|     10    |          8         |  0.9866   | 0.9126   | 
-
-|     15    |          8         |  0.9996   | 0.9085   | 
+| Max Depth | Number of Features | Train Accuracy | Test Accuracy |
+|-----------|--------------------|----------------|---------------|
+| 2         | 8                  | 0.8924         | 0.8862        |
+| 10        | 8                  | 0.9866         | 0.9126        |
+| 15        | 8                  | 0.9996         | 0.9085        |
 
 
 ### Key Points
