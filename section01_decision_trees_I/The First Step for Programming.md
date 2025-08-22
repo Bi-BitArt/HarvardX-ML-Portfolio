@@ -132,3 +132,42 @@ Good fit:  both accuracies are high and close to each other.
 
 
 ### Sheet8: Display results as table (comparing accuracy scores)
+
+`pt = PrettyTable()`
+`pt.field_names = ['Max Depth', 'Number of Features', 'Train Accuracy', 'Test Accuracy']`
+`pt.add_row([2, len(pred_cols), round(dt1_train_acc, 4), round(dt1_test_acc,4)])`
+`pt.add_row([10, len(pred_cols), round(dt2_train_acc,4), round(dt2_test_acc,4)])`
+`pt.add_row([15, len(pred_cols), round(dt3_train_acc,4), round(dt3_test_acc,4)])`
+`print(pt)`
+
+Taking the values we already computed in Sheet7 (dt1_train_acc, dt1_test_acc, …)
+
+Arranging them into a table with labels: Max Depth, Number of Features, Train Accuracy, Test Accuracy
+
+Printing the table in an organised form to make it easy to compare.
+
+---
+### Result & Insights
+
+---------------------------------------------------------
+| Max Depth | Number of Features | Train Acc | Test Acc |
+|     2     |          8         |  0.8924   | 0.8862   | 
+|     10    |          8         |  0.9866   | 0.9126   | 
+|     15    |          8         |  0.9996   | 0.9085   | 
+---------------------------------------------------------
+
+### Key Points
+- **Depth 2**: Underfitting: too simple, both train/test accuracy are low.  
+- **Depth 10**: Best balance: slightly lower train accuracy, but highest test accuracy.  
+- **Depth 15**: Overfitting: almost perfect train accuracy, but test accuracy is interestingly lower than depth 10.  
+
+### Insights
+This illustrates the **bias–variance trade-off**:
+- Shallow trees = **high bias**, poor generalization.  
+- Medium depth = **best generalization**.  
+- Deep trees = **high variance**, fit noise, hurt test accuracy.  
+
+### Summary
+Even if train accuracy is nearly 100%, test accuracy can be worse.  
+
+This proves that **more complexity doesn't mean better real performance**.
