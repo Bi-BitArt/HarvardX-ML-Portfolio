@@ -1,7 +1,7 @@
 # The First Step for Programming
 
 This document is not just a summary of the first steps in programming with Python (focusing on exercise #1), but also a **reminder note**.
-Whenever I get stuck during exercises, I may come back here and quickly review the essential imports and their roles.
+Whenever I get stuck during exercises, I may come back here and quickly review the essential libraries and their roles.
 
 ---
 ### Sheet1: Import libraries
