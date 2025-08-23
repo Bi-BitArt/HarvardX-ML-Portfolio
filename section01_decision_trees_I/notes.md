@@ -263,7 +263,7 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 (And in the very end of this video, the lecturer said we use cross-validation to choose stopping conditions.)
 
 
-# Exercisse #1
+# Exercise #1
 
 This exercise focuses on training and evaluating **Decision Tree classifiers** using the election dataset.  
 
