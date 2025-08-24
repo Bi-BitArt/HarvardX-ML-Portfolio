@@ -265,6 +265,8 @@ But if it's too simple or too complex, it can make mistakes in different ways.
 
 # Exercise #1
 
+ (explained in details in "The First Step for Programming") 
+
 This exercise focuses on training and evaluating **Decision Tree classifiers** using the election dataset.  
 
 The main objectives are:  
@@ -275,9 +277,9 @@ The main objectives are:
 - To evaluate model performance by computing accuracies.  
 - To summarize the results in a comparison table.
   
-Sheet1: Load election train dataset (loading data)
+Sheet1: Load libraries
 
-Sheet2: Split train and test datasets (train–test split)
+Sheet2: Read data
 
 Sheet3: Split predictors and response variables (specifying features X and target Y)
 
@@ -292,3 +294,66 @@ Sheet7: Compute train and test accuracy (evaluating models)
 Sheet8: Display results as table (comparing accuracy scores)
 
 
+# Exercise #2
+
+This exercise focuses on training and visualizing a Decision Tree classifier using the U.S. county election dataset.
+
+The main objectives are:  
+- To understand how to create a binary response variable (Trump win = 1, Clinton win = 0).
+- To practice visualizing the dataset with scatter plots for different classes.
+- To initialize and fit a Decision Tree classifier with limited depth (max_depth=3).
+- To understand the role of splitting criteria (Gini impurity).
+- To learn how to visualize a trained decision tree using tree.plot_tree.
+
+---
+### Sheet3: Creating the response variable
+
+`y_train = (elect_train["trump"] > elect_train["clinton"]).astype(int)`
+`y_test  = (elect_test["trump"] > elect_test["clinton"]).astype(int)`
+
+(elect_train["trump"] > elect_train["clinton"]): compare trump and clinton in terms with votes
+
+.astype(int): converts True/False into 1/0. (so trump's win is converted into 1)
+
+Note: This step creates the binary target variable for classification.
+
+---
+### Sheet4: Scatter plot visualization
+
+`plt.scatter(elect_train["minority"][y_train==1], elect_train["bachelor"][y_train==1],
+            marker=".", color="blue", label="Trump", s=50, alpha=0.4)`
+            
+`plt.scatter(elect_train["minority"][y_train==0], elect_train["bachelor"][y_train==0],
+            marker=".", color="green", label="Clinton", s=50, alpha=0.4)`
+
+plt.scatter(x, y, ...): Plots minority (x-axis) and bachelor (y-axis). (x=elect_train["minority"][y_train==1], y=elect_train["bachelor"][y_train==1])
+
+elect_train["minority"][y_train==1]: `elect_train["minority"]` extracts the **"minority" column** from the DataFrame `elect_train`,  
+while `[y_train==1]` is called **Boolean mask**, filtering the rows where the response variable equals 1 (Trump wins only).  
+Together, `elect_train["minority"][y_train==1]` selects the minority values **only for the Trump-winning counties** on the x-axis.
+
+marker=".", color="blue", label="Trump", s=50, alpha=0.4: specifies the format of the table. (s equals size, alpha equals transparency.)
+
+---
+### Sheet5: Initialize and fit the Decision Tree
+
+`dtree.fit(elect_train[["minority"]], y_train)`
+
+(Normally, model.fit(X_train, y_train)...Here, directly pull the column we want)
+
+(Again, normally we define X_train like this: pred_cols = ["minority", "bachelor"] / X_train = elect_train[pred_cols]. Plus, we haven't defined X_train this time.)
+
+.fit(elect_train[["minority"]], y_train) → Fits the model using only one predictor column.
+
+---
+### Sheet6: Visualizing the tree
+
+`tree.plot_tree(dtree, filled=True, feature_names=["minority"], class_names=["Clinton", "Trump"])`
+
+tree.plot_tree(dtree, ...) → Displays the learned tree.
+
+filled=True: Coloring nodes according to dominance.
+
+feature_names: Labels the splitting feature.
+
+class_names: Shows class names instead of numeric labels.
