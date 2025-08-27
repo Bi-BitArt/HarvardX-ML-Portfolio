@@ -17,5 +17,17 @@ For these reasons, decision tree models actually underperform in comparison to o
 
 ### Ensemble Learning
 
-The intuition of ensemble learning is that it is a method to build a single model by training and aggregating multiple models. In short, this method is based on several models to produce one optimal predictive model.
+The intuition of ensemble learning is that it is a method to build a single model by training and aggregating multiple models: 
+
+In short, this method is based on several models to produce one optimal predictive model.
+
+1. Use the same training subset.
+2. Each model is then made to predict on the test subset.
+3. These predictions are aggregated and combined to give one final prediction.
+
+**Average** of the prediction is considered for regression, and **Majority** is considered for a classification.
+
+As each model here is independent, the chance of all of them overfitting or underfitting is low. Hence, the performance of the model by combining individual model is more robust than single-model prediction.
+
+
 
