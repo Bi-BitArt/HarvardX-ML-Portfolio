@@ -249,13 +249,13 @@ In short: predict with the trained model, then check how many predictions match 
 
 
 ---
-### Sheet: Implementing Bagging Prediction Function  
+### Sheet7: Implementing Bagging Prediction Function  
 
 #### Function: `prediction_by_bagging()`  
 
 This function manually implements the **Bagging (Bootstrap Aggregation)** procedure for classification.  
 
-
+---
 
 #### 1. Bootstrap Sampling  
 
@@ -274,6 +274,7 @@ Ensures both predictors (X_boot) and labels (y_boot) stay aligned.
 #### 2. Base Learner Training
 
 `clf = DecisionTreeClassifier(max_depth=max_depth, random_state=44)`
+
 `clf.fit(X_boot, y_boot)`
 
 Trains a Decision Tree classifier on each bootstrap sample.
@@ -286,8 +287,8 @@ Fixed random_state=44 for reproducibility.
 
 #### 3. Prediction on Evaluation Set
 
-`pred = clf.predict(X_to_evaluate)`
-predictions.append(pred)
+`pred = clf.predict(X_to_evaluate)
+predictions.append(pred)`
 
 Each tree makes predictions on the same evaluation data.
 
@@ -300,6 +301,7 @@ Predictions are stored for later aggregation.
 #### 4. Aggregation (Majority Voting)
 
 `predictions = np.array(predictions)`
+
 `average_prediction = (predictions.mean(axis=0) > 0.5).astype(int)`
 
 Converts predictions into an array shaped (num_bootstraps, n_samples).
@@ -307,6 +309,23 @@ Converts predictions into an array shaped (num_bootstraps, n_samples).
 Takes the mean across all trees.
 
 Applies a threshold at 0.5 → class 1 if >0.5, otherwise class 0.
+
+---
+### Sheet9: Bagging Accuracy with Custom Function
+
+`bagging_accuracy = accuracy_score(y_test, y_pred)`
+
+This compares the true labels (y_test) with the predictions (y_pred) from our bagging model.
+It returns the proportion of correct predictions (a number between 0 and 1).
+
+#### Note on the Error & Fix
+
+Originally, the error came from how predictions were averaged (prediction_by_bagging).
+
+The solution was converting the list of predictions into a NumPy array before taking the mean.
+That fix ensured y_pred was a proper array of 0/1 labels, which accuracy_score could handle.
+
+This sheet’s focus: evaluate overall performance of the bagging model by calculating test accuracy, after aggregating predictions across all bootstraps.
 
 
   
