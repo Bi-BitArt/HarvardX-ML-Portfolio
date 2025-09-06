@@ -128,3 +128,78 @@ In case of classification on the other hand, it would be the **majority vote** t
 
 - In practice, the trees in Bagging are likely to be highly correlated. If there is an exceptionally strong predictor in the training set amongs model predictors, the greedy algorithm ensures that most of the models in the ensemble will choose to split on this "exceptionally strong predictor" in early phases.
 - However, we hope that each tree in the ensemble is independently and identically distributed.
+
+
+
+# Exercise 3-1: Bagging with Regression
+
+The goal of this exercise is to understand how **Bagging (Bootstrap Aggregating)** can improve prediction stability and accuracy by using **Decision Tree Regressors** as base learners.  
+
+---
+## Key Steps and Code Notes
+
+### Sheet2 Splitting Data into Train and Test Sets
+
+`x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, random_state=102)`
+
+Splits the dataset into training (80%) and test (20%).
+
+---
+### Sheet6 Defining and Fitting a Bagging Regressor
+
+`model = BaggingRegressor(
+    estimator=DecisionTreeRegressor(max_depth=max_depth, random_state=0),
+    n_estimators=num_bootstraps,
+    bootstrap=True,
+    random_state=0
+)`
+
+`model.fit(x_train, y_train)`
+
+BaggingRegressor: Combines multiple Decision Trees into one ensemble.
+
+max_depth=3: Limits complexity of each tree.
+
+n_estimators=30: Number of bootstraps/trees.
+
+bootstrap=True: Sampling with replacement to create different training subsets.
+
+fit(): Trains the ensemble on training data.
+
+---
+### Sheet8 Test MSE of a Single Estimator
+
+`y_pred1 = model.estimators_[0].predict(x_test)
+print("The test MSE of one estimator in the model is", round(mean_squared_error(y_test, y_pred1), 2))`
+
+model.estimators_[0]: Accesses the first trained tree.
+
+predict(): Gets predictions from this single tree.
+
+mean_squared_error(): Compares predictions with y_test.
+
+Usually higher error compared to the full bagging model.
+
+---
+### Sheet9 Test MSE of the Full Bagging Model
+
+`y_pred = model.predict(x_test)
+print("The test MSE of the model is", round(mean_squared_error(y_test, y_pred), 2))`
+
+Uses all trees combined for prediction.
+
+Final prediction = average of all individual trees’ predictions.
+
+Generally achieves lower error than a single tree.
+
+---
+### Insights
+
+Variance Reduction: Bagging reduces variance by averaging multiple noisy trees.
+
+OOB vs Cross-validation: OOB can also estimate error without needing a separate validation set.
+
+Tradeoff: More estimators → lower variance, but higher computation cost.
+
+
+  
