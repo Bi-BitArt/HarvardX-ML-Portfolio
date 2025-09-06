@@ -136,8 +136,6 @@ In case of classification on the other hand, it would be the **majority vote** t
 The goal of this exercise is to understand how **Bagging (Bootstrap Aggregating)** can improve prediction stability and accuracy by using **Decision Tree Regressors** as base learners.  
 
 ---
-## Key Steps and Code Notes
-
 ### Sheet2 Splitting Data into Train and Test Sets
 
 `x_train, x_test, y_train, y_test = train_test_split(x, y, train_size=0.8, random_state=102)`
@@ -200,6 +198,54 @@ Variance Reduction: Bagging reduces variance by averaging multiple noisy trees.
 OOB vs Cross-validation: OOB can also estimate error without needing a separate validation set.
 
 Tradeoff: More estimators → lower variance, but higher computation cost.
+
+# Exercise 3-2: Bagging Classification with Decision Boundary
+
+
+---
+### Sheet2 Defining Predictors and Response Variables
+
+`X = df[["latitude", "longitude"]].values`  
+
+Extracts the **latitude** and **longitude** columns from the DataFrame and stores them as a NumPy array.  
+
+These serve as the **predictor variables** (features).
+
+`y = df["land_type"].values`  
+
+Extracts the **land_type** column from the DataFrame and stores it as a NumPy array.  
+
+This is the **response variable** (target label).  
+
+**Note:** The dataset was originally referred to as `agriland`, but in my case the DataFrame was named `df`.  
+Consistency in variable naming is important to avoid errors.
+
+---
+### Sheet6 Evaluating Single Decision Tree Accuracy 
+
+
+1. Prediction
+   
+`prediction = clf.predict(X_test)`
+
+- uses the trained decision tree (clf)
+
+- takes X_test as input (latitude & longitude)
+
+- outputs predicted class labels for each test point
+
+
+2. Accuracy
+
+`single_acc = accuracy_score(y_test, prediction)`
+
+- compares predicted labels with true labels (y_test)
+
+- returns proportion of correct predictions (0–1 range)
+
+- multiply by 100 to show as a percentage
+
+In short: predict with the trained model, then check how many predictions match the ground truth.
 
 
   
