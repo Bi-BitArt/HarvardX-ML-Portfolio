@@ -168,3 +168,90 @@ Thus, PI quantifies **how much each predictor directly affects prediction accura
 
 ### **Key Idea:**  
 Permutation Importance measures feature importance by **destroying the feature’s information (via shuffling) and observing how much the model’s accuracy drops.**
+
+
+## Key Concepts from Video 4
+
+
+### Missing Data
+
+Real-world datasets most often having missing values. When dealing with missing data, we can impute as usual. However, there is another strategy for handling missing data in trees: called **surrogate splits**.
+
+Basically, we find alternative splits, which we refer to as surrogate splits that can be used during prediciton.
+
+### Surrogate Splits
+
+1. **Regular Split First**  
+   - The tree algorithm chooses the best predictor and threshold for the main split (as usual).  
+
+2. **Find Surrogates**  
+   - If a value is missing for the main split feature, the algorithm looks for other predictors that best **mimic** the split decision.  
+   - These backup splits are called **surrogate splits**.  
+
+3. **Use in Prediction**  
+   - During prediction, if the primary splitting feature is missing for a data point, the tree will fall back to the surrogate split(s).  
+   - This ensures the model can still classify/regress the observation without discarding it.  
+
+### Why Surrogate Splits Matter
+- Allow trees to handle missing data **without imputation**.  
+- Preserve information that might otherwise be lost.  
+- Especially useful when missingness is frequent or systematic.  
+
+**Key Idea:**  
+Surrogate splits act as **backup rules** that approximate the main split, so the tree can continue making decisions even when some values are missing.  
+If the value needed for the main split is missing, the model automatically falls back on a surrogate split (a similar rule based on another feature) to decide the path.
+
+
+## Key Concepts from Video 5
+
+
+### Imbalanced Data
+
+- Accuracy is a great measure, but only when you have balanced datasets (false negative and false positive counts are close and have similar costs).
+
+In case of imbalanced datasets, **F1** os a better option.
+
+`F1 = 2 (Recall * Precision) / (Recall + Precision)`
+
+- IF the costs and false negatives & false positives are different, the ROC curve allows us to find the classification threshold that gives the best trade-off between FP rate and TP rate, which we need in this time.
+
+We summarize the ROC by computing the Area Under the ROC curve (AUC).
+
+
+### Dealing with Imbalanced Classes
+
+There are three main ways of dealing with imbalanced classes: undersampling, oversampling, and class weighting.
+
+1. Undersampling
+
+#### Random Sampling
+
+Randomly sample from majority class with or without replacement.
+
+#### Near Miss
+
+Select data points by using simple heuristics like finding samples from which the average distance to some data points of miority class is smallest.
+
+Reduce the number of samples in the majority class.
+
+Pros: Faster, smaller dataset.
+
+Cons: May lose useful information.
+
+
+2. Oversampling
+
+Increase the number of samples in the minority class (e.g., duplicating or generating synthetic data like SMOTE).
+
+Pros: Keeps all original data.
+
+Cons: Risk of overfitting if data is just duplicated.
+
+
+3. Class Weighting
+
+Assign higher weight (importance) to the minority class in the model’s loss function.
+
+Pros: No change to dataset size.
+
+Cons: Might make model sensitive to noise in minority class.
