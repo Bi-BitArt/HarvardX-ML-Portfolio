@@ -113,3 +113,58 @@ Decision trees make splits that maximize the decrease in impurity. By calculatin
 ## Key Concepts from Video 3
 
 
+### What is Permutation Importance?  
+Permutation Importance is a technique to evaluate **feature importance** in a trained model (such as Random Forests).  
+The key idea is: **if shuffling (permuting) a feature’s values decreases the model’s accuracy, then that feature was important.**  
+
+This provides an intuitive way to measure how much each predictor contributes to the model’s performance.  
+
+
+### Step-by-Step Process
+
+1. **Baseline Accuracy**  
+   - Record the validation accuracy (or OOB accuracy) of the original model.  
+   - This serves as the reference point.  
+
+2. **Permute One Feature**  
+   - Randomly shuffle the values of a selected predictor column in the validation/OOB dataset.  
+   - This breaks the relationship between that feature and the target.  
+
+3. **Recalculate Accuracy**  
+   - Measure the model’s validation/OOB accuracy again using the permuted dataset.  
+
+4. **Compute Importance**  
+   - The difference between the original accuracy and the permuted accuracy = **importance score** for that feature.  
+   - Larger drop = more important feature.  
+
+5. **Repeat for All Features**  
+   - Apply steps 2–4 to each predictor in turn.  
+   - This produces an importance ranking across all features.
+
+
+### Example Intuition
+- If permuting **Height** reduces accuracy from 0.88 → 0.70, Height is very important.  
+- If permuting **Weight** reduces accuracy from 0.88 → 0.87, Weight is much less important.  
+
+Thus, PI quantifies **how much each predictor directly affects prediction accuracy**.
+
+
+### Advantages
+- **Model-agnostic**: Works for any trained model, not just tree-based methods.  
+- **Intuitive**: Directly measures impact on predictive performance.  
+- **Complementary**: Provides a different perspective compared to impurity-based measures (e.g., MDI).  
+
+
+### Limitations
+- **Correlated features**: If two predictors are strongly correlated, shuffling one may not reduce accuracy much (since the other still carries the signal). This can lead to underestimating their importance.  
+- **Computational cost**: Requires repeated evaluation of the model, which can be slow for large datasets.  
+
+
+### Why It Matters
+- Helps us understand **which predictors the model relies on most**.  
+- Acts as a **diagnostic tool** for feature relevance.  
+- Can inform **feature selection** or help identify **data leakage**.  
+
+
+### **Key Idea:**  
+Permutation Importance measures feature importance by **destroying the feature’s information (via shuffling) and observing how much the model’s accuracy drops.**
