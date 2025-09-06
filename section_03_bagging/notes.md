@@ -232,7 +232,7 @@ Consistency in variable naming is important to avoid errors.
 
 - takes X_test as input (latitude & longitude)
 
-- outputs predicted class labels for each test point
+- **outputs predicted class labels for each test point**
 
 
 2. Accuracy
@@ -241,11 +241,72 @@ Consistency in variable naming is important to avoid errors.
 
 - compares predicted labels with true labels (y_test)
 
-- returns proportion of correct predictions (0–1 range)
+- **returns proportion of correct predictions (0–1 range)**
 
 - multiply by 100 to show as a percentage
 
 In short: predict with the trained model, then check how many predictions match the ground truth.
+
+
+---
+### Sheet: Implementing Bagging Prediction Function  
+
+#### Function: `prediction_by_bagging()`  
+
+This function manually implements the **Bagging (Bootstrap Aggregation)** procedure for classification.  
+
+
+
+#### 1. Bootstrap Sampling  
+
+`resample_indexes = np.random.choice(np.arange(y_train.shape[0]), size=y_train.shape[0])`
+X_boot = X_train[resample_indexes]
+y_boot = y_train[resample_indexes]
+
+Randomly samples indices with replacement to create a new training subset.
+
+Ensures both predictors (X_boot) and labels (y_boot) stay aligned.
+
+
+
+---
+
+#### 2. Base Learner Training
+
+`clf = DecisionTreeClassifier(max_depth=max_depth, random_state=44)`
+`clf.fit(X_boot, y_boot)`
+
+Trains a Decision Tree classifier on each bootstrap sample.
+
+Fixed random_state=44 for reproducibility.
+
+
+
+---
+
+#### 3. Prediction on Evaluation Set
+
+`pred = clf.predict(X_to_evaluate)`
+predictions.append(pred)
+
+Each tree makes predictions on the same evaluation data.
+
+Predictions are stored for later aggregation.
+
+
+
+---
+
+#### 4. Aggregation (Majority Voting)
+
+`predictions = np.array(predictions)`
+`average_prediction = (predictions.mean(axis=0) > 0.5).astype(int)`
+
+Converts predictions into an array shaped (num_bootstraps, n_samples).
+
+Takes the mean across all trees.
+
+Applies a threshold at 0.5 → class 1 if >0.5, otherwise class 0.
 
 
   
