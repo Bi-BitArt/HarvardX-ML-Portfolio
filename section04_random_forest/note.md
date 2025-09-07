@@ -355,3 +355,41 @@ Explanation
 - In `RandomForestClassifier`, you do **not** need to pass `estimator` explicitly because it is always a Decision Tree.  
 - So here, each of the 1000 trees is automatically a `DecisionTreeClassifier`.
 
+---
+### Sheet18 Predictions and Accuracy
+
+`predictions = random_forest.predict(X_val)`
+
+- Calls the .predict() method of the trained RandomForestClassifier.
+
+- Takes the validation feature set X_val as input.
+
+- Produces an array of predicted class labels, stored in predictions.
+
+
+1. random_forest has already been trained with fit(X_train, y_train).
+
+2. .predict(X_val) uses the learned decision rules (majority voting across all trees) to assign labels to the unseen validation data.
+
+3. The output is a NumPy array (or similar structure), where each element corresponds to the predicted label for one sample in X_val.
+
+---
+
+`acc_rf = round(accuracy_score(predictions, y_val), 2)`
+
+- Computes the accuracy of the Random Forest model’s predictions on the validation set.
+
+- Stores the result in the variable acc_rf, rounded to 2 decimal places.
+
+1. accuracy_score(predictions, y_val) calculates the fraction of correctly predicted labels.
+
+Normally, the function is called as accuracy_score(y_true, y_pred): so the arguments should be accuracy_score(y_val, predictions).
+
+2. The result is a floating-point number between 0 and 1 (e.g., 0.87).
+
+3. round(..., 2) limits the value to two decimal places (e.g., 0.87 instead of 0.87321).
+
+4. The final accuracy value is saved as acc_rf.
+
+---
+# Exercise #2  Hyperparameter Tuning
