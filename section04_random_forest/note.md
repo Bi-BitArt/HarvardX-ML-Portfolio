@@ -255,3 +255,82 @@ Assign higher weight (importance) to the minority class in the model’s loss fu
 Pros: No change to dataset size.
 
 Cons: Might make model sensitive to noise in minority class.
+
+
+# Exercise #1 Bagging vs Random Forest 
+
+The goal of this exercise is to investigate the correlation between randomly selected trees from Bagging and Random Forest. 
+
+---
+### Sheet4: Assigning Predictors and Response Variables
+
+In this sheet, we separate the **predictor variables (X)** from the **response variable (y)**.
+
+`X = df.drop("Outcome", axis=1)`  
+`y = df["Outcome"]`  
+
+- `axis=1` ensures that we are dropping a **column** (not rows).
+
+### Understanding `df.drop`
+
+When defining predictors (**X**) and the response (**y**), we use `df.drop` to exclude the target column:
+
+- **X (predictors):**  
+  `X = df.drop("Outcome", axis=1)`  
+  - `"Outcome"` is the target variable, so we remove it from the DataFrame.  
+  - `axis=1` tells pandas to drop a **column** (instead of a row).  
+  - Result: `X` contains all predictor columns **except** `"Outcome": axis=1`.
+
+- **y (response):**  
+  `y = df["Outcome"]`  
+  - We directly select the `"Outcome"` column as the response variable.  
+  - Result: `y` contains only the target labels.  
+
+**Key Idea:**  
+`df.drop("Outcome", axis=1)` ensures predictors exclude the target.
+
+---
+### Review: train_test_split
+
+`train_test_split` is a utility function in scikit-learn for splitting data into training and testing (or validation) sets.  
+This allows us to evaluate model performance on unseen data.
+
+`X_train, X_val, y_train,y_val = train_test_split(X, y, train_size=0.8, random_state=144)`
+
+---
+### Review: Bagging Classifier
+
+`BaggingClassifier( estimator=basemodel, n_estimators=n_estimators, random_state=random_state )`
+
+- `estimator=basemodel` → base learner is the Decision Tree defined earlier.  
+- `n_estimators=n_estimators` → number of trees (here, 1000).  
+- `random_state=random_state` → reproducibility of sampling and training.  
+- Bagging (Bootstrap Aggregating) reduces variance by combining many trees trained on different bootstrap samples.  
+
+---
+
+`bagging.fit(X_train, y_train)`
+
+- Each estimator: draws a bootstrap sample, trains a Decision Tree (`max_depth=20`).  
+- After this, the ensemble can predict with `.predict()` or `.predict_proba()`.  
+
+---
+### Sheet9 Validation Accuracy with Bagging
+
+`predictions = bagging.predict(X_val)`
+
+Explanation
+
+- The output predictions is an array of predicted class labels for each row in X_val.
+
+---
+
+`acc_bag = round(accuracy_score(predictions, y_val), 2)`
+
+Explanation
+
+- Computes the accuracy score between predicted labels and the true labels of the validation set.
+
+- The round(..., 2) part rounds the accuracy to 2 decimal places for readability.
+
+- The result is stored in acc_bag.
