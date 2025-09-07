@@ -261,6 +261,8 @@ Cons: Might make model sensitive to noise in minority class.
 
 The goal of this exercise is to investigate the correlation between randomly selected trees from Bagging and Random Forest. 
 
+## Bagging Implementation
+
 ---
 ### Sheet4: Assigning Predictors and Response Variables
 
@@ -334,3 +336,22 @@ Explanation
 - The round(..., 2) part rounds the accuracy to 2 decimal places for readability.
 
 - The result is stored in acc_bag.
+
+---
+## Random Forest Implementation
+
+### Review: RandomForestClassifier
+
+`RandomForestClassifier( max_depth=max_depth, n_estimators=1000, random_state=random_state )`
+
+**Key parameters**  
+- `max_depth=max_depth` → limits the depth of each Decision Tree (here, 20).  
+- `n_estimators=1000` → the number of Decision Trees in the forest.  
+- `random_state=random_state` → ensures reproducibility.  
+  - Using a variable (`random_state`) avoids redundancy; change the value once and it propagates everywhere.  
+
+**Note on "estimator"**  
+- In ensembles like **BaggingClassifier**, `estimator` specifies the base model (e.g., Decision Tree).  
+- In `RandomForestClassifier`, you do **not** need to pass `estimator` explicitly because it is always a Decision Tree.  
+- So here, each of the 1000 trees is automatically a `DecisionTreeClassifier`.
+
