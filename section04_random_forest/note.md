@@ -393,3 +393,45 @@ Normally, the function is called as accuracy_score(y_true, y_pred): so the argum
 
 ---
 # Exercise #2  Hyperparameter Tuning
+
+### Sheet1 Vanilla Random Forest
+
+`vanilla_rf = RandomForestClassifier(random_state=seed)`
+
+- Defines a Random Forest classifier with default parameters and sets the random seed for reproducibility.  
+
+`vanilla_rf.fit(X_train, y_train)`
+
+- Fits the model on the training data.  
+
+`y_proba = vanilla_rf.predict_proba(X_test)[:, 1]`
+
+- Uses the trained model to predict class probabilities on the test set.  
+- Selects the probability for the positive class (index 1).  
+
+`auc = np.round(roc_auc_score(y_test, y_proba), 2)`
+
+- Computes the ROC AUC score comparing the true labels (`y_test`) with the predicted probabilities.  
+- Rounds the score to 2 decimal places.
+
+---
+### Sheet18 Hyperparameter Tuning in Random Forest
+
+**Goal**  
+Improve the performance of Random Forest by adjusting its key hyperparameters beyond the default settings.
+
+---
+
+**Key Tunable Hyperparameters**
+
+- `n_estimators`  
+  Number of trees in the forest. More trees reduce variance but increase training time.  
+
+- `min_samples_leaf`  
+  Minimum number of samples required at a leaf node. Larger values make trees less complex, reducing overfitting.  
+
+- `max_features`  
+  Number of features to consider at each split.  
+
+- `oob_score=True`  
+  Enables Out-of-Bag (OOB) score as an internal validation measure, using samples not included in each bootstrap.  
