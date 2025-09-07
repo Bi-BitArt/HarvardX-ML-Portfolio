@@ -439,12 +439,6 @@ Improve the performance of Random Forest by adjusting its key hyperparameters be
 ---
 # Exercise #3  Feature Importance
 
-**Goal**  
-Train a Decision Tree and a Random Forest on the `heart.csv` dataset, then compute and compare feature importance using:  
-- Mean Decrease in Impurity (MDI, built-in `.feature_importances_`)  
-- Permutation Importance (`sklearn.inspection.permutation_importance`)
-
----
 ### Sheet5 Decision Tree Permutation Importance
 
 `tree_result = permutation_importance(tree, X, y, random_state=random_state)`
@@ -455,10 +449,97 @@ Train a Decision Tree and a Random Forest on the `heart.csv` dataset, then compu
   - `importances_mean`: average importance score for each feature.  
   - `importances_std`: standard deviation across the shuffles.  
   - `importances`: raw scores for each shuffle.- Calls
+
+### Insight
+
+- **Single Tree**
+  - Certain features (e.g., ChestPain, Ca) appear highly dominant.  
+  - Because the model relies on a single tree, the features chosen for splits can be overemphasized.  
+  - Other features tend to be undervalued, showing little contribution.  
+
+- **Random Forest**
+  - Trained as an ensemble of many trees, importance values are distributed more evenly.  
+  - Features that looked extremely strong in the single tree are toned down, while other variables gain moderate contributions.  
+  - Produces more stable and generalizable importance estimates.  
+**Key Insight**  
+- A single decision tree tends to **overstate the role of a few splitting features**, while Random Forest averages across trees to provide a **more balanced and reliable view of feature importance**.  
+- Therefore, when interpreting feature importance, Random Forest is generally the more trustworthy choice.
  
-  ---
-  
+---
+# Exercise #4 Random Forest with Class Imbalance
 
+**Goal**  
+Investigate the performance of Random Forest on a dataset with class imbalance, and apply different correction strategies to improve it. Finally, compare models using F1-score and ROC AUC.
 
+### Sheet3 Review: F1-score and AUC
 
+`f_score = f1_score(y_val, predictions)`  
+- Computes the **F1-score**, which is the harmonic mean of precision and recall, useful for imbalanced datasets.
+- Inputs:  
+  - `y_val`: the true labels of the validation set.  
+  - `predictions`: the predicted labels from the model.  
 
+`score1 = round(f_score, 2)`  
+- Rounds the F1-score to two decimal places. (e.g. 0.8461538... to 0.85 )
+- Stores the result in `score1` for reporting.  
+
+---
+
+`auc_score = roc_auc_score(y_val, vanilla_rf.predict_proba(X_val)[:, 1])`  
+- Computes the **ROC AUC (Area Under the Curve)** score.  
+- `vanilla_rf.predict_proba(X_val)[:, 1]` extracts the predicted probabilities for the positive class.  
+- Measures the model’s ability to rank positive samples higher than negative ones, independent of a classification threshold.  
+
+`auc1 = round(auc_score, 2)`  
+- Rounds the AUC score to two decimal places.  
+- Stores the result in `auc1` for reporting.
+
+---
+### Sheet 10 Upsampling
+
+`sm = SMOTE(random_state=2)`
+- Initializes SMOTE (Synthetic Minority Oversampling Technique).
+
+`X_train_res, y_train_res = sm.fit_resample(X_train, np.ravel(y_train))`
+- Applies SMOTE to the **training** data to balance classes by creating synthetic minority samples.
+- `np.ravel(y_train)` flattens the target to a 1D array (some resamplers require this).
+- Outputs the resampled features `X_train_res` and labels `y_train_res` for subsequent model training.
+
+---
+### Sheet 11 Downsampling
+
+`rs = RandomUnderSampler(random_state=2)`  
+- Initializes a RandomUnderSampler with a fixed random state for reproducibility.  
+- Randomly reduces the number of majority class samples until both classes are balanced.  
+
+`X_train_res, y_train_res = rs.fit_resample(X_train, np.ravel(y_train))`  
+- Applies downsampling to the training data.  
+- `np.ravel(y_train)` flattens the target array into 1D, which is required by some resamplers.  
+- Produces a balanced dataset where the majority class has been reduced in size.  
+- Outputs `X_train_res` (features) and `y_train_res` (labels) that can be used to train a Random Forest.  
+
+**Key Idea**  
+- Unlike SMOTE, which **adds synthetic samples**, downsampling reduces the size of the majority class.  
+- This helps the classifier pay more attention to the minority class, but at the cost of losing information from discarded samples.
+
+---
+## Result & Insights
+
+| Strategy                          | F1 Score | AUC Score |
+|-----------------------------------|----------|-----------|
+| Random Forest — No imbalance corr | 0.51     | 0.80      |
+| Random Forest — Balanced Subsample| 0.45     | 0.73      |
+| Random Forest — Upsampling (SMOTE)| 0.54     | 0.74      |
+| Random Forest — Downsampling      | **0.64** | 0.77      |
+
+---
+
+### Insights
+- **Vanilla RF** → Achieved the highest AUC (0.80), but only moderate F1 (0.51). The model tends to misclassify minority class samples.  
+- **Balanced Subsample** → Both F1 (0.45) and AUC (0.73) dropped. Simple class weighting did not improve performance here.  
+- **Upsampling (SMOTE)** → Slightly improved F1 (0.54) but reduced AUC (0.74). This helps recall minority cases but hurts ranking ability.  
+- **Downsampling** → Achieved the best F1 (0.64), with a reasonable AUC (0.77). It provided the best balance between precision and recall.  
+
+**Conclusion**  
+- If the goal is to reduce minority class misclassification (**F1-focused**), **Downsampling** is the best strategy.  
+- If the goal is better ranking performance (**AUC-focused**), **Vanilla RF** remains stronger.
