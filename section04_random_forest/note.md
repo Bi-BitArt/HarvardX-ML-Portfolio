@@ -434,4 +434,31 @@ Improve the performance of Random Forest by adjusting its key hyperparameters be
   Number of features to consider at each split.  
 
 - `oob_score=True`  
-  Enables Out-of-Bag (OOB) score as an internal validation measure, using samples not included in each bootstrap.  
+  Enables Out-of-Bag (OOB) score as an internal validation measure, using samples not included in each bootstrap.
+
+---
+# Exercise #3  Feature Importance
+
+**Goal**  
+Train a Decision Tree and a Random Forest on the `heart.csv` dataset, then compute and compare feature importance using:  
+- Mean Decrease in Impurity (MDI, built-in `.feature_importances_`)  
+- Permutation Importance (`sklearn.inspection.permutation_importance`)
+
+---
+### Sheet5 Decision Tree Permutation Importance
+
+`tree_result = permutation_importance(tree, X, y, random_state=random_state)`
+
+- Calls `permutation_importance` from `sklearn.inspection`.  
+- Uses the trained Decision Tree (`tree`) to evaluate feature importance.  
+- The output `tree_result` contains:  
+  - `importances_mean`: average importance score for each feature.  
+  - `importances_std`: standard deviation across the shuffles.  
+  - `importances`: raw scores for each shuffle.- Calls
+ 
+  ---
+  
+
+
+
+
