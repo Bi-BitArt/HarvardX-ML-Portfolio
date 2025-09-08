@@ -235,19 +235,15 @@ mean_squared_error(y_test, ...): calculates the MSE between the true and predict
 ---
 ### Insight
 
-📊 Results: MSE Comparison
+Results: MSE Comparison
 
-Model	Test MSE
-
-Boosting	350.57
-Bagging	355.96
+- Boosting	350.57
+- Bagging	355.96
 
 ---
 
-Insight
+- Boosting achieved a slightly lower MSE than Bagging on this dataset.
 
-Boosting achieved a slightly lower MSE than Bagging on this dataset.
+- This shows Boosting’s strength: it iteratively corrects errors (residuals), leading to finer adjustments and often better performance.
 
-This shows Boosting’s strength: it iteratively corrects errors (residuals), leading to finer adjustments and often better performance.
-
-Bagging, on the other hand, stabilizes predictions by averaging deeper trees, but does not explicitly focus on residual correction.
+- Bagging, on the other hand, stabilizes predictions by averaging deeper trees, but does not explicitly focus on residual correction.
