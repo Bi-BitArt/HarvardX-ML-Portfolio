@@ -146,8 +146,6 @@ Formally:
 - A point where **all partial derivatives are zero** is a **stationary point**.
 - If f is **convex** (bowl-shaped), that stationary point is the **global minimum**.
 
----
-
 If the loss function is not convex, we may have more than one minima, which we call **local minima**.
 
 In this case, we use some iterative methods, like gradient descent. 
@@ -162,20 +160,15 @@ In this case, we use some iterative methods, like gradient descent.
 - Small λ: safer but **slow** progress.  
 - Large λ: **faster** progress but can oscillate or diverge.
   
-If the function is convex, choosing an appropriate learning rate λ ensures that gradient descent will eventually bring w close to the minimum. The gradient vector points in the direction of steepest ascent, so its negative gives the steepest descent. By iteratively following this direction, we move toward the minimum.
+If the function is convex, choosing an appropriate learning rate λ ensures that gradient descent will eventually bring w close to the minimum.
 
 ### Why does Gradient Descent Work? (Slide-style explanation)
 
 - The parameter update rule can be written as:  
   **`w ← w − λ ∇f(w)`**
 
-- This means we **subtract a λ multiple of the gradient** from w, moving in the opposite direction of the gradient (the steepest descent).  
-
 - Here, λ (the learning rate) controls the **step size**.  
-
 - If the objective function f is **convex**, then by repeatedly applying this update, we will eventually reach the **global minimum**.  
-
-- Intuitively, the gradient points to the direction of steepest ascent, so its negative points to the direction of steepest descent. Iteratively following this direction leads us to the minimum.
 
 ### Why Reaching the Minimum Matters
 
@@ -194,3 +187,42 @@ Minimizing the loss means improving the accuracy of the model’s predictions.
 - **Interpretation**: Reaching the minimum of the loss function means the model has found the best possible parameters (given its design) so that predictions are as close as possible to the true values.
 
 Note: In the context of gradient descent, the gradient is always taken with respect to the loss function, since the goal of training is to minimize this function.
+
+#### Gradient Boosting vs Gradient Descent
+
+- **Gradient Descent**: updates the parameters directly by following the negative gradient of the loss.  
+
+Works in the **parameter space** (e.g., weights of a parametric model like linear regression).
+
+- **Gradient Boosting**: adds new weak learners to fit the residuals (errors) of the current model.  
+
+Works in the **function space (or prediction space)**, since tree models are non-parametric and we improve the model by adding functions rather than adjusting parameters.
+
+**Key point**: Both use gradient-based ideas, but in different spaces.  
+Residuals are the key material for Gradient Boosting, since each new learner corrects the mistakes of the current model.
+
+**Summary**
+
+- Gradient Boosting aims to minimize the loss function by tackling the errors. However, Gradient Descent is not its direct procedure. Instead, Boosting itself brings the idea of Gradient Descent into the function space.
+
+(Gradient Boosting does not literally run Gradient Descent; instead, it is inspired by its core idea; reducing loss by following the gradient in the opposite direction. I now see why the course spent so much time revisiting Gradient Descent: it’s not because Boosting applies it directly, but because understanding GD makes it clear how Boosting adapts the same principle in function space.)
+
+- Additional Note:
+In practice, Gradient Boosting cannot always take the exact optimal step in the gradient direction because weak learners (like shallow decision trees) are limited. Instead, it adds the function that best approximates this step, moving as close as possible toward the optimal direction.
+
+### Choosing a Learning Rate in Gradient Boosting
+
+The learning rate λ controls how much each weak learner contributes to the model.
+
+If λ is set as a constant, it should be tuned using cross-validation to balance underfitting and overfitting.
+
+For better performance, λ can be defined as a function of the gradient’s magnitude:
+
+
+`λ = h(||∇f(x)||)`
+
+Interpretation:
+
+Near the optimum, the gradient is small: λ should be smaller to avoid overshooting.
+
+Far from the optimum, the gradient is large: λ should be larger to speed up learning.
