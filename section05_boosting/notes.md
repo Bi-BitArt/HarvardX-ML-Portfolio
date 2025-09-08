@@ -139,4 +139,58 @@ Formally:
 
 ## Key Concepts from Video 3
 
-###
+### Why does Gradient Boosting Work?
+
+- We want to **minimize** an objective (loss) function f(w) over parameters w.
+- To see how to reduce f, we look at its **derivatives** (the gradient) with respect to w.
+- A point where **all partial derivatives are zero** is a **stationary point**.
+- If f is **convex** (bowl-shaped), that stationary point is the **global minimum**.
+
+---
+
+If the loss function is not convex, we may have more than one minima, which we call **local minima**.
+
+In this case, we use some iterative methods, like gradient descent. 
+
+### Gradient Descent
+
+1. **Initialize** the parameters w (often randomly).
+2. **Compute the gradient** ∇f(w) (the direction of steepest increase).
+3. **Update the parameters** in the *opposite* direction of the gradient, with a step size controlled by the learning rate λ.
+4. **Repeat** until the loss stops improving or a max number of steps is reached.
+
+- Small λ: safer but **slow** progress.  
+- Large λ: **faster** progress but can oscillate or diverge.
+  
+If the function is convex, choosing an appropriate learning rate λ ensures that gradient descent will eventually bring w close to the minimum. The gradient vector points in the direction of steepest ascent, so its negative gives the steepest descent. By iteratively following this direction, we move toward the minimum.
+
+### Why does Gradient Descent Work? (Slide-style explanation)
+
+- The parameter update rule can be written as:  
+  **`w ← w − λ ∇f(w)`**
+
+- This means we **subtract a λ multiple of the gradient** from w, moving in the opposite direction of the gradient (the steepest descent).  
+
+- Here, λ (the learning rate) controls the **step size**.  
+
+- If the objective function f is **convex**, then by repeatedly applying this update, we will eventually reach the **global minimum**.  
+
+- Intuitively, the gradient points to the direction of steepest ascent, so its negative points to the direction of steepest descent. Iteratively following this direction leads us to the minimum.
+
+### Why Reaching the Minimum Matters
+
+- **Loss function**: A mathematical function that measures how wrong the model’s predictions are compared to the actual values. 
+It provides a numeric target for learning.  
+
+- **Goal of training**: To find parameter values that **minimize the loss function**.  
+Minimizing the loss means improving the accuracy of the model’s predictions.  
+
+**Examples of loss functions:**  
+- **Regression**: Often use the **sum of squared errors (MSE)** between predictions and actual values.  
+- **Classification**: Often use the **cross-entropy loss**, which heavily penalizes incorrect class probabilities.  
+
+- **How we minimize it**: Gradient descent updates parameters step by step in the opposite direction of the gradient, gradually reducing the loss.  
+
+- **Interpretation**: Reaching the minimum of the loss function means the model has found the best possible parameters (given its design) so that predictions are as close as possible to the true values.
+
+Note: In the context of gradient descent, the gradient is always taken with respect to the loss function, since the goal of training is to minimize this function.
