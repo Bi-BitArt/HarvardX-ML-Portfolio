@@ -72,28 +72,65 @@ In short, sample_weight is what makes AdaBoost different from ordinary training:
 
 4. Predict & build misclassification vector
 
-`y_predict = estimator.predict(X)
+`y_predict = estimator.predict(X)`
+
+Uses the trained stump to predict labels for all training samples.
+
 `incorrect = (y_predict != y)`
 
-incorrect is a boolean mask (True for errors). It feeds the weighted error computation.
+Creates a boolean mask:
+
+- True if the sample was misclassified.
+
+- False if the prediction was correct.
 
 
 5. Weighted error (ε)
 
 `estimator_error = np.average(incorrect, weights=sample_weight)`
 
-This is the stump’s error under the current weights. Large if it misses heavily-weighted (hard) points.
+- Plain error is simply the fraction of misclassified samples.
+
+- Weighted error takes the current sample weights into account:
+
+    - Misclassifying a low-weight sample contributes little to the error.
+
+    - Misclassifying a high-weight sample contributes a lot to the error.
+
+- In other words: 
+
+    - Easy samples (low weight) matter less if they are misclassified.
+
+    - Hard samples (high weight) matter much more, since the algorithm is forcing the model to focus on them.
+
+
+This weighted error (ε) is then directly used to compute the stump’s weight (λ).
+
+Small ε: stump is more reliable: gets a larger λ (in order to strengthen the influence of this stump).
+
+Large ε: stump is less reliable: gets a smaller λ.
 
 
 6. Stump weight (λ)
 
 `eps = 1e-12`
+Tiny constant used as a safeguard.
+Prevents log(0) when error = 0 or 1.
+
 `err = np.clip(estimator_error, eps, 1 - eps)`
+Keeps error into [eps, 1 - eps] to keep it in a safe range.
+
 `estimator_weight = 0.5 * np.log((1 - err) / err)`
 
 The closed-form weight from minimizing exponential loss. Lower error = larger λ = stronger influence.
 
-clip avoids log(0) when the stump is perfect or hopeless.
+- Intuition:
+
+    - A stump with low error gets a large λ, so it contributes strongly to the ensemble.
+
+    - A stump with high error gets a small (or even negative) λ, so it has little influence.
+
+This formula ensures that good stumps have stronger voices in the final weighted vote, while poor stumps are down-weighted.
 
 
 7. Update sample weights (unnormalized)
@@ -102,13 +139,17 @@ clip avoids log(0) when the stump is perfect or hopeless.
 
 With labels in {-1, +1}:
 
-Correct prediction: y * y_predict = +1 → weight decreases (× exp(-λ)).
+Correct prediction: y * y_predict = +1: weight decreases (× exp(-λ)).
 
-Incorrect prediction: y * y_predict = -1 → weight increases (× exp(+λ)).
+Incorrect prediction: y * y_predict = -1: weight increases (× exp(+λ)).
 
+In short:
 
-This way, the next stump focuses on the harder points.
+- Easy / correctly classified points lose weight → model pays less attention next time.
 
+- Hard / misclassified points gain weight → model focuses more on them in the next iteration.
+
+- This shifting of attention from easy to hard samples is the core mechanism of AdaBoost, making each new stump complement the weaknesses of the previous ones.
 
 8. Normalize weights
 
@@ -127,7 +168,23 @@ Convert all result lists into NumPy arrays for easier handling.
 
 `preds = np.array([np.sign((y_predict_list[:,point] * estimator_weight_list).sum()) for point in range(N)])`
 
-Make the final ensemble prediction by taking a weighted majority vote (using λ) and applying np.sign.
+For each sample:
+
+1. Collect the predictions from all stumps for that sample.
+   
+2. Give each prediction a weight (λ) according to how good the
+   stump is.
+   
+3. Add up all these weighted predictions.
+
+np.sign(...) is then applied:
+
+Positive sum: final prediction = +1
+
+Negative sum: final prediction = −1
+
+Summary:
+The final prediction is a weighted majority vote of all stumps, where stronger stumps (low error, high λ) count more, and weaker stumps count less.
 
 ---
 ### Sheet5: Testing AdaBoost Implementation
@@ -136,11 +193,27 @@ Goal: Evaluate the custom AdaBoost function by checking prediction accuracy.
 
 Explanation:
 
-`AdaBoost_scratch(X, y, M=9)` runs the boosting algorithm with 9 weak learners (stumps).
+`AdaBoost_scratch(X, y, M=9)` 
+runs the boosting algorithm with 9 weak learners (stumps).
 
 `preds` contains the final boosted predictions for all samples.
 
-`accuracy = np.round((preds == y).mean(), 3)` computes the proportion of correct predictions, giving the overall accuracy.
+`accuracy = np.round((preds == y).mean(), 3)` 
+computes the proportion of correct predictions, giving the overall accuracy.
+
+This single line actually performs three steps at once:
+
+1. (preds == y) → creates a Boolean array (True for correct predictions, False otherwise).
+
+2. .mean() → converts that Boolean array into a numeric average (accuracy as a fraction).
+
+3. np.round(..., 3) → rounds the result to 3 decimal places.
+
+Can be expanded in these three lines:
+
+- correct = (preds == y)
+- accuracy_raw = correct.mean()
+- accuracy = np.round(accuracy_raw, 3)
 
 ---
 ### Sheet6: Visualizing AdaBoost Stumps
@@ -170,3 +243,28 @@ Goal: Use scikit-learn’s built-in implementation to view the final ensemble de
 Uses scikit-learn’s AdaBoostClassifier with stumps (max_depth=1) and 9 estimators.
 
 Easier and more efficient than building AdaBoost from scratch, but conceptually equivalent to what we did manually.
+
+---
+### Results & Insight
+
+#### Results
+
+- Classes: The model successfully mapped the labels into the required form {−1, +1}.
+
+- Predictions: The ensemble predictions also fall strictly in {−1, +1}, with no zeros, confirming correct sign handling.
+
+- Sample size: Dataset contains 91 samples with 2 features (latitude, longitude).
+
+- Accuracy: Raw accuracy = 0.956 (=95.6%).
+
+---
+
+#### Insight
+
+The AdaBoost implementation from scratch is working as intended:
+
+- Predictions align with the expected label space (−1, +1).
+
+- No invalid or missing predictions occurred.
+
+- Even with simple stumps as weak learners, AdaBoost achieved approximately 95% accuracy, proving how reweighting and combining weak models can create a powerful ensemble classifier.
