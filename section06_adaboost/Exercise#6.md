@@ -16,27 +16,42 @@ We will learn how AdaBoost iteratively updates sample weights, assigns higher im
 
 `y = np.where(y == 0, -1, 1)`
 
-AdaBoost requires class labels to be −1 and +1.
+- AdaBoost requires class labels to be −1 and +1.
 This step transforms the dataset labels appropriately.
+
+- Note: np.where(condition, A, B) works like a vectorized if-else:
+
+    - If the condition is True → assign A.
+
+    - If the condition is False → assign B.
+
+Here, if y == 0, it becomes -1; otherwise, it becomes 1.
 
 ---
 ### Sheet4: Implementing AdaBoost from Scratch (with Stumps)
 
 Goal: Build AdaBoost manually using decision tree stumps (depth=1) and understand each step: weighted training, weighted error, stump weight (λ), sample-weight update, normalization, and final weighted vote.
 
+
 1. Initialize sample weights
 
 `sample_weight = np.ones(N) / N`
+
+Initialize all sample weights equally at 1/N.
+
+This gives a uniform distribution over all samples.
+
+
 `sample_weight_list.append(sample_weight.copy())`
 
-Start with a uniform distribution over samples (each gets 1/N).
+Save a snapshot of the current weights into a list.
 
-.copy() is important: we store a snapshot each round. Without it, later updates would overwrite the history you want to visualize.
+.copy() is necessary so future updates don’t overwrite this stored version.
 
 
 2. Define the weak learner (stump)
 
-`estimator = DecisionTreeClassifier(max_depth=1)`
+`estimator = DecisionTreeClassifier(max_depth=1, random_state=0)`
 
 A stump is a decision tree with a single split (2 leaves). This is the standard weak learner for AdaBoost.
 
@@ -45,7 +60,14 @@ A stump is a decision tree with a single split (2 leaves). This is the standard 
 
 `estimator.fit(X, y, sample_weight=sample_weight)`
 
-Passing sample_weight tells the stump to pay more attention to currently “important” samples.
+Normally, fit(X, y) is enough: all samples are treated equally, as if each has the same weight (1/N).
+
+By adding sample_weight, we can change how much influence each sample has on training.
+
+In AdaBoost, this is crucial: misclassified samples from previous rounds are given higher weights, so the next stump pays more attention to them.
+
+
+In short, sample_weight is what makes AdaBoost different from ordinary training: it focuses learning on the “hard” points.
 
 
 4. Predict & build misclassification vector
@@ -65,10 +87,11 @@ This is the stump’s error under the current weights. Large if it misses heavil
 
 6. Stump weight (λ)
 
+`eps = 1e-12`
 `err = np.clip(estimator_error, eps, 1 - eps)`
 `estimator_weight = 0.5 * np.log((1 - err) / err)`
 
-The closed-form weight from minimizing exponential loss. Lower error → larger λ → stronger influence.
+The closed-form weight from minimizing exponential loss. Lower error = larger λ = stronger influence.
 
 clip avoids log(0) when the stump is perfect or hopeless.
 
@@ -79,12 +102,12 @@ clip avoids log(0) when the stump is perfect or hopeless.
 
 With labels in {-1, +1}:
 
-Correct prediction: y*y_predict = +1 → weight multiplies by exp(-λ) → decrease.
+Correct prediction: y * y_predict = +1 → weight decreases (× exp(-λ)).
 
-Incorrect prediction: y*y_predict = -1 → weight multiplies by exp(+λ) → increase.
+Incorrect prediction: y * y_predict = -1 → weight increases (× exp(+λ)).
 
 
-This is how the next stump focuses on hard points.
+This way, the next stump focuses on the harder points.
 
 
 8. Normalize weights
@@ -92,6 +115,7 @@ This is how the next stump focuses on hard points.
 `sample_weight /= sample_weight.sum()`
 
 Keep them summing to 1 for stability and probabilistic interpretation.
+
 
 9. Convert lists to arrays
 
@@ -116,7 +140,7 @@ Explanation:
 
 `preds` contains the final boosted predictions for all samples.
 
-`(preds == y).mean()` computes the proportion of correct predictions, giving the overall accuracy.
+`accuracy = np.round((preds == y).mean(), 3)` computes the proportion of correct predictions, giving the overall accuracy.
 
 ---
 ### Sheet6: Visualizing AdaBoost Stumps
