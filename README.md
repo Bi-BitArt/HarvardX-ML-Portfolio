@@ -14,7 +14,6 @@ This portfolio is part of my preparation for applying to postgraduate programs i
 - `section04_random_forest/` – Introduction to Random Forest
 - `section05_boosting/` – Boosting
 - `section06_adaboost/` – AdaBoost
-- `wrap_up/` – Final reflections and course wrap-up
 - `projects/` – Personal projects and experiments
 - `certificate/` – Course certificate (to be added upon completion)
 
