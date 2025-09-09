@@ -15,7 +15,7 @@ This portfolio is part of my preparation for applying to postgraduate programs i
 - `section05_boosting/` – Boosting
 - `section06_adaboost/` – AdaBoost
 - `projects/` – Personal projects and experiments
-- `certificate/` – Course certificate (to be added upon completion)
+- [certificate/](certificate/) – Course certificate
 
 ## License
 
