@@ -8,13 +8,13 @@ This portfolio is part of my preparation for applying to postgraduate programs i
 
 ## Contents
 
-- `section01_decision_trees_I/` – Decision Trees I
-- `section02_decision_trees_II/` – Decision Trees II
-- `section03_bagging/` – Bagging
-- `section04_random_forest/` – Introduction to Random Forest
-- `section05_boosting/` – Boosting
-- `section06_adaboost/` – AdaBoost
-- `projects/` – Personal projects and experiments
+- [section01_decision_trees_I/](section01_decision_trees_I/) – Decision Trees I  
+- [section02_decision_trees_II/](section02_decision_trees_II/) – Decision Trees II  
+- [section03_bagging/](section03_bagging/) – Bagging  
+- [section04_random_forest/](section04_random_forest/) – Introduction to Random Forest  
+- [section05_boosting/](section05_boosting/) – Boosting  
+- [section06_adaboost/](section06_adaboost/) – AdaBoost  
+- [projects/](projects/) – Personal projects and experiments  
 - [certificate/](certificate/) – Course certificate
 
 ## License
