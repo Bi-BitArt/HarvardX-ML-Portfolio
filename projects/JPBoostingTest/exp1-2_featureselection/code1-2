@@ -1,3 +1,4 @@
+[cell1]
 from sklearn.feature_selection import SelectFromModel
 
 # Feature selection using median threshold
@@ -29,3 +30,29 @@ y_proba_sel = model_selected.predict_proba(X_test_selected)[:, 1]
 # Evaluation
 print("Classification Report:\n", classification_report(y_test, y_pred_sel))
 print("ROC AUC:", roc_auc_score(y_test, y_proba_sel))
+
+[cell2]
+import pandas as pd
+
+# --- Feature importance and selection summary ---
+feat_names = X.columns
+importances = model.feature_importances_           # baseline model importances
+support = selector.get_support()                   # True if kept
+
+# Build summary DataFrame
+feat_df = pd.DataFrame({
+    "feature": feat_names,
+    "importance": importances,
+    "selected": support
+}).sort_values("importance", ascending=False)
+
+# Lists of kept/dropped
+kept = feat_df.loc[feat_df["selected"], "feature"].tolist()
+dropped = feat_df.loc[~feat_df["selected"], "feature"].tolist()
+
+print("Kept features (n={}):".format(len(kept)), kept)
+print("\nDropped features (n={}):".format(len(dropped)), dropped)
+
+# Top features by importance
+print("\nTop 10 features by importance (baseline model):")
+print(feat_df.head(10))
