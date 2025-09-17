@@ -1,0 +1,78 @@
+[cell1]
+!pip install numpy pandas scikit-learn xgboost shap matplotlib
+
+[cell2]
+from google.colab import files
+import pandas as pd
+
+# 1. Upload CSV file manually
+uploaded = files.upload()
+
+# 2. Read into DataFrame
+df = pd.read_csv("household_vulnerability_japan.csv")
+
+# 3. Quick check
+print("Shape:", df.shape)
+print(df.head())
+
+[cell3]
+from sklearn.preprocessing import LabelEncoder
+
+# Copy dataframe to avoid overwriting
+df_enc = df.copy()
+
+# Encode all categorical (object-type) columns
+for col in df_enc.select_dtypes(include=["object"]).columns:
+    le = LabelEncoder()
+    df_enc[col] = le.fit_transform(df_enc[col])
+
+print("Encoded shape:", df_enc.shape)
+print(df_enc.head())
+
+[cell4]
+from sklearn.model_selection import train_test_split
+
+# Features (X) and target (y)
+X = df_enc.drop("vulnerable", axis=1)
+y = df_enc["vulnerable"]
+
+# Split: 80% train, 20% test
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.2,
+    random_state=42,
+    stratify=y  # keep same class ratio
+)
+
+print("Train set:", X_train.shape, y_train.shape)
+print("Test set:", X_test.shape, y_test.shape)
+
+[cell5]
+from xgboost import XGBClassifier
+from sklearn.metrics import classification_report, roc_auc_score
+
+# Handle class imbalance
+pos_weight = (len(y_train) - y_train.sum()) / y_train.sum()
+
+# Define baseline model
+model = XGBClassifier(
+    n_estimators=100,       # number of trees
+    learning_rate=0.1,      # step size
+    max_depth=3,            # tree depth
+    subsample=0.8,          # row sampling
+    colsample_bytree=0.8,   # column sampling
+    scale_pos_weight=pos_weight,  # handle imbalance
+    random_state=42,
+    eval_metric="logloss"
+)
+
+# Train
+model.fit(X_train, y_train)
+
+# Predictions
+y_pred = model.predict(X_test)
+y_proba = model.predict_proba(X_test)[:, 1]
+
+# Evaluation
+print("Classification Report:\n", classification_report(y_test, y_pred))
+print("ROC AUC:", roc_auc_score(y_test, y_proba))
