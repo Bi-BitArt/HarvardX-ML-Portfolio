@@ -1,0 +1,31 @@
+# [cell1]
+import shap
+import pandas as pd
+
+# Create DataFrame for selected features
+X_test_selected_df = pd.DataFrame(
+    X_test_selected,
+    columns=X.columns[selector.get_support()]
+)
+
+# Initialize SHAP explainer with trained model
+explainer = shap.TreeExplainer(model_selected)
+
+# Compute SHAP values
+shap_values = explainer.shap_values(X_test_selected_df)
+
+# --- 1. Global summary: feature importance ranking ---
+shap.summary_plot(shap_values, X_test_selected_df)
+
+# --- 2. Dependence plots for top features ---
+top_features = X_test_selected_df.columns[:5]  # top 5 features
+for feat in top_features:
+    shap.dependence_plot(feat, shap_values, X_test_selected_df)
+
+# --- 3. Local explanation (first test instance as example) ---
+shap.initjs()
+shap.force_plot(
+    explainer.expected_value,
+    shap_values[0,:],
+    X_test_selected_df.iloc[0,:]
+)
