@@ -1,1 +1,30 @@
+# [Cell1]
+from xgboost import XGBClassifier
+from sklearn.metrics import classification_report, roc_auc_score
 
+# Use the feature-selected data from Exp1-2
+X_train_sel = X_train_selected
+X_test_sel = X_test_selected
+
+# Model with baseline hyperparameters (no tuning yet)
+model_selected = XGBClassifier(
+    n_estimators= ___ ,       # same as baseline
+    learning_rate= ___ ,      # default step size
+    max_depth= ___ ,            # tree depth
+    subsample=0.8,          # row sampling
+    colsample_bytree=0.8,   # column sampling
+    scale_pos_weight=pos_weight,  # handle class imbalance
+    random_state=42,
+    eval_metric="logloss"
+)
+
+# Train
+model_selected.fit(X_train_sel, y_train)
+
+# Predictions
+y_pred_sel = model_selected.predict(X_test_sel)
+y_proba_sel = model_selected.predict_proba(X_test_sel)[:, 1]
+
+# Evaluation
+print("Classification Report:\n", classification_report(y_test, y_pred_sel))
+print("ROC AUC:", roc_auc_score(y_test, y_proba_sel))
