@@ -23,5 +23,5 @@
 - Accuracy (≈0.68) is modest but reasonable given the class imbalance typical in household-level data.  
 - This experiment provides a **foundation** for further work on:
   - Feature selection (Exp1-2)  
-  - Parameter tuning for over/underfitting control (Exp1-3)  
-  - Model interpretability (Exp1-4, SHAP analysis)
+  - Model interpretability (Exp1-3, SHAP analysis)
+  - Parameter tuning for over/underfitting control (Exp3-1)  
