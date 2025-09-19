@@ -1,7 +1,7 @@
-[cell1]
+# [cell1]
 !pip install numpy pandas scikit-learn xgboost shap matplotlib
 
-[cell2]
+# [cell2]
 from google.colab import files
 import pandas as pd
 
@@ -15,7 +15,7 @@ df = pd.read_csv("household_vulnerability_japan.csv")
 print("Shape:", df.shape)
 print(df.head())
 
-[cell3]
+# [cell3]
 from sklearn.preprocessing import LabelEncoder
 
 # Copy dataframe to avoid overwriting
@@ -29,7 +29,7 @@ for col in df_enc.select_dtypes(include=["object"]).columns:
 print("Encoded shape:", df_enc.shape)
 print(df_enc.head())
 
-[cell4]
+# [cell4]
 from sklearn.model_selection import train_test_split
 
 # Features (X) and target (y)
@@ -47,7 +47,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 print("Train set:", X_train.shape, y_train.shape)
 print("Test set:", X_test.shape, y_test.shape)
 
-[cell5]
+# [cell5]
 from xgboost import XGBClassifier
 from sklearn.metrics import classification_report, roc_auc_score
 
