@@ -31,7 +31,7 @@ y_proba_sel = model_selected.predict_proba(X_test_selected)[:, 1]
 print("Classification Report:\n", classification_report(y_test, y_pred_sel))
 print("ROC AUC:", roc_auc_score(y_test, y_proba_sel))
 
-[cell2]
+# [cell2]
 import pandas as pd
 
 # --- Feature importance and selection summary ---
