@@ -1,0 +1,39 @@
+# [cell1]
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, roc_auc_score
+
+# === Income-only Logistic Regression ===
+X_income_train = X_train[["annual_income"]]
+X_income_test = X_test[["annual_income"]]
+
+log_income = LogisticRegression(max_iter=1000)
+log_income.fit(X_income_train, y_train)
+
+y_pred_income = log_income.predict(X_income_test)
+y_proba_income = log_income.predict_proba(X_income_test)[:, 1]
+
+acc_income = accuracy_score(y_test, y_pred_income)
+auc_income = roc_auc_score(y_test, y_proba_income)
+
+print("=== Income-only Model ===")
+print("Accuracy:", acc_income)
+print("ROC AUC:", auc_income)
+print()
+
+
+# === Income + Savings Logistic Regression ===
+X_income_sav_train = X_train[["annual_income", "savings_rate"]]
+X_income_sav_test = X_test[["annual_income", "savings_rate"]]
+
+log_income_sav = LogisticRegression(max_iter=1000)
+log_income_sav.fit(X_income_sav_train, y_train)
+
+y_pred_income_sav = log_income_sav.predict(X_income_sav_test)
+y_proba_income_sav = log_income_sav.predict_proba(X_income_sav_test)[:, 1]
+
+acc_income_sav = accuracy_score(y_test, y_pred_income_sav)
+auc_income_sav = roc_auc_score(y_test, y_proba_income_sav)
+
+print("=== Income + Savings Model ===")
+print("Accuracy:", acc_income_sav)
+print("ROC AUC:", auc_income_sav)
