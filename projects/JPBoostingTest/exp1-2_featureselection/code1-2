@@ -1,4 +1,4 @@
-[cell1]
+# [cell1]
 from sklearn.feature_selection import SelectFromModel
 
 # Feature selection using median threshold
