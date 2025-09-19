@@ -31,3 +31,9 @@ This repository is intended solely as a personal academic portfolio for demonstr
 
 I will comply with all edX and HarvardX academic integrity guidelines.  
 If required, this repository can be made private or limited in visibility.
+
+## Certificate
+
+The official certificate issued by HarvardX/edX:  
+
+[HarvardX_CS109xa_Certificate_edX.pdf](certificate/HarvardX_CS109xa_Certificate_edX.pdf)
