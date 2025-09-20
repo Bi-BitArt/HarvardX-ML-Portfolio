@@ -1,0 +1,100 @@
+# [Cell1] Install CatBoost
+!pip install catboost
+
+# [Cell2] Import
+from catboost import CatBoostClassifier
+from sklearn.metrics import classification_report, roc_auc_score
+
+# Train CatBoost model
+cat_model = CatBoostClassifier(
+    iterations=500,
+    learning_rate=0.1,
+    depth=6,
+    loss_function='MultiClass',
+    eval_metric='TotalF1',
+    random_seed=42,
+    verbose=False
+)
+
+cat_model.fit(X_train, y_train)
+
+# Predictions
+y_pred_cat = cat_model.predict(X_test)
+y_proba_cat = cat_model.predict_proba(X_test)
+
+print("=== CatBoost ===")
+print("Classification Report:\n", classification_report(y_test, y_pred_cat))
+print("ROC AUC (macro OVR):", roc_auc_score(y_test, y_proba_cat, multi_class="ovr", average="macro"))
+
+# [Cell3]
+
+# === LightGBM ===
+!pip install lightgbm
+
+from lightgbm import LGBMClassifier
+from sklearn.metrics import classification_report, roc_auc_score
+
+# Define model
+lgb_model = LGBMClassifier(
+    objective='multiclass',
+    num_class=len(y.unique()),
+    learning_rate=0.1,
+    n_estimators=100,
+    num_leaves=31,
+    max_depth=-1,
+    random_state=42
+)
+
+# Train
+lgb_model.fit(X_train, y_train)
+
+# Predictions
+y_pred_classes = lgb_model.predict(X_test)
+y_pred_proba = lgb_model.predict_proba(X_test)
+
+# Evaluation
+print("=== LightGBM ===")
+print("Classification Report:\n", classification_report(y_test, y_pred_classes))
+
+# ROC AUC (macro, one-vs-rest)
+auc_macro = roc_auc_score(y_test, y_pred_proba, multi_class="ovr", average="macro")
+print("ROC AUC (macro OVR):", auc_macro)
+
+# [Cell4]
+  
+# === AdaBoost ===
+from sklearn.ensemble import AdaBoostClassifier
+
+ada = AdaBoostClassifier(
+    n_estimators=100,
+    learning_rate=0.1,
+    random_state=42
+)
+ada.fit(X_train, y_train)
+
+y_pred_ada = ada.predict(X_test)
+y_proba_ada = ada.predict_proba(X_test)
+
+print("=== AdaBoost ===")
+print(classification_report(y_test, y_pred_ada))
+print("ROC AUC (macro OVR):", roc_auc_score(y_test, y_proba_ada, multi_class="ovr", average="macro"))
+
+# [Cell5]
+  
+# === GradientBoosting ===
+from sklearn.ensemble import GradientBoostingClassifier
+
+gb = GradientBoostingClassifier(
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=3,
+    random_state=42
+)
+gb.fit(X_train, y_train)
+
+y_pred_gb = gb.predict(X_test)
+y_proba_gb = gb.predict_proba(X_test)
+
+print("=== GradientBoosting ===")
+print(classification_report(y_test, y_pred_gb))
+print("ROC AUC (macro OVR):", roc_auc_score(y_test, y_proba_gb, multi_class="ovr", average="macro"))
