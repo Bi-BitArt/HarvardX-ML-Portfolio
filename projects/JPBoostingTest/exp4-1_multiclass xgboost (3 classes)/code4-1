@@ -1,57 +1,69 @@
-# [Cell1] --- Imports
+# [Cell1] Install libraries
+!pip install xgboost shap
+
+# [Cell2] Import dataset (local upload)
 from google.colab import files
 import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-from xgboost import XGBClassifier
-from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
 
-# [Cell2] --- Upload and load CSV
+# Upload the dataset
 uploaded = files.upload()
-df = pd.read_csv("household_vulnerability_japan_multiclass_noise.csv")
+df = pd.read_csv("household_vulnerability_japan_multiclass5_bins03_07_noise.csv")
 
 print("Shape:", df.shape)
 print(df.head())
 
-# [Cell3] --- Split X and y
+# [Cell3] Preprocessing
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
+
+# Split features and target
 X = df.drop(columns=["vulnerability_class"])
 y = df["vulnerability_class"]
 
-# Encode categorical features
-cat_cols = X.select_dtypes(include="object").columns
+# Encode categorical features if any
+cat_cols = X.select_dtypes(include=["object"]).columns
 for col in cat_cols:
     le = LabelEncoder()
+    X[col] = X[col].astype(str)   # convert NaN to "nan" string
     X[col] = le.fit_transform(X[col])
 
-# Stratified split
+# Fill missing values with mean (numeric columns only)
+X = X.fillna(X.mean(numeric_only=True))
+
+# Train-test split (stratified for class balance)
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, stratify=y, random_state=42
 )
+
 print("Train:", X_train.shape, " Test:", X_test.shape)
 print("Class distribution in train:\n", y_train.value_counts(normalize=True))
 
-# [Cell4] --- Train XGBoost multiclass model
-model_multi = XGBClassifier(
-    objective="multi:softprob",
-    num_class=3,
+# [Cell4] Train model
+from xgboost import XGBClassifier
+
+model = XGBClassifier(
     n_estimators=100,
     learning_rate=0.1,
-    max_depth=1,
+    max_depth=3,
     subsample=0.8,
     colsample_bytree=0.8,
     random_state=42,
-    eval_metric="mlogloss"
+    eval_metric="mlogloss",
+    num_class=5
 )
 
-model_multi.fit(X_train, y_train)
+model.fit(X_train, y_train)
 
-# [Cell5] --- Predictions & Evaluation
-y_pred = model_multi.predict(X_test)
-y_proba = model_multi.predict_proba(X_test)
+# [Cell5] Evaluation
+from sklearn.metrics import classification_report, roc_auc_score
 
-print("Accuracy:", accuracy_score(y_test, y_pred))
-print("\nClassification Report:\n", classification_report(y_test, y_pred))
+# Predictions
+y_pred = model.predict(X_test)
+y_proba = model.predict_proba(X_test)
 
+# Metrics
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
+# Macro ROC AUC (One-vs-Rest)
 auc_macro = roc_auc_score(y_test, y_proba, multi_class="ovr", average="macro")
 print("ROC AUC (macro OVR):", auc_macro)
