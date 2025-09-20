@@ -1,7 +1,8 @@
 # JPBoostingTest – Summary
 
 ## 1. Motivation  
-- Inspired by *Salvador (2021): "Use of Boosting Algorithms in Household-Level Poverty Measurement"*.  
+- Inspired by *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement:  
+  A Machine Learning Approach to Predict and Classify Household Wealth Quintiles in the Philippines"*.
 - Generated a synthetic Japanese household dataset to test whether boosting models can predict **latent household vulnerability**.  
 - Goal: build a reproducible pipeline for analyzing vulnerability beyond simple income-based measures.  
 
