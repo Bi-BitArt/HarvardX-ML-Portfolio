@@ -16,14 +16,25 @@
 - [**Exp4-2:** Model comparison with alternative boosting models](exp4-2_model%20comparison%20with%20alternative%20boosting%20models)  
 - [**Exp5-1:** Parameter tuning with multiclass boosting](exp5-1_parameter%20tuning%20%20with%20multiclass%20boosting)  
 
-## 3. Cross-Experiment Insights  
+## 3. Key Feature Insights  
+
+- **Core predictors (kept after feature selection):** income, employment status, health (severe illness), repayment history (late payments), savings, and household/demographic context (foreign-born, multigen households, childcare/eldercare costs).  
+- **Dropped factors:** housing conditions, financial literacy, digital access — less direct signals of vulnerability in this dataset.  
+- **SHAP analysis:**  
+  - Vulnerability rises with **illness, foreign-born status, high care costs, and late payments**.  
+  - Vulnerability decreases with **higher income, savings, and stable employment**.  
+  - Some effects (e.g., multigen households, region, sector) are mixed and context-dependent.  
+
+Overall, vulnerability is **multi-dimensional**, driven by both financial capacity and non-financial social/health factors.
+
+## 4. Cross-Experiment Insights  
 - **Tree depth:** Best kept shallow (MD=1–2).  
 - **Learning rate:** Stable at 0.1–0.2.  
 - **Number of estimators:** Best ≈ *60–100 × number of classes*.  
 - XGBoost baseline is strong, but **CatBoost shows higher robustness with noisy categorical data**.  
 - AdaBoost is clearly outdated for this task.  
 
-## 4. Takeaways  
+## 5. Takeaways  
 - Rule-of-thumb hyperparameters were consistently observed across binary and multiclass tasks.  
 - The workflow (baseline → feature selection → parameter tuning → multiclass expansion → model comparison) provides a **replicable pipeline** for future policy simulation.  
 - This project shows how **machine learning can uncover latent household vulnerability**, aligning with poverty measurement research.
