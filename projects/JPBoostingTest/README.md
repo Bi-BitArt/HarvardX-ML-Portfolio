@@ -29,6 +29,8 @@
 Overall, vulnerability is **multi-dimensional**, driven by both financial capacity and non-financial social/health factors.
 
 ## 4. Cross-Experiment Insights  
+- **Baseline comparison:** Simple income-based models (income-only or income+savings) reached AUC ≈ 0.64–0.66, while boosting with richer features achieved ≈ 0.77+.  
+  → This highlights the clear added value of multi-dimensional ML approaches over conventional indicators.  
 - **Tree depth:** Best kept shallow (MD=1–2).  
 - **Learning rate:** Stable at 0.1–0.2.  
 - **Number of estimators:** Best ≈ *60–100 × number of classes*.  
