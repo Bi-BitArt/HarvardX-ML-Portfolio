@@ -1,24 +1,17 @@
 # HarvardX CS109: Machine Learning and AI with Python
 
-This repository contains my coursework, notes, and implementations from the HarvardX course *"Machine Learning and AI with Python"*.  
-It is structured by section, following the course organization on edX.
+🔎 **For admissions reviewers**  
+Please start with the [projects](projects/) folder.  
+It contains my independent experiments beyond the HarvardX coursework.  
+- [JPBoostingTest](projects/JPBoostingTest) – synthetic household vulnerability prediction inspired by  
+  *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement"*  
 
 ## Purpose
-
 This portfolio is part of my preparation for applying to postgraduate programs in 2025.  
-It demonstrates my understanding of core machine learning algorithms and Python-based implementation skills.
+It demonstrates my understanding of core machine learning algorithms and Python-based implementation skills.  
 
-# Highlight: Projects
-
-While the course sections (Decision Trees, Bagging, Random Forest, Boosting, etc.) show my step-by-step learning,  
-the **[projects/](projects/)** folder contains the most important part of this portfolio:  
-my **independent experiments and applications** of machine learning methods beyond the course itself.  
-
-If you are reviewing this repository, **start with the projects folder!**  
-It demonstrates how I extended the course knowledge into original research-style work, such as:  
-- [JPBoostingTest](projects/JPBoostingTest) – synthetic household vulnerability prediction inspired by  
-  *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement:  
-  A Machine Learning Approach to Predict and Classify Household Wealth Quintiles in the Philippines"*
+This repository also contains my step-by-step learning from the HarvardX course *"Machine Learning and AI with Python"*.  
+It is structured by section (Decision Trees, Bagging, Random Forest, Boosting, etc.).
 
 ## Contents
 
