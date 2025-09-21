@@ -34,9 +34,9 @@ Reference: Japan’s **¥100,000 uniform cash transfer (2020 Special Cash Paymen
 - **Targeted Cash (Bottom 30%):** protected some mid-tier households (Class 2) but left higher classes exposed.  
 - **Budget-Neutral Targeted (30%):** most efficient overall.  
   - **36% of Class 3 improved to Class 2**, showing that concentrated aid can stabilize borderline households.  
-  - At the same time, **35% of Class 3 still escalated into Class 4**, highlighting severe fragility at the threshold.  
+- At the same time, **35% of Class 3 still escalated into Class 4**, showing a paradox: the same policy both rescued many and pushed others into deeper vulnerability.  
   - **No Class 4 households improved**, confirming that the most vulnerable remain trapped without deeper structural support.  
-  - Taken together, this means that while **budget concentration helps those on the edge (Class 3)**, it does not address entrenched vulnerability (Class 4) — one-off transfers act only as a temporary buffer, not a long-term solution.  
+  - Taken together, this means that while **budget concentration helps those on the edge (Class 3)**, it also reveals their instability. One-off transfers act only as a temporary buffer — they cannot solve long-term or entrenched vulnerability.
 
 ---
 
