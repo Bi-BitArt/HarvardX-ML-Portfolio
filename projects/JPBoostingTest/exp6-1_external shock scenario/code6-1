@@ -1,0 +1,168 @@
+# [Cell1] Define external shock function
+import numpy as np
+import pandas as pd
+
+def apply_external_shock(X_df):
+    Xs = X_df.copy()
+
+    # Example: sector-specific income shock (labels are integers after LabelEncoder)
+    # Let's assume "sector" column exists and was encoded.
+    if "sector" in Xs.columns and "annual_income" in Xs.columns:
+        for sec in Xs["sector"].unique():
+            mask = Xs["sector"] == sec
+            if sec in [0, 1]:   # e.g., service sectors hit harder
+                Xs.loc[mask, "annual_income"] *= 0.75   # -25%
+            elif sec in [2, 3]: # medium hit
+                Xs.loc[mask, "annual_income"] *= 0.85   # -15%
+            else:               # mild hit
+                Xs.loc[mask, "annual_income"] *= 0.95   # -5%
+
+    # Interest rate shock
+    if "interest_rate_personal" in Xs.columns:
+        Xs["interest_rate_personal"] += 0.02
+
+    # Employment shock: push 20% of workers into more precarious category
+    if "employment_status" in Xs.columns:
+        rng = np.random.RandomState(42)
+        idx = rng.rand(len(Xs)) < 0.2
+        Xs.loc[idx, "employment_status"] = np.minimum(
+            Xs.loc[idx, "employment_status"] + 1,
+            Xs["employment_status"].max()
+        )
+
+    return Xs
+
+
+# [Cell2] Apply shock to test set
+X_test_shock = apply_external_shock(X_test)
+
+# [Cell3] Evaluate baseline vs shock
+from sklearn.metrics import confusion_matrix
+
+# Baseline predictions
+y_pred_base = model.predict(X_test)
+y_prob_base = model.predict_proba(X_test)
+auc_base = roc_auc_score(y_test, y_prob_base, multi_class="ovr", average="macro")
+
+# Shock predictions
+y_pred_shock = model.predict(X_test_shock)
+y_prob_shock = model.predict_proba(X_test_shock)
+auc_shock = roc_auc_score(y_test, y_prob_shock, multi_class="ovr", average="macro")
+
+print("== Baseline ==")
+print("ROC AUC (macro OVR):", auc_base)
+print("\n== After Shock ==")
+print("ROC AUC (macro OVR):", auc_shock)
+print("\nΔ AUC:", auc_shock - auc_base)
+
+# [Cell4] Transition matrix (predicted class changes)
+trans_mat = pd.crosstab(
+    y_pred_base, y_pred_shock,
+    rownames=["Predicted (Baseline)"], colnames=["Predicted (Shock)"],
+    normalize="index"
+) * 100
+
+print("\nTransition matrix (%):")
+print(trans_mat.round(1))
+
+# [Cell5] Prominent changes in features
+
+def pct(x):
+    return f"{x*100:+.1f}%"
+
+def pp(x):
+    return f"{x*100:+.1f} pp"
+
+bullets = []
+delta = X_test_shock.copy() - X_test.copy()
+
+# 1) Income: overall mean & median change
+if "annual_income" in X_test.columns:
+    inc_base_mean = X_test["annual_income"].mean()
+    inc_delta_mean = (delta["annual_income"].mean() / inc_base_mean) if inc_base_mean != 0 else 0
+    inc_delta_med  = (delta["annual_income"].median() / X_test["annual_income"].median()) if X_test["annual_income"].median() != 0 else 0
+    bullets.append(f"annual_income: mean change {pct(inc_delta_mean)}, median change {pct(inc_delta_med)}.")
+
+# 2) Income change by sector (worst & best)
+if {"sector", "annual_income"}.issubset(X_test.columns):
+    g = (X_test_shock["annual_income"] - X_test["annual_income"]).groupby(X_test["sector"]).mean()
+    g_rel = g / X_test.groupby("sector")["annual_income"].mean()
+    worst_sec, best_sec = g_rel.idxmin(), g_rel.idxmax()
+    bullets.append(f"By sector: worst={worst_sec} ({pct(g_rel.loc[worst_sec])}), best={best_sec} ({pct(g_rel.loc[best_sec])}).")
+
+# 3) Employment status: share moved to more precarious (value increased)
+if "employment_status" in X_test.columns:
+    emp_shift_up = (delta["employment_status"] > 0).mean()
+    bullets.append(f"employment_status: {emp_shift_up*100:.1f}% shifted to more precarious categories.")
+
+# 4) Savings rate: average change (pp)
+if "savings_rate" in X_test.columns:
+    bullets.append(f"savings_rate: average change {pp(delta['savings_rate'].mean())}.")
+
+# 5) Late payments: average change (pp)
+if "late_payment_12m" in X_test.columns:
+    bullets.append(f"late_payment_12m: average change {pp(delta['late_payment_12m'].mean())}.")
+
+# 6) Childcare cost share: average change (pp)
+if "childcare_cost_share" in X_test.columns:
+    bullets.append(f"childcare_cost_share: average change {pp(delta['childcare_cost_share'].mean())}.")
+
+# 7) Eldercare cost share: average change (pp)
+if "eldercare_cost_share" in X_test.columns:
+    bullets.append(f"eldercare_cost_share: average change {pp(delta['eldercare_cost_share'].mean())}.")
+
+# 8) Income change by region: worst region
+if {"region", "annual_income"}.issubset(X_test.columns):
+    gr = (X_test_shock["annual_income"] - X_test["annual_income"]).groupby(X_test["region"]).mean()
+    gr_rel = gr / X_test.groupby("region")["annual_income"].mean()
+    worst_reg = gr_rel.idxmin()
+    bullets.append(f"By region: worst hit region={worst_reg} ({pct(gr_rel.loc[worst_reg])}).")
+
+# 9) Foreign-born: employment worsened share
+if {"foreign_born", "employment_status"}.issubset(X_test.columns):
+    mask_fb = X_test["foreign_born"] == 1
+    if mask_fb.any():
+        fb_worse = (delta.loc[mask_fb, "employment_status"] > 0).mean()
+        bullets.append(f"foreign_born: {fb_worse*100:.1f}% experienced worsening employment status.")
+
+# 10) Multigen households: compare income drop vs non-multigen
+if {"multigen_household", "annual_income"}.issubset(X_test.columns):
+    d_inc = (X_test_shock["annual_income"] - X_test["annual_income"])
+    by_multi = d_inc.groupby(X_test["multigen_household"]).mean()
+    if set(by_multi.index) >= {0,1}:
+        base_means = X_test.groupby("multigen_household")["annual_income"].mean()
+        rel0 = by_multi.loc[0] / base_means.loc[0]
+        rel1 = by_multi.loc[1] / base_means.loc[1]
+        bullets.append(f"multigen_household: income change non-multigen={pct(rel0)}, multigen={pct(rel1)}.")
+
+# --- Print as bullet list ---
+print("\nChanges under shock:")
+for b in bullets[:10]:
+    print(f"- {b}")
+  
+# [Cell6] Visualize class changes
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+import pandas as pd
+
+# Baseline predictions
+y_pred_base = model.predict(X_test)
+
+# Shock predictions
+y_pred_shock = model.predict(X_test_shock)
+
+# Transition matrix (Before → After)
+trans = pd.crosstab(
+    y_pred_base, 
+    y_pred_shock, 
+    rownames=["Predicted (Before Shock)"], 
+    colnames=["Predicted (After Shock)"], 
+    normalize="index"
+)
+
+# Plot heatmap
+plt.figure(figsize=(6,5))
+sns.heatmap(trans, annot=True, fmt=".2f", cmap="Blues", cbar=False)
+plt.title("Class Transition Matrix Under Shock")
+plt.show()
