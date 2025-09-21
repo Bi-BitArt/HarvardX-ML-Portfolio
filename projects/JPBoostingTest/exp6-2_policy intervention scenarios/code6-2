@@ -1,0 +1,133 @@
+# [Cell 1] Uniform cash transfer policy (¥100,000 per household)
+import numpy as np
+import pandas as pd
+from sklearn.metrics import roc_auc_score, classification_report
+
+def apply_uniform_cash_policy(X_df, income_col="annual_income",
+                              amount=100_000, per_capita=False, hhsize_col="household_size"):
+    """
+    Add a flat cash transfer to income.
+    - amount: JPY (e.g., 100_000)
+    - per_capita=True uses household_size if available; otherwise falls back to flat amount.
+    """
+    Xp = X_df.copy()
+    if income_col not in Xp.columns:
+        raise ValueError(f"{income_col} not found in features")
+
+    if per_capita and (hhsize_col in Xp.columns):
+        Xp[income_col] = Xp[income_col] + amount * np.clip(Xp[hhsize_col].fillna(1), 1, None)
+    else:
+        Xp[income_col] = Xp[income_col] + amount
+
+    # Optional: mild short-run relief on delinquencies (comment out if not desired)
+    if "late_payment_12m" in Xp.columns:
+        Xp["late_payment_12m"] = np.clip(Xp["late_payment_12m"] - 0.05, 0, 1)
+
+    return Xp
+
+def eval_policy_shift(trained_model, X_base, X_policy, y_true, label="Policy (Uniform Cash)"):
+    # Predict probabilities & classes
+    y_prob_base  = trained_model.predict_proba(X_base)
+    y_prob_pol   = trained_model.predict_proba(X_policy)
+    y_pred_base  = y_prob_base.argmax(axis=1)
+    y_pred_pol   = y_prob_pol.argmax(axis=1)
+
+    # Metrics
+    auc_base = roc_auc_score(y_true, y_prob_base, multi_class="ovr", average="macro")
+    auc_pol  = roc_auc_score(y_true, y_prob_pol,  multi_class="ovr", average="macro")
+    print("== Baseline ==")
+    print("ROC AUC (macro OVR):", auc_base)
+    print("\n== After Policy ==")
+    print("ROC AUC (macro OVR):", auc_pol)
+    print("\nΔ AUC:", auc_pol - auc_base)
+
+    # Transition matrix (%)
+    trans = pd.crosstab(
+        y_pred_base, y_pred_pol,
+        rownames=["Predicted (Baseline)"], colnames=[f"Predicted ({label})"],
+        normalize="index"
+    ) * 100
+    print("\nTransition matrix (%):")
+    print(trans.round(1))
+
+    # Quick class report (after policy)
+    from sklearn.metrics import classification_report
+    print("\nClassification Report (after policy):\n",
+          classification_report(y_true, y_pred_pol, digits=3))
+
+    return {"auc_base": auc_base, "auc_policy": auc_pol, "trans": trans}
+
+# [Cell 2] Apply the uniform cash policy and evaluate
+X_test_uniform = apply_uniform_cash_policy(X_test, income_col="annual_income",
+                                           amount=100_000, per_capita=False)
+
+res_uniform = eval_policy_shift(model, X_test, X_test_uniform, y_test, label="Uniform Cash")
+
+# (Optional) Per-capita variant
+# X_test_uniform_pc = apply_uniform_cash_policy(X_test, amount=100_000, per_capita=True, hhsize_col="household_size")
+# res_uniform_pc = eval_policy_shift(model, X_test, X_test_uniform_pc, y_test, label="Uniform Cash (per capita)")
+
+# [Cell 3] Targeted cash transfer policy
+def apply_targeted_cash_policy(X_df, income_col="annual_income",
+                               amount=100_000, quantile=0.3):
+    """
+    Provide cash transfers only to households in the bottom income quantile.
+    - amount: JPY (e.g., 100_000)
+    - quantile: cutoff threshold for targeting (default=0.3 = bottom 30%)
+    """
+    Xp = X_df.copy()
+    if income_col not in Xp.columns:
+        raise ValueError(f"{income_col} not found in features")
+
+    # Identify bottom quantile households
+    cutoff = Xp[income_col].quantile(quantile)
+    mask = Xp[income_col] <= cutoff
+
+    # Apply transfer
+    Xp.loc[mask, income_col] = Xp.loc[mask, income_col] + amount
+
+    # Optional: reduce late payment probability for targeted group
+    if "late_payment_12m" in Xp.columns:
+        Xp.loc[mask, "late_payment_12m"] = np.clip(
+            Xp.loc[mask, "late_payment_12m"] - 0.05, 0, 1
+        )
+
+    return Xp
+
+# [Cell 4] Apply the targeted policy and evaluate
+X_test_targeted = apply_targeted_cash_policy(X_test, income_col="annual_income",
+                                             amount=100_000, quantile=0.3)
+
+res_targeted = eval_policy_shift(model, X_test, X_test_targeted, y_test,
+                                 label="Targeted Cash (Bottom 30%)")
+
+# [Cell 5] Targeted Cash (Budget Neutral, same total as uniform)
+def apply_budget_neutral_targeted_cash(X_df, income_col="annual_income",
+                                       amount=100_000, quantile=0.3):
+    """
+    Allocate total budget equivalent to uniform cash (amount per household),
+    but concentrate it on the bottom quantile of households.
+    """
+    Xp = X_df.copy()
+    if income_col not in Xp.columns:
+        raise ValueError(f"{income_col} not found in features")
+
+    # Find cutoff
+    cutoff = Xp[income_col].quantile(quantile)
+
+    # Scaling factor = 1 / quantile (e.g., bottom 30% gets ~3.33x more)
+    scale = 1 / quantile
+
+    mask = Xp[income_col] <= cutoff
+    Xp.loc[mask, income_col] = Xp.loc[mask, income_col] + amount * scale
+
+    return Xp
+
+# Apply
+X_test_targeted_bn = apply_budget_neutral_targeted_cash(
+    X_test, income_col="annual_income",
+    amount=100_000, quantile=0.3
+)
+
+res_targeted_bn = eval_policy_shift(model, X_test, X_test_targeted_bn, y_test,
+                                    label="Targeted Cash (Budget Neutral)")
