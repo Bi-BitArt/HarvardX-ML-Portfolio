@@ -89,7 +89,7 @@ This is the **core highlight** of JPBoostingTest: simulating real-world shocks a
 ### Transition Matrix under LVP  
 *(Higher class index = more vulnerable household)*  
 
-![LVPheatmap](projects/JPBoostingTest/EXP6_Scenarios/exp6-3_LVP/cluster_policy_heatmap.png)
+![LVPheatmaps](https://raw.githubusercontent.com/Bi-BitArt/HarvardX-ML-Portfolio/main/projects/JPBoostingTest/EXP6_Scenarios/exp6-3_latent%20vulnerability%20policy/LVPheatmaps.png)
 
 ---
 
