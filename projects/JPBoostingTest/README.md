@@ -92,7 +92,12 @@ This is the **core highlight** of JPBoostingTest: simulating real-world shocks a
 
 *Heatmap of class transitions (0 = least vulnerable, 4 = most vulnerable).  
 Rows: predicted class after **shock**, Columns: predicted class after **policy**.  
-Darker cells = higher transition probability. Higher numbers = more vulnerable households.*
+
+*Example: Budget-neutral: Class 2 after the shock (row = 2).*
+- 14.8% improved to Class 0.
+- 6.3% improved to Class 1.
+- 78.9% stayed in Class 2.
+- 0% fell into worse classes.
 
 ---
 
