@@ -7,15 +7,12 @@
 - Goal: build a reproducible pipeline for analyzing vulnerability beyond simple income-based measures.  
 
 ## 2. Experiments Overview  
-- [**Exp1-1:** Baseline XGBoost](exp1-1_basicboosting)  
-- [**Exp1-2:** Feature selection](exp1-2_featureselection)  
-- [**Exp1-3:** SHAP analysis](exp1-3_shap%20analysis)  
-- [**Exp2-1:** Income-only vs. income+saving](exp2-1_income%20%26%20income%2Bsave)  
-- [**Exp3-1:** Parameter tuning (over & underfitting control)](exp3-1_parameter%20tuning%20(over%20%26%20underfitting%20control))  
-- [**Exp3-2:** Automated hyperparameter search (Optuna)](exp3-2_automated%20hyperparameter%20search%20(optuna))  
-- [**Exp4-1:** Multiclass XGBoost (5 classes)](exp4-1_multiclass%20xgboost%20(5%20classes))  
-- [**Exp4-2:** Model comparison with alternative boosting models](exp4-2_model%20comparison%20with%20alternative%20boosting%20models)  
-- [**Exp5-1:** Parameter tuning with multiclass boosting](exp5-1_parameter%20tuning%20%20with%20multiclass%20boosting)  
+- [**Exp1:** Baseline XGBoost](EXP1_BasicBoosting)  
+- [**Exp2:** Logistic regression benchmark](EXP2_LogisticRegression)  
+- [**Exp3:** Parameter tuning (over & underfitting control)](EXP3_Parameters)  
+- [**Exp4:** Multiclass XGBoost (5 classes)](EXP4_Multiclass)  
+- [**Exp5:** Parameter tuning with multiclass boosting](EXP5_Parameters2)  
+- [**Exp6:** Scenario simulations (shock & policy)](EXP6_Scenarios)  
 
 ## 3. Key Feature Insights  
 
@@ -40,4 +37,49 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
 ## 5. Takeaways  
 - Rule-of-thumb hyperparameters were consistently observed across binary and multiclass tasks.  
 - The workflow (baseline → feature selection → parameter tuning → multiclass expansion → model comparison) provides a **replicable pipeline** for future policy simulation.  
-- This project shows how **machine learning can uncover latent household vulnerability**, aligning with poverty measurement research.
+- This project shows how **machine learning can uncover latent household vulnerability**, aligning with poverty measurement research.  
+
+---
+
+## 6. Scenario Experiments – Stress Tests & Policy Simulations  
+
+Here we go beyond baseline modeling and test how vulnerability predictions behave under **external shocks and policy interventions**.  
+
+### Exp6-1: External Shock Simulation  
+- **Design:** Applied an external shock to income, employment, and sector-specific variables, based on JILPT COVID-19 survey evidence.  
+- **Findings:**  
+  - Mean household income fell ~20%.  
+  - Employment precarization +16%.  
+  - ROC AUC dropped from **0.911 → 0.872 (Δ −0.039)**.  
+  - Class transition matrices showed strong upward mobility into more vulnerable classes.  
+
+### Exp6-2: Policy Intervention Scenarios  
+- **Tested policies:**  
+  1. Uniform ¥100,000 cash transfer (Japan’s 2020 policy).  
+  2. Targeted cash transfer (bottom 30% by income).  
+  3. Budget-neutral targeted transfer (same budget, concentrated in bottom 30%).  
+- **Findings:**  
+  - **Universal cash:** maximized equity but destabilized classes, erased Class 3.  
+  - **Targeted cash:** moderate efficiency gains, left higher classes unprotected.  
+  - **Budget-neutral targeted:** most efficient, but paradoxical: **36% of Class 3 improved → Class 2, yet 35% fell → Class 4.**  
+  - No Class 4 households improved → one-off transfers insufficient.  
+
+### Exp6-3: Latent Vulnerability Policy (LVP)  
+- **Design:** Clustered households by income & savings → identified vulnerable cluster.  
+  - Feature analysis showed **latent vulnerabilities**: foreign-born, low financial literacy, high debt-to-income, precarious housing.  
+  - Policy combined **cash + structural tweaks** (debt relief, literacy, digital access).  
+- **Results:**  
+  - Strong stabilization in vulnerable clusters.  
+  - ROC AUC dropped sharply (**0.911 → 0.629, Δ −0.282**).  
+  - Interpretation: not “worse,” but **boundaries blurred as inequality reduced**.  
+- **Insight:**  
+  - LVP highlights the **cost of fairness**: more equitable outcomes reduce predictive separability.  
+  - Shows that **structural policies + financial transfers** are necessary for long-term protection.  
+
+---
+
+### Cross-Experiment Insights (Exp6)  
+- **Shock sensitivity:** Vulnerability models degrade under stress; calibration is fragile.  
+- **Policy paradox:** Targeting improves efficiency, but risks eroding stability in mid-tier classes.  
+- **Latent vulnerability:** Going beyond income reveals hidden risk factors, but blurs class distinctions.  
+- **Future outlook:** With richer data and advanced models (deep learning, causal inference), ROC AUC can be recovered while maintaining fairness.
