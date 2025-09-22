@@ -41,11 +41,14 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
 
 ---
 
-## 6. Scenario Experiments – Stress Tests & Policy Simulations  
+# Chapter 6: Scenario Experiments – Stress Tests & Policy Simulations  
 
 Here we go beyond baseline modeling and test how vulnerability predictions behave under **external shocks and policy interventions**.  
+This is the **core highlight** of JPBoostingTest: simulating real-world shocks and comparing policy responses.
 
-### Exp6-1: External Shock Simulation  
+---
+
+## 🔹 Exp6-1: External Shock Simulation  
 - **Design:** Applied an external shock to income, employment, and sector-specific variables, based on JILPT COVID-19 survey evidence.  
 - **Findings:**  
   - Mean household income fell ~20%.  
@@ -53,18 +56,23 @@ Here we go beyond baseline modeling and test how vulnerability predictions behav
   - ROC AUC dropped from **0.911 → 0.872 (Δ −0.039)**.  
   - Class transition matrices showed strong upward mobility into more vulnerable classes.  
 
-### Exp6-2: Policy Intervention Scenarios  
+---
+
+## 🔹 Exp6-2: Policy Intervention Scenarios  
 - **Tested policies:**  
-  1. Uniform ¥100,000 cash transfer (Japan’s 2020 policy).  
-  2. Targeted cash transfer (bottom 30% by income).  
-  3. Budget-neutral targeted transfer (same budget, concentrated in bottom 30%).  
+  1. **Uniform ¥100,000 cash transfer** (Japan’s 2020 policy).  
+  2. **Targeted cash transfer** (bottom 30% by income).  
+  3. **Budget-neutral targeted transfer** (same budget, concentrated in bottom 30%).  
 - **Findings:**  
   - **Universal cash:** maximized equity but destabilized classes, erased Class 3.  
   - **Targeted cash:** moderate efficiency gains, left higher classes unprotected.  
-  - **Budget-neutral targeted:** most efficient, but paradoxical: **36% of Class 3 improved → Class 2, yet 35% fell → Class 4.**  
-  - No Class 4 households improved → one-off transfers insufficient.  
+  - **Budget-neutral targeted:** most efficient, but paradoxical:  
+    - **36% of Class 3 improved → Class 2, yet 35% fell → Class 4.**  
+    - No Class 4 households improved → one-off transfers insufficient.  
 
-### Exp6-3: Latent Vulnerability Policy (LVP)  
+---
+
+## 🔹 Exp6-3: Latent Vulnerability Policy (LVP)  
 - **Design:** Clustered households by income & savings → identified vulnerable cluster.  
   - Feature analysis showed **latent vulnerabilities**: foreign-born, low financial literacy, high debt-to-income, precarious housing.  
   - Policy combined **cash + structural tweaks** (debt relief, literacy, digital access).  
@@ -78,7 +86,7 @@ Here we go beyond baseline modeling and test how vulnerability predictions behav
 
 ---
 
-### Cross-Experiment Insights (Exp6)  
+## Cross-Experiment Insights (Exp6)  
 - **Shock sensitivity:** Vulnerability models degrade under stress; calibration is fragile.  
 - **Policy paradox:** Targeting improves efficiency, but risks eroding stability in mid-tier classes.  
 - **Latent vulnerability:** Going beyond income reveals hidden risk factors, but blurs class distinctions.  
