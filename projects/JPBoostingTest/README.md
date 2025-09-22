@@ -1,5 +1,5 @@
 # JPBoostingTest – Summary
-
+ 
 ## 1. Motivation  
 - Inspired by *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement:  
   A Machine Learning Approach to Predict and Classify Household Wealth Quintiles in the Philippines"*.
