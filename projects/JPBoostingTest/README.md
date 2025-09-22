@@ -86,6 +86,13 @@ This is the **core highlight** of JPBoostingTest: simulating real-world shocks a
 
 ---
 
+### Transition Matrix under LVP  
+*(Higher class index = more vulnerable household)*  
+
+![LVPheatmap](projects/JPBoostingTest/EXP6_Scenarios/exp6-3_LVP/cluster_policy_heatmap.png)
+
+---
+
 ## Cross-Experiment Insights (Exp6)  
 - **Shock sensitivity:** Vulnerability models degrade under stress; calibration is fragile.  
 - **Policy paradox:** Targeting improves efficiency, but risks eroding stability in mid-tier classes.  
