@@ -3,7 +3,7 @@
 - Manual best (Exp3-1): AUC=0.7781 (MD=1, NE=200, LR=0.12)  
 - Automated best (Optuna): AUC=0.7788 (MD=1, NE=121, LR≈0.19)  
 
-→ The machine won by **+0.0007 AUC**.  
+The machine won by **+0.0007 AUC**.  
 I lost… but only just.
 
 #### How it works
