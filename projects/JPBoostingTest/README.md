@@ -1,5 +1,5 @@
 # JPBoostingTest – Summary
-*Testing household vulnerability and policy effects under economic shocks with machine learning.*
+*This project demonstrates how machine learning can move beyond descriptive poverty measurement to stress-test household vulnerability and policy effectiveness under simulated economic shocks.*
 
 ## 1. Motivation  
 - Inspired by *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement:  
