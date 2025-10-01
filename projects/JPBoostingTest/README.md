@@ -1,5 +1,6 @@
 # JPBoostingTest – Summary
- 
+*Testing household vulnerability and policy effects under economic shocks with machine learning.*
+
 ## 1. Motivation  
 - Inspired by *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement:  
   A Machine Learning Approach to Predict and Classify Household Wealth Quintiles in the Philippines"*.
@@ -14,7 +15,9 @@
 - [**Exp5:** Parameter tuning with multiclass boosting](EXP5_Parameters2)  
 - [**Exp6:** Scenario simulations (shock & policy)](EXP6_Scenarios)  
 
-## 3. Key Feature Insights  
+## 3. Insights 
+
+### 3.1 Features Insights
 
 - **Core predictors (kept after feature selection):** income, employment status, health (severe illness), repayment history (late payments), savings, and household/demographic context (foreign-born, multigen households, childcare/eldercare costs).  
 - **Dropped factors:** housing conditions, financial literacy, digital access — less direct signals of vulnerability in this dataset.  
@@ -25,7 +28,7 @@
 
 Overall, vulnerability is **multi-dimensional**, driven by both financial capacity and non-financial social/health factors.
 
-## 4. Cross-Experiment Insights  
+### 3.2 Cross-Experiment Insights  
 - **Baseline comparison:** Simple income-based models (income-only or income+savings) reached AUC ≈ 0.64–0.66, while boosting with richer features achieved ≈ 0.77+.  
   → This highlights the clear added value of multi-dimensional ML approaches over conventional indicators.  
 - **Tree depth:** Best kept shallow (MD=1–2).  
@@ -34,17 +37,18 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
 - XGBoost baseline is strong, but **CatBoost shows higher robustness with noisy categorical data**.  
 - AdaBoost is clearly outdated for this task.  
 
-## 5. Takeaways  
+### 3.3 Takeaways 
 - Rule-of-thumb hyperparameters were consistently observed across binary and multiclass tasks.  
 - The workflow (baseline → feature selection → parameter tuning → multiclass expansion → model comparison) provides a **replicable pipeline** for future policy simulation.  
 - This project shows how **machine learning can uncover latent household vulnerability**, aligning with poverty measurement research.  
 
 ---
 
-# Chapter 6: Scenario Experiments – Stress Tests & Policy Simulations  
+# EXP6: Scenario Experiments – Stress Tests & Policy Simulations 
 
-Here we go beyond baseline modeling and test how vulnerability predictions behave under **external shocks and policy interventions**.  
-This is the **core highlight** of JPBoostingTest: simulating real-world shocks and comparing policy responses.
+⚡ **This is the CORE HIGHLIGHT — testing how vulnerability changes under shocks and policies.**
+
+*Exp6 explores three stages: (1) shocks, (2) policy responses, and (3) latent vulnerability interventions, yielding the project’s most important insights*
 
 ---
 
