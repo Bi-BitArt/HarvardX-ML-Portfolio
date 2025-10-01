@@ -1,6 +1,7 @@
 # HarvardX CS109: Machine Learning and AI with Python
 
-🔎 **For admissions reviewers**  
+## 🔎 **For admissions reviewers**  
+
 **Please start with the [projects](projects/) folder.**
 It contains my independent experiments beyond the HarvardX coursework.  
 - [JPBoostingTest](projects/JPBoostingTest) – synthetic household vulnerability prediction inspired by  
@@ -39,3 +40,7 @@ This repository is intended solely as a personal academic portfolio for demonstr
 
 I will comply with all edX and HarvardX academic integrity guidelines.  
 If required, this repository can be made private or limited in visibility.
+
+---
+
+Overall, this repository illustrates both my formal training (HarvardX CS109) and my independent research experiments (e.g., JPBoostingTest).
