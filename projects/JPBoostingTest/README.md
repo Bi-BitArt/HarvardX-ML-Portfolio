@@ -126,4 +126,6 @@ Rows: predicted class after **shock**, Columns: predicted class after **policy**
 - **Shock sensitivity:** Vulnerability models degrade under stress; calibration is fragile.  
 - **Policy paradox:** Targeting improves efficiency, but risks eroding stability in mid-tier classes.  
 - **Latent vulnerability:** Going beyond income reveals hidden risk factors, but blurs class distinctions.  
-- **Future outlook:** With richer data and advanced models (deep learning, causal inference), ROC AUC can be recovered while maintaining fairness.
+- **Context shift:** Predictive features differ between non-shock and shock settings —  
+  structural disadvantages (e.g., literacy, housing, digital access) may look weak in stable times  
+  but emerge as critical vulnerabilities under stress.
