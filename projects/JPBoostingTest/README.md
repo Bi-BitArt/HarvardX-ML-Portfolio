@@ -80,13 +80,30 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
 - **Design:** Clustered households by income & savings → identified vulnerable cluster.  
   - Feature analysis showed **latent vulnerabilities**: foreign-born, low financial literacy, high debt-to-income, precarious housing.  
   - Policy combined **cash + structural tweaks** (debt relief, literacy, digital access).  
-- **Results:**  
-  - Strong stabilization in vulnerable clusters.  
-  - ROC AUC dropped sharply (**0.911 → 0.629, Δ −0.282**).  
-  - Interpretation: not “worse,” but **boundaries blurred as inequality reduced**.  
-- **Insight:**  
-  - LVP highlights the **cost of fairness**: more equitable outcomes reduce predictive separability.  
-  - Shows that **structural policies + financial transfers** are necessary for long-term protection.  
+
+### Comparative Feature Importance (Non-shock vs Shock Contexts)
+
+| Context                | Key Predictors (Exp1–2, Non-shock)                          | Key Vulnerabilities (Exp6-3, Shock)                          |
+|------------------------|--------------------------------------------------------------|-------------------------------------------------------------|
+| **Financial capacity** | Income, savings, repayment history (late payments)           | High debt-to-income ratio                                   |
+| **Employment/health**  | Employment status, severe illness                            | Employment precarization (within clusters)                  |
+| **Household context**  | Foreign-born status, multigen households, childcare/eldercare costs | Foreign-born status, precarious housing                     |
+| **Structural factors** | *(Dropped in baseline: financial literacy, digital access)*   | Low financial literacy, limited digital access               |
+
+- **Non-shock (Exp1–2):** feature selection emphasized “hard” financial and health variables (income, employment, illness, repayments).  
+- **Shock (Exp6-3):** clustering exposed “latent” factors (literacy, digital access, housing) that were weak signals in the baseline but decisive under stress.  
+
+### Results  
+- Strong stabilization in vulnerable clusters.  
+- ROC AUC dropped sharply (**0.911 → 0.629, Δ −0.282**).  
+- Interpretation: not “worse,” but **boundaries blurred as inequality reduced**.  
+
+### Insight  
+- LVP highlights the **cost of fairness**: more equitable outcomes reduce predictive separability.  
+- The contrast shows that **predictors are context-dependent**:  
+  - In stable times, financial and health shocks dominate prediction.  
+  - Under stress, *structural disadvantages* (literacy, housing, digital access) surface as critical vulnerabilities.  
+- This suggests that **structural policies + financial transfers** are necessary for long-term protection, since latent vulnerabilities only fully manifest under shocks.
 
 ---
 
