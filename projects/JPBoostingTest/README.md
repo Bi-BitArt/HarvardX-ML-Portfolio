@@ -71,8 +71,8 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
   - **Universal cash:** maximized equity but destabilized classes, erased Class 3.  
   - **Targeted cash:** moderate efficiency gains, left higher classes unprotected.  
   - **Budget-neutral targeted:** most efficient, but paradoxical:  
-    - **36% of Class 3 improved → Class 2, yet 35% fell → Class 4.**  
-    - No Class 4 households improved → one-off transfers insufficient.  
+    - **36% of Class 3 improved to Class 2, yet 35% fell to Class 4.** (*higher=worse*)
+    - No Class 4 households improved → one-off transfers insufficient.
 
 ---
 
