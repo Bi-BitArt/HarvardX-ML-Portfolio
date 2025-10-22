@@ -14,42 +14,44 @@ Reference: Japan’s **¥100,000 uniform cash transfer (2020 Special Cash Paymen
 ---
 
 #### Metrics
-- **Baseline ROC AUC (macro OVR):** 0.911  
 
-| Policy                         | ROC AUC | Δ AUC   |
-|--------------------------------|---------|---------|
-| Uniform Cash (Universal)       | 0.714   | −0.197  |
-| Targeted (Bottom 30%)          | 0.766   | −0.144  |
-| Budget-Neutral Targeted (30%)  | 0.788   | −0.123  |
+- **Baseline ROC AUC (macro OVR):** 0.9107  
+
+| Policy                          | ROC AUC | Δ AUC    |
+|---------------------------------|---------|----------|
+| Uniform Cash (Universal)        | 0.9098  | −0.0009  |
+| Targeted (Bottom 30%)           | 0.9106  | −0.0001  |
+| Budget-Neutral Targeted (30%)   | 0.9109  | **+0.0002** |
 
 ---
 
 #### Transition Matrices
+
 ![Policy Heatmaps](3policyheatmap.png)
 
 ---
 
 #### Key Findings
+
 - **Uniform Cash (Japan 2020 policy):**  
-  - Maximized equity, but predictive accuracy collapsed (ΔAUC −0.197).  
-  - **Class 3 disappeared entirely** — households skipped over the mid-tier and polarized into safer (Class 2) or more vulnerable (Class 4) groups.  
-  - This shows that one-off universal transfers may unintentionally **erode the middle ground** and exacerbate instability.  
+  - Predictive accuracy remained nearly unchanged (ΔAUC −0.0009).  
+  - There were no major shifts across income classes, showing that **equal distribution maintained overall stability**, though **upward mobility remained limited**.  
+  - In particular, improvement among the most vulnerable group (Class 4) was only about **5%**, significantly lower than that of Class 3, meaning the policy **failed to effectively reach the most fragile households**.  
 
 - **Targeted Cash (Bottom 30%):**  
-  - Protected some mid-tier households (Class 2).  
-  - However, higher classes (Class 3–4) were insufficiently protected.  
+  - Predictive accuracy slightly declined (ΔAUC −0.0001).  
+  - **4.3% of Class 3 households improved to Class 2**, indicating a **positive effect on borderline lower–middle groups**.  
+  - However, **Class 4 showed almost no improvement**, suggesting that, as with the universal cash transfer, a one-time payment of around ¥100,000 is **insufficient to overcome structural vulnerability**.  
 
 - **Budget-Neutral Targeted (30%):**  
-  - Delivered the smallest decline in predictive accuracy (ΔAUC −0.123).  
-  - **36% of Class 3 improved to Class 2**, showing that concentrated aid can stabilize borderline households.  
-  - At the same time, **35% of Class 3 still escalated into Class 4**, showing a paradox: the same policy both rescued many and pushed others into deeper vulnerability.  
-  - **No Class 4 households improved**, confirming that the most vulnerable remain trapped without deeper structural support.  
-  - Taken together, this means that while **budget concentration helps those on the edge (Class 3)**, it also reveals their instability. One-off transfers act only as a temporary buffer — they cannot solve long-term or entrenched vulnerability.  
+  - Showed the **highest stability and a slight performance gain (ΔAUC +0.0002)**.  
+  - **19.1% of Class 3 improved to Class 2**, and **10.8% of Class 4 improved to Class 2 while 5.4% moved to Class 3**, confirming that **budget-concentrated redistribution enhances recovery efficiency among vulnerable households**.  
 
 ---
 
 #### Interpretation
-- **Trade-off:** equity vs. efficiency vs. protection.  
-- **Universal transfer:** fair but inefficient; even risks erasing the middle tier (Class 3).  
-- **Targeting:** improves efficiency, but fragile Class 3 and entrenched Class 4 remain critical weak points.  
-- **Insight:** one-time cash helps the brink households, but **layered, sustained support** is essential for lasting protection.
+
+- **Uniform transfer:** Fair and stable, but limited in improving household resilience.  
+- **Targeting:** Similarly, with limited budgets, it remains insufficient to protect deeply vulnerable groups.  
+- **Budget-neutral targeting:** The most balanced approach—**supporting vulnerable households (Classes 3 and 4)** while avoiding destabilization of other groups.  
+- **Insight:** One-time cash transfers act as a buffer against shocks, but **universal payments involve an inherent trade-off between fairness and effectiveness**.
