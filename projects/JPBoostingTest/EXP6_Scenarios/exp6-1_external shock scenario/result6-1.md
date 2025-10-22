@@ -47,5 +47,6 @@ Class transitions before vs. after shock (predicted classes):
 
 - The shock predominantly shifted lower-to-middle classes (0–2) into higher vulnerability tiers.  
 - Classes 1 and 2 experienced the largest upward transitions, highlighting the fragility of middle-income households under stress.  
-- Nearly one-third of Class 3 moved into the most vulnerable group (Class 4), showing that even relatively stable households were not immune.  
-- Overall model performance declined (ΔAUC −0.039), suggesting that predictive calibration weakens when the system is placed under external stress.
+- More than a quarter of Class 3 moved into the most vulnerable group (Class 4), showing that even relatively stable households were not immune.  
+- The model maintained robust predictive performance (ΔAUC −0.039), **demonstrating resilience in identifying vulnerable groups under external stress**.
+
