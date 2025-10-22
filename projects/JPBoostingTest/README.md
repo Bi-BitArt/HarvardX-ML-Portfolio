@@ -109,7 +109,7 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
 
 ### Transition Matrix under LVP  
 
-![LVPheatmaps2](https://raw.githubusercontent.com/Bi-BitArt/HarvardX-ML-Portfolio/main/projects/JPBoostingTest/EXP6_Scenarios/exp6-3_latent%20vulnerability%20policy/LVPheatmap2.png)
+![LVPheatmaps2](https://raw.githubusercontent.com/Bi-BitArt/HarvardX-ML-Portfolio/main/projects/JPBoostingTest/EXP6_Scenarios/exp6-3_latent%20vulnerability%20policy/LVPheatmaps2.png)
 
 *Heatmap of class transitions (0 = least vulnerable, 4 = most vulnerable).  
 Rows: predicted class after **shock**, Columns: predicted class after **policy**.  
