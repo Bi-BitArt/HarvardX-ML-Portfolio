@@ -34,25 +34,26 @@ Reference: Japan’s **¥100,000 uniform cash transfer (2020 Special Cash Paymen
 
 #### Key Findings
 
-- **Uniform Cash (Japan 2020 policy):**  
-  - Predictive accuracy remained nearly unchanged (ΔAUC −0.0009).  
-  - There were no major shifts across income classes, showing that **equal distribution maintained overall stability**, though **upward mobility remained limited**.  
-  - In particular, improvement among the most vulnerable group (Class 4) was only about **5%**, significantly lower than that of Class 3, meaning the policy **failed to effectively reach the most fragile households**.  
+**Uniform Cash (Japan 2020 Policy):**  
+- Predictive accuracy slightly increased (ΔAUC +0.09).  
+- There were no major shifts across classes; equal distribution maintained overall stability, though upward mobility remained limited.  
+- Both Class 3 and Class 4 improved by around 10%, indicating that **the policy failed to provide substantial support to the most vulnerable households**.  
 
-- **Targeted Cash (Bottom 30%):**  
-  - Predictive accuracy slightly declined (ΔAUC −0.0001).  
-  - **4.3% of Class 3 households improved to Class 2**, indicating a **positive effect on borderline lower–middle groups**.  
-  - However, **Class 4 showed almost no improvement**, suggesting that, as with the universal cash transfer, a one-time payment of around ¥100,000 is **insufficient to overcome structural vulnerability**.  
+**Targeted Cash (Bottom 30%):**  
+- Predictive accuracy remained almost unchanged (ΔAUC +0.02).  
+- Only **1.5% of Class 3 households improved to Class 2**, showing **minimal impact on the lower–middle group**.  
+- **Class 4 showed only 7.2% improvement**, suggesting that, as with the uniform cash transfer, a one-time payment of ¥100,000 was **insufficient to overcome structural vulnerability**.  
 
-- **Budget-Neutral Targeted (30%):**  
-  - Showed the **highest stability and a slight performance gain (ΔAUC +0.0002)**.  
-  - **19.1% of Class 3 improved to Class 2**, and **10.8% of Class 4 improved to Class 2 while 5.4% moved to Class 3**, confirming that **budget-concentrated redistribution enhances recovery efficiency among vulnerable households**.  
+**Budget-Neutral Targeted (30%):**  
+- Predictive accuracy slightly increased (ΔAUC +0.07).  
+- **7.4% of Class 3 improved to Class 2**, while **7.2% of Class 4 improved to Class 2 and 8.7% to Class 3**, confirming that **concentrating the budget improved recovery efficiency among vulnerable households**.  
+- However, although the transfer amount per recipient was roughly three times larger than in the targeted scheme, **the overall impact remained limited**.  
 
 ---
 
 #### Interpretation
 
-- **Uniform transfer:** Fair and stable, but limited in improving household resilience.  
-- **Targeting:** Similarly, with limited budgets, it remains insufficient to protect deeply vulnerable groups.  
-- **Budget-neutral targeting:** The most balanced approach—**supporting vulnerable households (Classes 3 and 4)** while avoiding destabilization of other groups.  
-- **Insight:** One-time cash transfers act as a buffer against shocks, but **universal payments involve an inherent trade-off between fairness and effectiveness**.
+- **Uniform transfer:** Fair and stable, but limited in enhancing household resilience.  
+- **Targeted transfer:** With limited budgets, it fails to adequately protect deeply vulnerable groups.  
+- **Budget-neutral targeting:** More effective in supporting vulnerable households (Classes 3 and 4), yet its **cost-effectiveness remains questionable**.  
+- **Insight:** One-time cash transfers function as buffers against shocks, but **universal payments inherently involve a trade-off between fairness and effectiveness**.
