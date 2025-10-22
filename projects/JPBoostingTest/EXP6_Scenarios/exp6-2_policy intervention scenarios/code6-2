@@ -2,7 +2,6 @@
 # Household Vulnerability Policy Simulation
 # Assumption: normalized income scale where 1.0 ≈ ¥5,000,000
 # → Uniform cash transfer: ¥100,000 per household ≈ +0.02
-# Color theme for heatmaps: Blues
 # ============================================================
 
 import numpy as np
