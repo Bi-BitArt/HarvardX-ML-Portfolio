@@ -120,9 +120,13 @@ Rows: predicted class after **shock**, Columns: predicted class after **policy**
 ---
 
 ## Cross-Experiment Insights (Exp6)  
-- **Shock sensitivity:** Vulnerability models degrade under stress; calibration is fragile.  
-- **Policy paradox:** Targeting improves efficiency, but risks eroding stability in mid-tier classes.  
-- **Latent vulnerability:** Going beyond income reveals hidden risk factors, but blurs class distinctions.  
-- **Context shift:** Predictive features differ between non-shock and shock settings —  
-  structural disadvantages (e.g., literacy, housing, digital access) may look weak in stable times  
-  but emerge as critical vulnerabilities under stress.
+
+- **Shock sensitivity:**  
+  Under economic shocks, model performance declines and calibration (stability of accuracy) becomes fragile.  
+  However, the drop (Δ −0.039, about 4%) remains within a reasonable range.  
+- **Latent vulnerability:**  
+  By going beyond income-based measures, the model uncovers previously hidden risk factors and achieves significant improvements among vulnerable groups even under the same budget.  
+  At the same time, class boundaries become blurred, leading to a moderate loss in predictive precision.  
+- **Context shift:**  
+  Predictive features differ between non-shock and shock settings.  
+  Structural disadvantages that seem minor in stable periods — such as **low literacy, poor housing, and limited digital access** — emerge as decisive sources of vulnerability under stress.
