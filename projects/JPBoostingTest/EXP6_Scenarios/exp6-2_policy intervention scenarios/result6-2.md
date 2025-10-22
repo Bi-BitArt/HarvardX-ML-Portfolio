@@ -15,13 +15,14 @@ Reference: Japan’s **¥100,000 uniform cash transfer (2020 Special Cash Paymen
 
 #### Metrics
 
-- **Baseline ROC AUC (macro OVR):** 0.9107  
+- **Baseline ROC AUC (macro OVR):** 0.911  
 
 | Policy                          | ROC AUC | Δ AUC    |
 |---------------------------------|---------|----------|
-| Uniform Cash (Universal)        | 0.9098  | −0.0009  |
-| Targeted (Bottom 30%)           | 0.9106  | −0.0001  |
-| Budget-Neutral Targeted (30%)   | 0.9109  | **+0.0002** |
+| Shock                           | 0.872   | −0.039   |
+| Uniform Cash (Universal)        | 0.881   | −0.030   |
+| Targeted (Bottom 30%)           | 0.874   | −0.037   |
+| Budget-Neutral Targeted (30%)   | 0.877   | −0.033  |
 
 ---
 
