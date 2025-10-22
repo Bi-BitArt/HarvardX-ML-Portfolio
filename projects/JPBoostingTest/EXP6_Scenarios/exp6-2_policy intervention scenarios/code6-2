@@ -2,6 +2,7 @@
 # Household Vulnerability Policy Simulation
 # Assumption: normalized income scale where 1.0 ≈ ¥5,000,000
 # → Uniform cash transfer: ¥100,000 per household ≈ +0.02
+# Color theme for heatmaps: Blues
 # ============================================================
 
 import numpy as np
@@ -28,11 +29,7 @@ def apply_uniform_cash_policy(
     per_capita=False,
     hhsize_col="household_size",
 ):
-    """
-    Apply a flat cash transfer to *normalized* income.
-    Assumption: 1.0 ≈ ¥5,000,000, so amount=0.02 ≈ ¥100,000.
-    If per_capita=True and household_size exists, give amount per person.
-    """
+    """Apply a flat cash transfer to *normalized* income."""
     Xp = X_df.copy()
     if income_col not in Xp.columns:
         raise ValueError(f"{income_col} not found in features")
@@ -42,7 +39,6 @@ def apply_uniform_cash_policy(
         Xp[income_col] = Xp[income_col] + amount * people
     else:
         Xp[income_col] = Xp[income_col] + amount
-
     return Xp
 
 
@@ -55,14 +51,10 @@ def apply_targeted_cash_policy(
     amount=UNIFORM_AMOUNT,
     quantile=TARGET_QUANTILE,
 ):
-    """
-    Provide transfers only to households in the bottom 'quantile' by normalized income.
-    Example: amount=0.02 ≈ ¥100,000 if 1.0 ≈ ¥5,000,000.
-    """
+    """Provide transfers only to households in the bottom 'quantile' by normalized income."""
     Xp = X_df.copy()
     if income_col not in Xp.columns:
         raise ValueError(f"{income_col} not found in features")
-
     cutoff = Xp[income_col].quantile(quantile)
     mask = Xp[income_col] <= cutoff
     Xp.loc[mask, income_col] = Xp.loc[mask, income_col] + amount
@@ -81,16 +73,13 @@ def apply_budget_neutral_targeted_cash(
     """
     Redistribute total uniform budget (uniform_amount to *everyone*) to the bottom 'quantile'.
     Per-recipient transfer = uniform_amount * (1 / quantile).
-    For example: uniform_amount=0.02, quantile=0.30 → +0.0666... for recipients.
     """
     Xp = X_df.copy()
     if income_col not in Xp.columns:
         raise ValueError(f"{income_col} not found in features")
-
     cutoff = Xp[income_col].quantile(quantile)
     mask = Xp[income_col] <= cutoff
-
-    scale = 1.0 / quantile  # e.g., 1/0.30 ≈ 3.333...
+    scale = 1.0 / quantile
     Xp.loc[mask, income_col] = Xp.loc[mask, income_col] + uniform_amount * scale
     return Xp
 
@@ -99,18 +88,12 @@ def apply_budget_neutral_targeted_cash(
 # [Eval] AUC + Transition Matrix
 # ------------------------------------------------------------
 def eval_policy_shift(trained_model, X_base, X_policy, y_true, label="Policy"):
-    """
-    Evaluate model stability after policy (no retraining).
-    - Computes macro OVR ROC AUC before/after policy against y_true.
-    - Shows predicted-class transition matrix: baseline → post-policy.
-    """
-    # Probabilities and class predictions
+    """Evaluate model stability after policy (no retraining)."""
     y_prob_base = trained_model.predict_proba(X_base)
     y_prob_pol  = trained_model.predict_proba(X_policy)
     y_pred_base = y_prob_base.argmax(axis=1)
     y_pred_pol  = y_prob_pol.argmax(axis=1)
 
-    # Ranking metric (macro OVR ROC AUC)
     auc_base = roc_auc_score(y_true, y_prob_base, multi_class="ovr", average="macro")
     auc_pol  = roc_auc_score(y_true, y_prob_pol,  multi_class="ovr", average="macro")
 
@@ -119,20 +102,17 @@ def eval_policy_shift(trained_model, X_base, X_policy, y_true, label="Policy"):
     print("After Policy ROC AUC:", auc_pol)
     print("Δ AUC:", auc_pol - auc_base)
 
-    # Transition matrix (% within baseline row)
     trans = (
         pd.crosstab(
             y_pred_base, y_pred_pol,
             rownames=["Predicted (Baseline)"],
             colnames=[f"Predicted ({label})"],
             normalize="index",
-        )
-        * 100
+        ) * 100
     )
     print("\nTransition matrix (%):")
     print(trans.round(1))
 
-    # Post-policy classification report (vs. y_true)
     print("\nClassification Report (after policy):\n",
           classification_report(y_true, y_pred_pol, digits=3))
 
@@ -143,16 +123,12 @@ def eval_policy_shift(trained_model, X_base, X_policy, y_true, label="Policy"):
 # [Viz] Heatmap (Transition Matrix, Blues)
 # ------------------------------------------------------------
 def plot_transition_heatmap(trans_df, title="Transition Matrix"):
-    """
-    Visualize class transition matrix: Predicted (Before) → Predicted (After).
-    """
     labels = sorted(list(set(trans_df.index) | set(trans_df.columns)))
     trans_df = trans_df.reindex(index=labels, columns=labels, fill_value=0.0)
-    mat = trans_df.values  # percentages
+    mat = trans_df.values
 
     fig, ax = plt.subplots(figsize=(5.8, 4.8))
     im = ax.imshow(mat, cmap="Blues", aspect="auto", vmin=0, vmax=100)
-
     ax.set_title(title)
     ax.set_xlabel("Predicted (After)")
     ax.set_ylabel("Predicted (Before)")
@@ -160,18 +136,11 @@ def plot_transition_heatmap(trans_df, title="Transition Matrix"):
     ax.set_yticks(np.arange(len(labels)))
     ax.set_xticklabels(labels)
     ax.set_yticklabels(labels)
-
-    # overlay cell values
     for i in range(mat.shape[0]):
         for j in range(mat.shape[1]):
             val = mat[i, j]
-            ax.text(
-                j, i, f"{val:.1f}",
-                ha="center", va="center",
-                color=("white" if val > 50 else "black"),
-                fontsize=9,
-            )
-
+            ax.text(j, i, f"{val:.1f}", ha="center", va="center",
+                    color=("white" if val > 50 else "black"), fontsize=9)
     cbar = plt.colorbar(im)
     cbar.set_label("% within row", rotation=90)
     plt.tight_layout()
@@ -179,30 +148,42 @@ def plot_transition_heatmap(trans_df, title="Transition Matrix"):
 
 
 # ============================================================
-# Run policies (examples)
-# Assumes: X_test (features), y_test (true labels), model (trained classifier)
+# Run policies **AFTER SHOCK**
+# Base = X_test_shock (post-shock features)
+# If you have y_test_shock, use it instead of y_test below.
 # ============================================================
 
+X_base = X_test_shock
+
 # Policy 1: Uniform Cash (¥100,000 ≈ +0.02)
-X_test_uniform = apply_uniform_cash_policy(
-    X_test, income_col="annual_income", amount=UNIFORM_AMOUNT, per_capita=False
+X_uniform_after_shock = apply_uniform_cash_policy(
+    X_base, income_col="annual_income", amount=UNIFORM_AMOUNT, per_capita=False
 )
-res_uniform = eval_policy_shift(model, X_test, X_test_uniform, y_test, label="Uniform Cash")
-plot_transition_heatmap(res_uniform["trans"], "Uniform Cash – Transition Matrix")
+res_uniform = eval_policy_shift(
+    model, X_base, X_uniform_after_shock, y_test,  # replace y_test with y_test_shock if available
+    label="Uniform Cash (post-shock)"
+)
+plot_transition_heatmap(res_uniform["trans"], "Uniform Cash")
 
 # Policy 2: Targeted Cash (Bottom 30%, ¥100,000 to recipients)
-X_test_targeted = apply_targeted_cash_policy(
-    X_test, income_col="annual_income", amount=UNIFORM_AMOUNT, quantile=TARGET_QUANTILE
+X_targeted_after_shock = apply_targeted_cash_policy(
+    X_base, income_col="annual_income", amount=UNIFORM_AMOUNT, quantile=TARGET_QUANTILE
 )
-res_targeted = eval_policy_shift(model, X_test, X_test_targeted, y_test, label="Targeted Cash (Bottom 30%)")
-plot_transition_heatmap(res_targeted["trans"], "Targeted Cash (Bottom 30%) – Transition Matrix")
+res_targeted = eval_policy_shift(
+    model, X_base, X_targeted_after_shock, y_test,
+    label="Targeted Cash (Bottom 30%) (post-shock)"
+)
+plot_transition_heatmap(res_targeted["trans"], "Targeted Cash (Bottom 30%)")
 
 # Policy 3: Budget-Neutral Targeted Cash (same total budget as uniform)
-X_test_targeted_bn = apply_budget_neutral_targeted_cash(
-    X_test, income_col="annual_income", uniform_amount=UNIFORM_AMOUNT, quantile=TARGET_QUANTILE
+X_targeted_bn_after_shock = apply_budget_neutral_targeted_cash(
+    X_base, income_col="annual_income", uniform_amount=UNIFORM_AMOUNT, quantile=TARGET_QUANTILE
 )
-res_targeted_bn = eval_policy_shift(model, X_test, X_test_targeted_bn, y_test, label="Targeted Cash (Budget Neutral)")
-plot_transition_heatmap(res_targeted_bn["trans"], "Targeted Cash (Budget Neutral) – Transition Matrix")
+res_targeted_bn = eval_policy_shift(
+    model, X_base, X_targeted_bn_after_shock, y_test,
+    label="Targeted Cash (Budget Neutral) (post-shock)"
+)
+plot_transition_heatmap(res_targeted_bn["trans"], "Targeted Cash (Budget Neutral)")
 
 # ============================================================
 # End of Script
