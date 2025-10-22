@@ -66,20 +66,18 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
 - **Tested policies:**  
   1. **Uniform ¥100,000 cash transfer** (Japan’s 2020 policy).  
   2. **Targeted cash transfer** (bottom 30% by income).  
-  3. **Budget-neutral targeted transfer** (same budget, concentrated in bottom 30%).  
+  3. **Budget-neutral targeted transfer** (same budget as uniform, concentrated in the bottom 30%).  
 - **Findings:**  
-  - **Universal cash:** maximized equity but destabilized classes, erased Class 3.  
-  - **Targeted cash:** moderate efficiency gains, left higher classes unprotected.  
-  - **Budget-neutral targeted:** most efficient, but paradoxical:  
-    - **36% of Class 3 improved to Class 2, yet 35% fell to Class 4.** (*higher=worse*)
-    - No Class 4 households improved → one-off transfers insufficient.
+  - **Universal cash:** maximized equity, but no major improvements in vulnerable groups (Class3, 4) 
+  - **Targeted cash:** minimal impact on the lower-middle (Class3), slight improvement in class4
+  - **Budget-neutral targeted:** most effective, but the overall impact still remained limited despite the concentrated transfer
 
 ---
 
 ## 🔹 Exp6-3: Latent Vulnerability Policy (LVP)  
 - **Design:** Clustered households by income & savings → identified vulnerable cluster.  
   - Feature analysis showed **latent vulnerabilities**: foreign-born, low financial literacy, high debt-to-income, precarious housing.  
-  - Policy combined **cash + structural tweaks** (debt relief, literacy, digital access).  
+  - The total budget (same as uniform) is **redistributed disproportionately** to those with higher latent vulnerability scores, embodying a budget-neutral yet need-sensitive policy logic.
 
 ### Comparative Feature Importance (Non-shock vs Shock Contexts)
 
@@ -95,7 +93,7 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
 
 ### Results  
 - Strong stabilization in vulnerable clusters.  
-- ROC AUC dropped sharply (**0.911 → 0.629, Δ −0.282**).  
+- ROC AUC dropped moderately (**0.911 → 0.865, ≈ Δ −0.05**).  
 - Interpretation: not “worse,” but **boundaries blurred as inequality reduced**.  
 
 ### Insight  
@@ -114,11 +112,10 @@ Overall, vulnerability is **multi-dimensional**, driven by both financial capaci
 *Heatmap of class transitions (0 = least vulnerable, 4 = most vulnerable).  
 Rows: predicted class after **shock**, Columns: predicted class after **policy**.  
 
-*Example: Budget-neutral: Class 2 after the shock (row = 2).*
-- 14.8% improved to Class 0.
-- 6.3% improved to Class 1.
-- 78.9% stayed in Class 2.
-- 0% fell into worse classes.
+*Example: Uniform Cash (Universal) : Class 4 after the shock (row = 4).*
+- 1.4% improved to Class 2.
+- 10.1% improved to Class 3.
+- 88.4% remained unchanged.
 
 ---
 
