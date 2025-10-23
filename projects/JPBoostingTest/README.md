@@ -68,7 +68,10 @@ It consists of three stages:
 - **Tested policies:**  
   1. **Uniform ¥100,000 cash transfer** (Japan’s 2020 policy).  
   2. **Targeted cash transfer** (bottom 30% by income).  
-  3. **Budget-neutral targeted transfer** (same total budget as the universal policy, concentrated in the bottom 30%).  
+  3. **Budget-neutral targeted transfer** (same total budget as the universal policy, concentrated in the bottom 30%).
+ 
+- **Efficacy prediction**
+  - Again, **without retraining the model**, the pre-shock classifier was applied to post-intervention data to evaluate **how well it could predict the effectiveness of the intervention**.  
 
 - **Findings:**  
   - **Universal cash:** Maximized equity but produced no major improvements among vulnerable groups (Classes 3–4).  
