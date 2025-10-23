@@ -77,6 +77,7 @@ It consists of three stages:
   1. **Universal cash:** Maximized equity but produced no major improvements among vulnerable groups (Classes 3–4).  
   2. **Targeted cash:** Had minimal impact on lower-middle households (Class 3) and only slight improvement in Class 4.  
   3. **Budget-neutral targeted:** Most effective overall, but the aggregate impact remained limited despite the concentrated transfer.
+     
   - ROC AUC slightly dropped from **0.911 → 0.878 (Δ −0.033)** on average.  
 
 ---
