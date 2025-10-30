@@ -141,3 +141,5 @@ Rows: predicted class after **shock**, Columns: predicted class after **policy**
 - **Context shift:**  
   Predictive features differ between non-shock and shock settings.  
   Structural disadvantages that seem minor in stable periods — such as **low literacy, poor housing, and limited digital access** — emerge as decisive sources of vulnerability under stress.
+
+> 📘 Reviewing all subfolders and results of exp6 is strongly encouraged, as they collectively demonstrate the end-to-end process and robustness of the findings.
