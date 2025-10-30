@@ -10,7 +10,7 @@
 >     inspired by *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement."*  
 >
 > 🗂️ **How to navigate:**  
-> First, review the **summary section** to understand the overall flow and key insights.  
+> First, review the **summary section (Summary.md)** to understand the overall flow and key insights.  
 > Then, explore each **`exp` subfolder** to access detailed results and source code.
 
 ---
