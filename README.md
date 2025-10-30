@@ -1,12 +1,19 @@
 # HarvardX CS109: Machine Learning and AI with Python
 
-## 🔎 **For admissions reviewers**  
+---
 
-**Please start with the [projects](projects/) folder.**
-It contains my independent experiments beyond the HarvardX coursework.  
-- [JPBoostingTest](projects/JPBoostingTest) – synthetic household vulnerability prediction inspired by  
-  *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement"*  
+> # 🔎  For Admissions Reviewers
+> **Please start with the [projects](projects/) folder.**  
+> It contains my independent experiments conducted **beyond the HarvardX coursework**.  
+>
+> - [**JPBoostingTest**](projects/JPBoostingTest) – Synthetic household vulnerability prediction project,  
+>     inspired by *Salvador (2024): "Use of Boosting Algorithms in Household-Level Poverty Measurement."*  
+>
+> 🗂️ **How to navigate:**  
+> First, review the **summary section** to understand the overall flow and key insights.  
+> Then, explore each **`exp` subfolder** to access detailed results and source code.
 
+---
 ## Purpose
 This portfolio is part of my preparation for applying to postgraduate programs in 2025.  
 It demonstrates my understanding of core machine learning algorithms and Python-based implementation skills.  
