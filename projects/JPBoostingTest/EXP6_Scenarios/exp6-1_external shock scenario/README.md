@@ -5,3 +5,6 @@
 has been **directly included** in this `/exp6_Scenarios` directory. 
 
 - This ensures that all experiments in Section 6 can be **reproduced immediately and consistently**.
+
+- ​To begin the simulation and reproduce the key findings, please execute code6-1_Startup first.
+
